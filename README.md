@@ -23,7 +23,7 @@ docker compose build --no-cache
 ```
 # Uruchomienie w tle
 ```bash
-docker compose build --no-cache
+docker compose up -d
 ```
 
 # Zatrzymanie
@@ -49,4 +49,10 @@ gfx1201). Modele o dużych rozmiarach są synchronizowane przez system Git LFS. 
 problemów z brakującymi wagami, należy wykonać
 ```bash
 git lfs pull .
+```
+
+4. Użycie przy pomocy skrótu:
+```bash
+sudo chmod +x start_comfy.sh
+./start_comfy.sh
 ```
