@@ -1,0 +1,32 @@
+services:
+  comfyui-3d-artistic:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: comfy_3d_engine
+    privileged: false # Bezpieczniejsze, nie potrzebujemy pełnego root na hoście przy precyzyjnych urządzeniach
+    shm_size: '16gb'
+    deploy:
+      resources:
+        limits:
+          memory: 60G
+    devices:
+      - "/dev/kfd:/dev/kfd"
+      - "/dev/dri/renderD128:/dev/dri/renderD128" # Tylko Twój RX 7800 XT, iGPU jest odcięte
+    volumes:
+      - ./aplikacje:/app
+      - ./models:/app/ComfyUI/models
+      - ./storage:/app/ComfyUI/input
+      - ./output:/app/ComfyUI/output
+      - ./custom_nodes:/app/ComfyUI/custom_nodes
+    environment:
+      - HSA_OVERRIDE_GFX_VERSION=11.0.1
+      - PYTORCH_ROCM_ARCH=gfx1101
+      - ROCM_ALLOW_SYSMEM=1
+      - HIP_VISIBLE_DEVICES=0 # Teraz '0' to bezwzględnie jedyna karta w kontenerze (RX 7800 XT)
+      - MIOPEN_DEBUG_DISABLE_FIND_DB=1
+      - KFD_RAW_EVENT_LIMIT=0
+      - HIPBLASLT_ENABLE_FP8=1
+    network_mode: host
+    restart: unless-stopped
+    command: ["python3", "main.py", "--listen", "0.0.0.0", "--use-pytorch-cross-attention"]
