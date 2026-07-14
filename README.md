@@ -1,4 +1,5 @@
-Dokumentacja: ComfyUI-SimpleBake & Artistic (Wtyczka jest ustawiona pod AMD Radeon 7800 XT)
+#Dokumentacja: ComfyUI-SimpleBake & Artistic 
+(Wtyczka jest ustawiona pod AMD Radeon 7800 XT)
 Tools
 
 1. Funkcjonalność Wtyczki
@@ -17,20 +18,30 @@ Projekt jest w pełni konteneryzowany dla zapewnienia powtarzalności środowisk
 AMD). Najważniejsze operacje:
 
 # Budowanie od zera
-''docker compose build --no-cache''
+```bash
+docker compose build --no-cache
+```
 # Uruchomienie w tle
-''docker compose up -d''
+```bash
+docker compose build --no-cache
+```
+
 # Zatrzymanie
-"docker compose down"
+```bash
+docker compose down
+```
 
 Diagnostyka i czyszczenie
 W przypadku błędów kompilacji lub konfliktów warstw (cache):
 # Pełne czyszczenie systemu Docker (obrazy, volume, sieci)
-''docker system prune -a --volumes -f''
-
+```bash
+docker system prune -a --volumes -f
+```
 
 # Naprawa uprawnień plików po zamknięciu kontenera
-''sudo chown -R $USER:$USER .''
+```bash
+sudo chown -R $USER:$USER .
+```
 
 3. Uwagi techniczne
 Wtyczka korzysta z nvdiffrast . Wymagana jest zgodność z architekturą ROCm (gfx1101/
