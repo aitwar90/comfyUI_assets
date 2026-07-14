@@ -4,3 +4,4 @@ models/upscale_models/*.pt filter=lfs diff=lfs merge=lfs -text
 models/loras/*.safetensors filter=lfs diff=lfs merge=lfs -text
 models/loras/*.ckpt filter=lfs diff=lfs merge=lfs -text
 models/loras/*.pt filter=lfs diff=lfs merge=lfs -text
+models/upscale_models/*.pth filter=lfs diff=lfs merge=lfs -text
