@@ -1,0 +1,15 @@
+# --- Podstawowe biblioteki do przetwarzania obrazu i matematyki ---
+numpy
+torch
+opencv-python
+Pillow
+
+# --- Biblioteki specyficzne dla ComfyUI-3D-MeshTool ---
+kiui
+xatlas
+pyfqmr
+plyfile
+
+# --- Opcjonalne / Do przyszłych edycji meshy (odkomentuj w razie potrzeby) ---
+# meshlib
+# eigency
