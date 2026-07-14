@@ -1,4 +1,4 @@
-# Nowa, czysta baza deweloperska ROCm 7.2.4
+# Nowa, czysta baza deweloperska ROCm 7.2.4 - dla AMD 7800XT
 FROM rocm/dev-ubuntu-24.04:7.2.4
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -100,7 +100,20 @@ RUN git clone https://github.com/ROCm/nerfacc.git /tmp/nerfacc && \
     pip install --no-cache-dir --no-build-isolation . && \
     rm -rf /tmp/nerfacc
 
-# 4. Instalacja standardowych pakietów PyPI oraz sam2
+# 4. Instalacja nvdiffrast
+RUN git clone https://github.com/Lamothe/nvdiffrast_rocm.git /tmp/nvdiffrast && \
+    cd /tmp/nvdiffrast && \
+    # 1. Flagi zapobiegające błędom kompilacji typów half
+    export CXXFLAGS="-D__HIP_NO_HALF_OPERATORS__=1 -D__HIP_NO_HALF_CONVERSIONS__=1" && \
+    export LDFLAGS="-L/opt/rocm-7.2.4/lib" && \
+    # 2. Patchowanie (skoro używasz forka, on może mieć już część rzeczy, 
+    # ale Wave64 trzeba wymusić w kodzie)
+    find . -type f \( -name "*.cu" -o -name "*.cuh" -o -name "*.cpp" \) -exec sed -i 's/0xffffffffu/0xffffffffffffffffull/g' {} + && \
+    # 3. Instalacja
+    pip install . --no-cache-dir --no-build-isolation && \
+    rm -rf /tmp/nvdiffrast
+
+# 5. Instalacja standardowych pakietów PyPI oraz sam2
 RUN pip3 install --no-cache-dir \
     toml piexif torchsde uv GitPython segment-anything-py \
     imageio-ffmpeg transformers huggingface-hub \
@@ -126,11 +139,6 @@ RUN pip install --no-cache-dir \
 # Kluczowe biblioteki graficzne ze źródeł
 RUN pip install --no-cache-dir git+https://github.com/EasternJournalist/utils3d.git
 RUN pip install --no-cache-dir git+https://github.com/ashawkey/kiuikit.git
-
-# --- POPRAWKA DLA KLIUI (NameError: name 'Union' is not defined) ---
-# Naprawiamy plik op.py bezpośrednio po instalacji kiuikit
-RUN KIUI_OP_PATH=$(python -c "import kiui.op; print(kiui.op.__file__)") && \
-    sed -i '1s/^/from typing import Union\n/' "$KIUI_OP_PATH"
 
 # Budowa spconv i cumm pod AMD
 RUN pip install --no-cache-dir pccm cumm && \
@@ -174,8 +182,7 @@ RUN pip install --no-cache-dir \
     scikit-learn \
     pyrender \
     cupy-rocm-7-0 \
-    librosa soundfile scipy pydub pretty_midi pyfluidsynth \
-    cozy-comfyui
+    librosa soundfile scipy pydub pretty_midi pyfluidsynth
 
 # Klonowanie i instalacja ComfyUI-3D-MeshTool (ścieżki poprawione na /app/ComfyUI)
 RUN git clone https://github.com/807502278/ComfyUI-3D-MeshTool.git /app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool && \
@@ -190,6 +197,26 @@ RUN if [ -f /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements.txt 
 RUN if [ -f /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements_extras.txt ]; then \
         pip install --no-cache-dir -r /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements_extras.txt; \
     fi
+
+# --- KOMPLEKSOWA POPRAWKA TYPOWANIA DLA PYTHONA 3.12 ---
+# Dodaje niezbędne importy na początek każdego pliku .py w bibliotece kiui oraz w nodach 3D
+RUN for dir in "/opt/venv/lib/python3.12/site-packages/kiui" \
+               "/app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool" \
+               "/app/ComfyUI/custom_nodes/ComfyUI-3D-Pack"; do \
+        if [ -d "$dir" ]; then \
+            echo "Aplikowanie poprawek typowania w katalogu: $dir" && \
+            find "$dir" -type f -name "*.py" | while read -r file; do \
+                # Unikamy podwójnego dodawania, jeśli skrypt byłby uruchomiony ponownie
+                if ! grep -q "from __future__ import annotations" "$file"; then \
+                    echo "Patchowanie: $file" && \
+                    # Generujemy nagłówek ze wszystkimi potencjalnie brakującymi typami
+                    printf "from __future__ import annotations\nimport torch\nfrom torch import Tensor\nfrom typing import Optional, Union, List, Dict, Any\n" > /tmp/header_temp && \
+                    cat "$file" >> /tmp/header_temp && \
+                    mv /tmp/header_temp "$file"; \
+                fi \
+            done; \
+        fi \
+    done
 
 # Ustawienie ścieżek Pythona (skierowane na właściwy folder główny)
 ENV PYTHONPATH="${PYTHONPATH}:/app/ComfyUI:/app/ComfyUI/custom_nodes"
