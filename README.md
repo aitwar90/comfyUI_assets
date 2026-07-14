@@ -46,4 +46,7 @@ sudo chown -R $USER:$USER .
 3. Uwagi techniczne
 Wtyczka korzysta z nvdiffrast . Wymagana jest zgodność z architekturą ROCm (gfx1101/
 gfx1201). Modele o dużych rozmiarach są synchronizowane przez system Git LFS. W razie
-problemów z brakującymi wagami, należy wykonać git lfs pull .
+problemów z brakującymi wagami, należy wykonać
+```bash
+git lfs pull .
+```
