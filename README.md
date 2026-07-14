@@ -1,39 +1,38 @@
-ComfyUI-SimpleBake & Artistic Tools
-Zestaw narzędzi i workflow przeznaczony do pracy z ComfyUI, zoptymalizowany pod kątem renderowania 3D i wysokiej jakości upscalingu. Projekt wspiera akcelerację GPU na architekturze ROCm (AMD).
+Dokumentacja: ComfyUI-SimpleBake & Artistic (Wtyczka jest ustawiona pod AMD Radeon 7800 XT)
+Tools
 
-🛠 Zawartość
-custom_nodes/ComfyUI-SimpleBake: Niestandardowe nody do automatyzacji procesów pieczenia (bake) tekstur i modeli.
+1. Funkcjonalność Wtyczki
+ComfyUI-SimpleBake to zaawansowany zestaw narzędzi zaprojektowany do automatyzacji
+procesów 3D i artystycznych wewnątrz ekosystemu ComfyUI. Główne moduły obejmują:
+Automatyzacja Bake'owania: Umożliwia przenoszenie tekstur i parametrów materiałowych
+pomiędzy modelami bez ręcznej edycji.
+Generowanie Modeli 3D: Zintegrowane workflowy pozwalające na tworzenie geometrii na
+podstawie promptów tekstowych.
+Upscaling Artystyczny: Dedykowane nody do inteligentnego upscalingu przy zachowaniu
+spójności tekstur (UltraSharp/RealESRGAN).
+2. Rozszerzona Obsługa Dockera
 
-workflow/: Gotowe workflowy do generowania modeli 3D i zaawansowanej obróbki grafiki.
+Zarządzanie kontenerem
+Projekt jest w pełni konteneryzowany dla zapewnienia powtarzalności środowiska (ROCm
+AMD). Najważniejsze operacje:
 
-models/:
+# Budowanie od zera
+''docker compose build --no-cache''
+# Uruchomienie w tle
+''docker compose up -d''
+# Zatrzymanie
+''docker compose down''
 
-upscale_models/: Modele typu UltraSharp oraz RealESRGAN (zarządzane przez Git LFS).
+Diagnostyka i czyszczenie
+W przypadku błędów kompilacji lub konfliktów warstw (cache):
+# Pełne czyszczenie systemu Docker (obrazy, volume, sieci)
+''docker system prune -a --volumes -f''
 
-loras/: Kolekcja wytrenowanych modeli LoRA (zarządzane przez Git LFS).
 
-🚀 Wymagania
-Docker z obsługą ROCm (dla kart AMD).
+# Naprawa uprawnień plików po zamknięciu kontenera
+''sudo chown -R $USER:$USER .''
 
-Git LFS (konieczny do pobrania modeli).
-
-📥 Instalacja i pierwsze kroki
-Sklonuj repozytorium z obsługą LFS:
-
-Bash
-git clone git@github.com:aitwar90/comfyUI_assets.git
-cd comfyUI_assets
-git lfs pull
-Zarządzanie plikami (Uprawnienia):
-Jeśli uruchamiasz środowisko w Dockerze, pamiętaj o poprawnych uprawnieniach do plików:
-
-Bash
-sudo chown -R $USER:$USER .
-Uruchomienie:
-
-Bash
-docker compose up --build
-⚙️ Uwagi techniczne
-Projekt wykorzystuje nvdiffrast z odpowiednimi patchami dla architektury ROCm (gfx1101/gfx1201).
-
-Duże pliki modeli są przechowywane w Git LFS. Jeśli po pobraniu widzisz pliki o rozmiarze kilku bajtów, upewnij się, że masz zainstalowane git-lfs i wykonaj git lfs pull.
+3. Uwagi techniczne
+Wtyczka korzysta z nvdiffrast . Wymagana jest zgodność z architekturą ROCm (gfx1101/
+gfx1201). Modele o dużych rozmiarach są synchronizowane przez system Git LFS. W razie
+problemów z brakującymi wagami, należy wykonać git lfs pull .
