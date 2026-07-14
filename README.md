@@ -21,7 +21,7 @@ AMD). Najważniejsze operacje:
 # Uruchomienie w tle
 ''docker compose up -d''
 # Zatrzymanie
-''docker compose down''
+"docker compose down"
 
 Diagnostyka i czyszczenie
 W przypadku błędów kompilacji lub konfliktów warstw (cache):
