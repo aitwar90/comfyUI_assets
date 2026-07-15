@@ -12,22 +12,43 @@ from aeiou.viz import audio_spectrogram_image
 from .util_dependencies import PackageDependencyChecker
 from .util_config import get_model_config
 
-# Add local stable-audio-tools to path
+# Add local stable-audio-tools to path i bezpieczne wstrzyknięcie atrapy pkg_resources
 def add_stable_audio_tools_path():
+    import sys, os, types
     current_path = os.path.dirname(os.path.abspath(__file__))
     stable_audio_path = os.path.abspath(os.path.join(current_path, '../../custom-extensions/stable-audio-tools'))
+    
+    # Lokalne oszustwo - aplikowane tylko w locie w pamięci RAM
+    if 'pkg_resources' not in sys.modules:
+        pkg_resources_mock = types.ModuleType('pkg_resources')
+        import packaging
+        pkg_resources_mock.packaging = packaging
+        pkg_resources_mock.Requirement = lambda: None
+        pkg_resources_mock.Requirement.parse = lambda x: type('AtrapaReq', (object,), {'name': x.split("==")[0].split(">=")[0].split("<=")[0].strip(), 'specifier': ''})
+        sys.modules['pkg_resources'] = pkg_resources_mock
+        print("[comfyui-stable-audio-sampler] Bezpiecznie wstrzyknięto atrapę pkg_resources do RAMu!")
+
     if stable_audio_path not in sys.path:
         sys.path.insert(0, stable_audio_path)
-        print(f"[comfyui-stable-audio-sampler, nodes.py, add_stable_audio_tools_path] Added stable-audio-tools path: {stable_audio_path}")
+        print(f"[comfyui-stable-audio-sampler] Added stable-audio-tools path: {stable_audio_path}")
 
 add_stable_audio_tools_path()
-
+# Bezpieczny fallback dla copy_state_dict bezpośrednio w kodzie, 
+# eliminujący wadliwy import z zewnętrznej biblioteki
+def copy_state_dict(target_state_dict, source_state_dict):
+    for name, param in source_state_dict.items():
+        if name in target_state_dict:
+            try:
+                target_state_dict[name].copy_(param)
+            except Exception as e:
+                print(f"[StableAudioSampler] Pomijanie kopiowania parametru {name} z powodu błędu: {e}")
+        else:
+            print(f"[StableAudioSampler] Parametr {name} nie istnieje w modelu docelowym.")
 # Import stable-audio-tools after path modification
 from stable_audio_tools import get_pretrained_model, create_model_from_config
 from stable_audio_tools.inference.generation import generate_diffusion_cond, generate_diffusion_uncond
 from stable_audio_tools.inference.utils import prepare_audio
 from stable_audio_tools.models.utils import load_ckpt_state_dict
-from stable_audio_tools.training.utils import copy_state_dict
 
 # Comfy libs
 def add_comfy_path():
