@@ -2,24 +2,33 @@
 FROM rocm/dev-ubuntu-24.04:7.2.4
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV Python_EXECUTABLE=/usr/bin/python3
-ENV PYTHONUNBUFFERED=1
 
-# Ścisłe zmienne środowiskowe kompilacji i uruchomienia dla RX 7800 XT (gfx1101)
-ENV HSA_OVERRIDE_GFX_VERSION=11.0.1
-ENV PYTORCH_ROCM_ARCH=gfx1101
-ENV FORCE_CUDA=1
-ENV ATTN_BACKEND=sdpa
-ENV SPARSE_ATTN_BACKEND=sdpa
-ENV MIOPEN_FIND_MODE=2
-ENV CUMM_USE_HIP=1
-ENV CCIMPORT_USE_HIP=1
-ENV CUMM_HIP_ARCH_LIST=gfx1101
+# --- GLOBALNA KONFIGURACJA ŚRODOWISKA I ROCm ---
+ENV Python_EXECUTABLE=/usr/bin/python3 \
+    PYTHONUNBUFFERED=1 \
+    HSA_OVERRIDE_GFX_VERSION=11.0.1 \
+    PYTORCH_ROCM_ARCH=gfx1101 \
+    AMDGPU_TARGETS=gfx1101 \
+    TORCH_CUDA_ARCH_LIST=gfx1101 \
+    FORCE_CUDA=1 \
+    ATTN_BACKEND=sdpa \
+    SPARSE_ATTN_BACKEND=sdpa \
+    MIOPEN_FIND_MODE=2 \
+    CUMM_USE_HIP=1 \
+    CCIMPORT_USE_HIP=1 \
+    CUMM_HIP_ARCH_LIST=gfx1101 \
+    ROCM_PATH=/opt/rocm-7.2.4
 
-# Linkowanie struktury libdrm (kluczowe, aby ROCm widział poprawnie pliki urządzeń z jądra)
+ENV C_INCLUDE_PATH=${ROCM_PATH}/include:$C_INCLUDE_PATH \
+    CPLUS_INCLUDE_PATH=${ROCM_PATH}/include:$CPLUS_INCLUDE_PATH \
+    LD_LIBRARY_PATH=${ROCM_PATH}/lib:$LD_LIBRARY_PATH \
+    LIBRARY_PATH=${ROCM_PATH}/lib:$LIBRARY_PATH \
+    CUDA_PATH=$ROCM_PATH
+
+# Linkowanie struktury libdrm (kluczowe dla wykrywania GPU przez ROCm)
 RUN mkdir -p /opt/amdgpu/share/libdrm/ && ln -sf /usr/share/libdrm/amdgpu.ids /opt/amdgpu/share/libdrm/amdgpu.ids
 
-# 1. Zbiorcza instalacja narzędzi i kompletnego SDK ROCm
+# --- INSTALACJA PAKIETÓW SYSTEMOWYCH SYSTEMU ---
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     ninja-build \
@@ -54,40 +63,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rocrand-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Konfiguracja zmiennych linkera i kompilatora HIP
-ENV ROCM_PATH=/opt/rocm-7.2.4
-ENV C_INCLUDE_PATH=${ROCM_PATH}/include:$C_INCLUDE_PATH
-ENV CPLUS_INCLUDE_PATH=${ROCM_PATH}/include:$CPLUS_INCLUDE_PATH
-ENV LD_LIBRARY_PATH=${ROCM_PATH}/lib:$LD_LIBRARY_PATH
-ENV LIBRARY_PATH=${ROCM_PATH}/lib:$LIBRARY_PATH
-ENV CUDA_PATH=$ROCM_PATH
-
-# Precyzyjne i globalne wymuszenie architektury GPU (gfx1101)
-ENV PYTORCH_ROCM_ARCH=gfx1101
-ENV AMDGPU_TARGETS=gfx1101
-ENV TORCH_CUDA_ARCH_LIST=gfx1101
-
-# --- TWORZENIE I AKTYWACJA ŚRODOWISKA WIRTUALNEGO (VENV) ---
-# Rozwiązuje to błędy z "externally managed environment" dla uv i pip
+# --- TWORZENIE I KONFIGURACJA VENV ---
 RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-ENV VIRTUAL_ENV="/opt/venv"
+ENV PATH="/opt/venv/bin:$PATH" \
+    VIRTUAL_ENV="/opt/venv"
 
-# Konfiguracja pip globalnie wewnątrz venv
-RUN pip install --upgrade pip setuptools wheel
+RUN pip install --upgrade pip setuptools wheel && \
+    mkdir -p /etc/pip && echo "[global]\nbreak-system-packages = true" > /etc/pip.conf && \
+    ln -sf /usr/bin/python3 /usr/bin/python && ln -sf /usr/bin/pip3 /usr/bin/pip
 
-# Konfiguracja pip globalnie
-RUN mkdir -p /etc/pip && echo "[global]\nbreak-system-packages = true" > /etc/pip.conf
-RUN ln -sf /usr/bin/python3 /usr/bin/python && ln -sf /usr/bin/pip3 /usr/bin/pip
-
-# 2. Instalacja dedykowanego PyTorcha pod ROCm 7.2
+# --- INSTALACJA PYTORCH ROCm 7.2 ---
 RUN pip3 install --no-cache-dir \
     --default-timeout=1000 \
     --retries 10 \
     torch torchvision torchaudio pytorch-triton-rocm xformers \
     --index-url https://download.pytorch.org/whl/rocm7.2
 
-# 3. Kompilacja nerfacc
+# --- KOMPILACJA NERFACC I NVDIFFRAST ZE ŹRÓDEŁ ---
 RUN git clone https://github.com/ROCm/nerfacc.git /tmp/nerfacc && \
     cd /tmp/nerfacc && \
     find . -type f \( -name "*.cu" -o -name "*.cuh" -o -name "*.hip" -o -name "*.hpp" -o -name "*.cpp" \) \
@@ -100,7 +92,6 @@ RUN git clone https://github.com/ROCm/nerfacc.git /tmp/nerfacc && \
     pip install --no-cache-dir --no-build-isolation . && \
     rm -rf /tmp/nerfacc
 
-# 4. Instalacja nvdiffrast
 RUN git clone https://github.com/Lamothe/nvdiffrast_rocm.git /tmp/nvdiffrast && \
     cd /tmp/nvdiffrast && \
     # 1. Flagi zapobiegające błędom kompilacji typów half
@@ -113,7 +104,7 @@ RUN git clone https://github.com/Lamothe/nvdiffrast_rocm.git /tmp/nvdiffrast && 
     pip install . --no-cache-dir --no-build-isolation && \
     rm -rf /tmp/nvdiffrast
 
-# 5. Instalacja standardowych pakietów PyPI oraz sam2
+# --- INSTALACJA GLOBALNYCH BIBLIOTEK PYTHON (PyPI + GITHUB) ---
 RUN pip3 install --no-cache-dir \
     toml piexif torchsde uv GitPython segment-anything-py \
     imageio-ffmpeg transformers huggingface-hub \
@@ -125,41 +116,32 @@ RUN pip3 install --no-cache-dir \
     rembg onnxruntime imageio \
     git+https://github.com/facebookresearch/sam2
 
-# Slang-torch
-RUN pip install --no-cache-dir git+https://github.com/shader-slang/slang-torch.git 
-
-# Narzędzia matematyczne i graficzne 3D
 RUN pip install --no-cache-dir \
     torchtyping tqdm jaxtyping packaging OmegaConf pyhocon iopath easydict \
     nibabel accelerate \
     trimesh fast-simplification plyfile pygltflib xatlas \
     pymeshlab gpytoolbox PyMCubes libigl pyvista pymeshfix igraph \
-    PyOpenGL PyOpenGL_accelerate
+    PyOpenGL PyOpenGL_accelerate \
+    mmgp open3d av \
+    git+https://github.com/shader-slang/slang-torch.git \
+    git+https://github.com/EasternJournalist/utils3d.git \
+    git+https://github.com/ashawkey/kiuikit.git
 
-# Kluczowe biblioteki graficzne ze źródeł
-RUN pip install --no-cache-dir git+https://github.com/EasternJournalist/utils3d.git
-RUN pip install --no-cache-dir git+https://github.com/ashawkey/kiuikit.git
-
-# Budowa spconv i cumm pod AMD
 RUN pip install --no-cache-dir pccm cumm && \
-    pip install --no-cache-dir --no-deps git+https://github.com/traveller59/spconv.git
+    pip install --no-cache-dir --no-deps git+https://github.com/traveller59/spconv.git && \
+    pip install --no-cache-dir --no-build-isolation git+https://github.com/SarahWeiii/diso.git#egg=diso
 
-# Dodatkowe zależności 3D
-RUN pip install --no-cache-dir mmgp opencv-python open3d av
-RUN pip install --no-cache-dir --no-build-isolation git+https://github.com/SarahWeiii/diso.git#egg=diso
-
-# USTALENIE KATALOGU ROBOCZEGO (naprawione pod strukturę /app/ComfyUI)
+# --- INSTALACJA I KONFIGURACJA COMFYUI ---
 WORKDIR /app/ComfyUI
 
-# Klonowanie ComfyUI bezpośrednio do tej ścieżki
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git . && \
     pip3 install --no-cache-dir -r requirements.txt
 
-# Zależności dla nodów i torch-scatter-rocm
-RUN pip3 install --no-cache-dir opencv-python trimesh timm controlnet-aux mediapipe gguf
-RUN pip install --no-cache-dir torch-scatter-rocm
+# Zależności dodatkowe dla nodów (usunięto zduplikowane trimesh oraz opencv-python na rzecz headless)
+RUN pip3 install --no-cache-dir timm controlnet-aux mediapipe gguf && \
+    pip install --no-cache-dir torch-scatter-rocm
 
-# Instalacja binariów Slang
+# Kompilacja i konfiguracja Slang
 RUN SLANG_BIN_DIR="/opt/venv/lib/python3.12/site-packages/slangtorch/bin" && \
     mkdir -p $SLANG_BIN_DIR && \
     wget https://github.com/shader-slang/slang/releases/download/v2024.10/slang-2024.10-linux-x86_64.tar.gz -O /tmp/slang.tar.gz && \
@@ -171,8 +153,18 @@ RUN SLANG_BIN_DIR="/opt/venv/lib/python3.12/site-packages/slangtorch/bin" && \
     ldconfig && \
     rm -rf /tmp/slang*
 
-# Pozostałe pakiety PyPI (zoptymalizowane pod ROCm + Audio)
-RUN pip install --no-cache-dir \
+# --- REFORMOWANA SEKCJA AUDIO (Z BEZPIECZNYM INSTALATOREM) ---
+# 1. Atrapy i oszustwa środowiska dla starych instalatorów
+RUN echo "from packaging.version import parse as parse_version" > /opt/venv/lib/python3.12/site-packages/pkg_resources.py && \
+    mkdir -p /opt/venv/lib/python3.12/site-packages/pypesq && \
+    echo 'def pypesq(fs, ref, deg, mode): return 0.0' > /opt/venv/lib/python3.12/site-packages/pypesq/__init__.py && \
+    mkdir -p /opt/venv/lib/python3.12/site-packages/pypesq-1.2.4.dist-info && \
+    printf "Metadata-Version: 2.1\nName: pypesq\nVersion: 1.2.4\n" > /opt/venv/lib/python3.12/site-packages/pypesq-1.2.4.dist-info/METADATA
+
+# 2. Poprawna instalacja matematyki oraz izolacja bibliotek audio bez zepsucia pandas
+RUN pip install --no-cache-dir "pywavelets>=1.6.0" "pandas>=2.1.0" && \
+    pip install --no-cache-dir --no-deps aeiou stable-audio-tools && \
+    pip install --no-cache-dir \
     pyfqmr \
     meshlib \
     eigency \
@@ -182,34 +174,33 @@ RUN pip install --no-cache-dir \
     scikit-learn \
     pyrender \
     cupy-rocm-7-0 \
-    librosa soundfile scipy pydub pretty_midi pyfluidsynth
+    librosa soundfile scipy pydub pretty_midi pyfluidsynth \
+    demucs openai-whisper hydra-core pyttsx3 pyloudnorm \
+    fastcore bokeh holoviews wandb webdataset pedalboard umap-learn \
+    alias-free-torch==0.0.6 auraloss==0.4.0 descript-audio-codec==1.0.0 \
+    einops-exts ema-pytorch==0.2.3 encodec==0.1.1 gradio k-diffusion laion-clap local-attention
 
-# Klonowanie i instalacja ComfyUI-3D-MeshTool (ścieżki poprawione na /app/ComfyUI)
+# --- INTEGRACJA NODÓW I ŁATANIE TYPOWANIA PYTHON 3.12 ---
 RUN git clone https://github.com/807502278/ComfyUI-3D-MeshTool.git /app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool && \
     if [ -f /app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool/requirements.txt ]; then \
         pip install --no-cache-dir -r /app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool/requirements.txt; \
     fi
 
-# Obsługa ComfyUI-Hunyuan3DWrapper (naprawione brakujące slashe w warunkach if)
 RUN if [ -f /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements.txt ]; then \
         pip install --no-cache-dir -r /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements.txt; \
-    fi
-RUN if [ -f /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements_extras.txt ]; then \
+    fi && \
+    if [ -f /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements_extras.txt ]; then \
         pip install --no-cache-dir -r /app/ComfyUI/custom_nodes/ComfyUI-Hunyuan3DWrapper/requirements_extras.txt; \
     fi
 
-# --- KOMPLEKSOWA POPRAWKA TYPOWANIA DLA PYTHONA 3.12 ---
-# Dodaje niezbędne importy na początek każdego pliku .py w bibliotece kiui oraz w nodach 3D
 RUN for dir in "/opt/venv/lib/python3.12/site-packages/kiui" \
                "/app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool" \
                "/app/ComfyUI/custom_nodes/ComfyUI-3D-Pack"; do \
         if [ -d "$dir" ]; then \
             echo "Aplikowanie poprawek typowania w katalogu: $dir" && \
             find "$dir" -type f -name "*.py" | while read -r file; do \
-                # Unikamy podwójnego dodawania, jeśli skrypt byłby uruchomiony ponownie
                 if ! grep -q "from __future__ import annotations" "$file"; then \
                     echo "Patchowanie: $file" && \
-                    # Generujemy nagłówek ze wszystkimi potencjalnie brakującymi typami
                     printf "from __future__ import annotations\nimport torch\nfrom torch import Tensor\nfrom typing import Optional, Union, List, Dict, Any\n" > /tmp/header_temp && \
                     cat "$file" >> /tmp/header_temp && \
                     mv /tmp/header_temp "$file"; \
@@ -218,8 +209,11 @@ RUN for dir in "/opt/venv/lib/python3.12/site-packages/kiui" \
         fi \
     done
 
-# Ustawienie ścieżek Pythona (skierowane na właściwy folder główny)
+RUN if [ -f /app/ComfyUI/custom_nodes/ComfyUI-StableAudioSampler/requirements.txt ]; then \
+        sed -i '/flash_attn/d' /app/ComfyUI/custom_nodes/ComfyUI-StableAudioSampler/requirements.txt; \
+    fi
+
+# --- URUCHOMIENIE ---
 ENV PYTHONPATH="${PYTHONPATH}:/app/ComfyUI:/app/ComfyUI/custom_nodes"
-ENV ATTN_BACKEND=sdpa
 
 EXPOSE 8188
