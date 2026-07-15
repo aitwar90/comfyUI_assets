@@ -61,6 +61,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     hipblaslt-dev \
     hiprand-dev \
     rocrand-dev \
+    espeak-ng \
     && rm -rf /var/lib/apt/lists/*
 
 # --- TWORZENIE I KONFIGURACJA VENV ---
@@ -78,6 +79,8 @@ RUN pip3 install --no-cache-dir \
     --retries 10 \
     torch torchvision torchaudio pytorch-triton-rocm xformers \
     --index-url https://download.pytorch.org/whl/rocm7.2
+
+RUN pip3 install --no-cache-dir torch-scatter-rocm torch-sparse-rocm torch-cluster-rocm torch-spline-conv-rocm
 
 # --- KOMPILACJA NERFACC I NVDIFFRAST ZE ŹRÓDEŁ ---
 RUN git clone https://github.com/ROCm/nerfacc.git /tmp/nerfacc && \
@@ -178,7 +181,8 @@ RUN pip install --no-cache-dir "pywavelets>=1.6.0" "pandas>=2.1.0" && \
     demucs openai-whisper hydra-core pyttsx3 pyloudnorm \
     fastcore bokeh holoviews wandb webdataset pedalboard umap-learn \
     alias-free-torch==0.0.6 auraloss==0.4.0 descript-audio-codec==1.0.0 \
-    einops-exts ema-pytorch==0.2.3 encodec==0.1.1 gradio k-diffusion laion-clap local-attention
+    einops-exts ema-pytorch==0.2.3 encodec==0.1.1 gradio k-diffusion laion-clap local-attention \
+    packaging seconohe
 
 # --- INTEGRACJA NODÓW I ŁATANIE TYPOWANIA PYTHON 3.12 ---
 RUN git clone https://github.com/807502278/ComfyUI-3D-MeshTool.git /app/ComfyUI/custom_nodes/ComfyUI-3D-MeshTool && \
