@@ -8,6 +8,7 @@ ENV Python_EXECUTABLE=/usr/bin/python3 \
     PYTHONUNBUFFERED=1 \
     HSA_OVERRIDE_GFX_VERSION=11.0.1 \
     PYTORCH_ROCM_ARCH=gfx1101 \
+    HIP_ARCHITECTURE=gfx1101 \
     AMDGPU_TARGETS=gfx1101 \
     TORCH_CUDA_ARCH_LIST=gfx1101 \
     FORCE_CUDA=1 \
@@ -24,6 +25,8 @@ ENV C_INCLUDE_PATH=${ROCM_PATH}/include:$C_INCLUDE_PATH \
     LD_LIBRARY_PATH=${ROCM_PATH}/lib:$LD_LIBRARY_PATH \
     LIBRARY_PATH=${ROCM_PATH}/lib:$LIBRARY_PATH \
     CUDA_PATH=$ROCM_PATH
+
+ENV COMFY_UI_DISABLE_OPENGL=1
 
 # Linkowanie struktury libdrm (kluczowe dla wykrywania GPU przez ROCm)
 RUN mkdir -p /opt/amdgpu/share/libdrm/ && ln -sf /usr/share/libdrm/amdgpu.ids /opt/amdgpu/share/libdrm/amdgpu.ids
@@ -74,15 +77,46 @@ RUN pip install --upgrade pip setuptools wheel && \
     mkdir -p /etc/pip && echo "[global]\nbreak-system-packages = true" > /etc/pip.conf && \
     ln -sf /usr/bin/python3 /usr/bin/python && ln -sf /usr/bin/pip3 /usr/bin/pip
 
-# --- INSTALACJA PYTORCH ROCm 7.2 ---
+# === 1. Instalacja PyTorcha pod ROCm 7.2 ===
 RUN pip3 install --no-cache-dir \
     --default-timeout=1000 \
     --retries 10 \
-    torch torchvision torchaudio pytorch-triton-rocm xformers \
+    torch==2.12.1+rocm7.2 \
+    torchvision \
+    torchaudio \
+    pytorch-triton-rocm \
     --index-url https://download.pytorch.org/whl/rocm7.2
 
-RUN PIP_NO_CACHE_DIR=1 PYTORCH_ROCM_ARCH=gfx1101 pip install --no-build-isolation --no-binary :all: torch-scatter-rocm torch-sparse-rocm torch-cluster-rocm torch-spline-conv-rocm
-#RUN pip3 install --no-cache-dir torch-scatter-rocm torch-sparse-rocm torch-cluster-rocm torch-spline-conv-rocm
+# === 2. Zmienne środowiskowe kompilacji (Kluczowe pod Twojego Radeona RX 7800 XT) ===
+ENV PYTORCH_ROCM_ARCH=gfx1101 \
+    FORCE_CUDA=1 \
+    MAX_JOBS=4 \
+    ROCM_PATH=/opt/rocm \
+    PYTORCH_TUNABLEOP_ENABLED=1
+
+# === 3. Kompilacja i instalacja ROCm xformers ze źródeł AMD ===
+# Instalujemy ninja, aby przyspieszyć kompilację i uniknąć timeoutów
+RUN pip install --no-cache-dir ninja && \
+    git clone https://github.com/ROCm/xformers.git /tmp/xformers && \
+    cd /tmp/xformers && \
+    git submodule update --init --recursive && \
+    # Budujemy i instalujemy bezpośrednio w środowisku
+    python setup.py install && \
+    # Czyścimy pliki tymczasowe, aby nie tuczyć obrazu Dockera
+    rm -rf /tmp/xformers
+
+# === 4. Instalacja natywnych paczek geometrycznych ROCm ===
+RUN pip install --no-cache-dir \
+    torch-scatter-rocm \
+    torch-sparse-rocm \
+    torch-cluster-rocm \
+    torch-spline-conv-rocm \
+    pyg-lib-rocm && \
+    pip install --no-cache-dir torch-geometric
+
+# === 5. Rygorystyczny test weryfikacyjny (Kompilacja + ABI) ===
+# Sprawdzamy czy xformers i paczki geometryczne importują się bez błędów konsolidatora
+RUN python -c "import torch; import xformers; import torch_scatter; print('SUCCESS: xformers i torch_scatter załadowane pomyślnie pod ROCm!')"
 
 # --- KOMPILACJA NERFACC I NVDIFFRAST ZE ŹRÓDEŁ ---
 RUN git clone https://github.com/ROCm/nerfacc.git /tmp/nerfacc && \
@@ -144,7 +178,7 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git . && \
 
 # Zależności dodatkowe dla nodów (usunięto zduplikowane trimesh oraz opencv-python na rzecz headless)
 RUN pip3 install --no-cache-dir timm controlnet-aux mediapipe gguf && \
-    pip install --no-cache-dir torch-scatter-rocm && \
+    #pip install --no-cache-dir torch-scatter-rocm && \
     pip install --no-cache-dir cgal pymunk
 
 # Kompilacja i konfiguracja Slang
