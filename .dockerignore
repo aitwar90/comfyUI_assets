@@ -1,0 +1,36 @@
+# 1. Ignoruj wszystko, co nie jest jawnie dozwolone
+/*
+
+# 2. Jawnie zezwól na pliki konfiguracyjne i bazowe
+!Dockerfile
+!docker-compose.yml
+!README.md
+!.gitattributes
+!.gitignore
+
+# 3. Zezwól na konkretne custom_nodes (ważne: odblokowujemy folder, potem pliki)
+!custom_nodes/
+custom_nodes/*
+!custom_nodes/ComfyUI-StableAudioSampler/
+!custom_nodes/ComfyUI-SimpleBake/
+
+# 4. Zezwól na wybrane modele (śledzone przez LFS)
+!models/
+models/*
+!models/loras/
+models/loras/*
+!models/loras/lora_farmaatom.safetensors
+!models/upscale_models/
+models/upscale_models/*
+!models/upscale_models/4x-UltraSharp.pth
+!models/upscale_models/RealESRGAN_x2plus.pth
+
+# 5. Blokada "śmieci" (nadpisuje poprzednie reguły)
+.git
+aplikacje/ComfyUI/user/default/workflows/
+/output/
+/input/
+/storage/
+/user/
+__pycache__/
+*.log
