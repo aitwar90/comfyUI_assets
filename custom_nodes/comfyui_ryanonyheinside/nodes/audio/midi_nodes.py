@@ -455,31 +455,114 @@ class MIDIToText:
                 current_chord.append(note)
             else:
                 current_chord = list(sorted(set(current_chord)))
-                chord_str = f"[{' + '.join(current_chord)}]" if len(current_chord) > 1 else current_chord[0]
+                chord_str = f"chord with notes {', '.join(current_chord)}" if len(current_chord) > 1 else f"single note {current_chord[0]}"
                 if chord_str not in unique_chords:
                     unique_chords.append(chord_str)
                 current_chord = [note]
                 last_tick = tick
         
-        # Ostatni akord
         current_chord = list(sorted(set(current_chord)))
-        chord_str = f"[{' + '.join(current_chord)}]" if len(current_chord) > 1 else current_chord[0]
+        chord_str = f"chord with notes {', '.join(current_chord)}" if len(current_chord) > 1 else f"single note {current_chord[0]}"
         if chord_str not in unique_chords:
             unique_chords.append(chord_str)
 
-        # Przycinamy do rozsądnej liczby najważniejszych motywów
-        featured_harmonies = ", ".join(unique_chords[:8])
+        # Budujemy ponumerowaną, czystą sekwencję tekstową kroków harmonicznych
+        chord_steps = [f"step {i+1} playing {chord}" for i, chord in enumerate(unique_chords[:8])]
+        featured_harmonies = ", then ".join(chord_steps)
 
-        # Formułujemy ostateczny opis strukturalno-analityczny dla LLM
+        # Formułujemy czysty wyjściowy opis - całkowicie usuwamy nawiasy klamrowe i kwadratowe
         output_text = (
             f"MIDI Song Data:\n"
-            f"- Base Tempo: {bpm} BPM\n"
+            f"- BPM: {bpm} BPM\n"
             f"- Harmonic Key Profile: Written in the scale of {detected_key}\n"
             f"- Sonic Range & Register: Spans from {register_desc}\n"
             f"- Rhythmic Movement & Density: Characterized by a {rhythm_desc}\n"
-            f"- Primary Harmonic Structures: Features core harmonic shapes like {{{featured_harmonies}}}"
+            f"- Primary Harmonic Structures: Follows a distinct progression of {featured_harmonies}"
         )
         return (output_text,)
+    
+class CounterMelodyInstrumentSelector:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                # String z Twojego węzła MIDI lub promptu (pula wykryta w utworze)
+                "detected_instruments": ("STRING", {"forceInput": True}),
+                # Pula instrumentów idealnych jako kontrapunkt
+                "allowed_counter_instruments": ("STRING", {
+                    "default": "Trumpet, Violin, Flute, Classical Guitar, Oboe",
+                    "multiline": True
+                }),
+                # Kryterium wyboru w przypadku remisu
+                "preferred_register": (["high_register", "mid_register"], {"default": "high_register"}),
+                # NOWY PARAMETR: Maksymalna ilość zwracanych instrumentów
+                "max_instruments": ("INT", {"default": 3, "min": 1, "max": 10, "step": 1}),
+            }
+        }
+
+    # Zmieniamy nazwy wyjść, żeby było jasne, że jedno to absolutny numer 1, a drugie to sformatowana lista pod prompt
+    RETURN_TYPES = ("STRING", "STRING",)
+    RETURN_NAMES = ("best_single_instrument", "filtered_instrument_list",)
+    FUNCTION = "select_instruments"
+    CATEGORY = "RyanOnTheInside/Audio/Management"
+
+    def select_instruments(self, detected_instruments, allowed_counter_instruments, preferred_register, max_instruments):
+        import re
+
+        # 1. Czyszczenie i parsowanie wejściowych stringów
+        detected_raw = re.split(r'[,\s\n\-\/]+', detected_instruments.lower())
+        detected_set = {word.strip() for word in detected_raw if len(word.strip()) > 2}
+
+        allowed_raw = allowed_counter_instruments.lower().split(",")
+        allowed_set = {inst.strip() for inst in allowed_raw if inst.strip()}
+
+        # 2. Część wspólna
+        matching_instruments = detected_set.intersection(allowed_set)
+
+        instrument_weights = {
+            "trumpet": {"register": "high_register", "score": 5},
+            "violin": {"register": "high_register", "score": 5},
+            "flute": {"register": "high_register", "score": 4},
+            "oboe": {"register": "high_register", "score": 4},
+            "guitar": {"register": "mid_register", "score": 3},
+            "classical guitar": {"register": "mid_register", "score": 3},
+            "piano": {"register": "mid_register", "score": 2}
+        }
+
+        scored_instruments = []
+
+        # 3. Ewaluacja każdego pasującego instrumentu
+        if matching_instruments:
+            for inst in matching_instruments:
+                weight_data = instrument_weights.get(inst, {"register": "mid_register", "score": 1})
+                score = weight_data["score"]
+                
+                if weight_data["register"] == preferred_register:
+                    score += 2
+                
+                scored_instruments.append((inst, score))
+            
+            # Sortujemy od najwyższego score do najniższego
+            scored_instruments.sort(key=lambda x: x[1], reverse=True)
+        else:
+            # Fallback jeśli brak dopasowań – bierzemy z allowed_set
+            fallback_list = list(allowed_set) if allowed_set else ["trumpet"]
+            for inst in fallback_list:
+                weight_data = instrument_weights.get(inst, {"register": "mid_register", "score": 1})
+                score = weight_data["score"]
+                if weight_data["register"] == preferred_register:
+                    score += 2
+                scored_instruments.append((inst, score))
+            scored_instruments.sort(key=lambda x: x[1], reverse=True)
+
+        # Wycinamy tylko tyle instrumentów, na ile pozwala limit max_instruments
+        top_instruments = scored_instruments[:max_instruments]
+
+        # 4. Przygotowanie wyjść
+        best_single = top_instruments[0][0].capitalize() if top_instruments else "Trumpet"
+        filtered_list = ", ".join([inst[0].capitalize() for inst in top_instruments])
+
+        return (best_single, filtered_list,)
     
 @apply_tooltips
 class MIDILoader:
@@ -882,11 +965,13 @@ async def refresh_midi_data(request):
 NODE_CLASS_MAPPINGS = {
     "MIDIToAudio": MIDIToAudio,
     "MIDIToText": MIDIToText,
-    "MIDILoader": MIDILoader
+    "MIDILoader": MIDILoader,
+    "CounterMelodyInstrumentSelector" : CounterMelodyInstrumentSelector
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "MIDIToAudio": "MIDI to Audio",
     "MIDIToText": "MIDI to Text Translaton ⚡",
-    "MIDILoader": "MIDI Loader"
+    "MIDILoader": "MIDI Loader",
+    "CounterMelodyInstrumentSelector" : "Counter Selector"
 }
