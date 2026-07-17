@@ -1,168 +1,9 @@
 {
   "id": "5fa61cc8-29d9-4deb-9f90-02d3c00b63b3",
   "revision": 0,
-  "last_node_id": 142,
-  "last_link_id": 244,
+  "last_node_id": 158,
+  "last_link_id": 293,
   "nodes": [
-    {
-      "id": 60,
-      "type": "MIDIToAudio",
-      "pos": [
-        -138.6299645701109,
-        681.8771998195297
-      ],
-      "size": [
-        270,
-        106
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "midi",
-          "type": "MIDI",
-          "link": 88
-        }
-      ],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": [
-            90,
-            93
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui_ryanonyheinside",
-        "ver": "2.2.4",
-        "Node name for S&R": "MIDIToAudio"
-      },
-      "widgets_values": [
-        "Piano",
-        44100,
-        1
-      ]
-    },
-    {
-      "id": 59,
-      "type": "MIDILoader",
-      "pos": [
-        -603.27730618148,
-        756.3589139807998
-      ],
-      "size": [
-        380,
-        306
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MIDI",
-          "type": "MIDI",
-          "links": [
-            88,
-            104
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui_ryanonyheinside",
-        "ver": "2.2.4"
-      },
-      "widgets_values": [
-        "JezusMalusienki.MID",
-        "all",
-        1,
-        1,
-        0,
-        1,
-        "upload",
-        "refresh"
-      ]
-    },
-    {
-      "id": 68,
-      "type": "MIDIToText",
-      "pos": [
-        -176.72199510799103,
-        859.1613710339877
-      ],
-      "size": [
-        348.5153869628906,
-        58
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "midi",
-          "type": "MIDI",
-          "link": 104
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            106
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui_ryanonyheinside",
-        "ver": "2.2.4",
-        "Node name for S&R": "MIDIToText"
-      },
-      "widgets_values": [
-        32
-      ]
-    },
-    {
-      "id": 74,
-      "type": "PrimitiveInt",
-      "pos": [
-        -106.22638381037645,
-        990.8513041803186
-      ],
-      "size": [
-        270,
-        82
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "INT",
-          "type": "INT",
-          "links": [
-            120,
-            134,
-            156,
-            157
-          ]
-        }
-      ],
-      "title": "Seed",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveInt"
-      },
-      "widgets_values": [
-        1122449337176469,
-        "fixed"
-      ]
-    },
     {
       "id": 78,
       "type": "CLIPTextEncode",
@@ -404,83 +245,6 @@
       ]
     },
     {
-      "id": 64,
-      "type": "PreviewAudio",
-      "pos": [
-        351.32679415800385,
-        828.7706746468964
-      ],
-      "size": [
-        270,
-        88
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 93
-        }
-      ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PreviewAudio"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 80,
-      "type": "VAEDecodeAudio",
-      "pos": [
-        2933.5143666319623,
-        1002.960531332796
-      ],
-      "size": [
-        164.5923065185547,
-        46
-      ],
-      "flags": {},
-      "order": 28,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 155
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 136
-        }
-      ],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": [
-            180
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "VAEDecodeAudio"
-      },
-      "widgets_values": []
-    },
-    {
       "id": 99,
       "type": "VAEDecodeAudio",
       "pos": [
@@ -565,140 +329,385 @@
       "widgets_values": []
     },
     {
-      "id": 85,
-      "type": "KSampler",
+      "id": 91,
+      "type": "SET_AudioForceChannels",
       "pos": [
-        2522.9910994733546,
-        738.4608352298782
+        3478.4966342650164,
+        960.9534491185502
       ],
       "size": [
         270,
-        262
+        130
       ],
       "flags": {},
-      "order": 25,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 154
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 153
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 152
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 151
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 157
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 274
         }
       ],
       "outputs": [
         {
-          "name": "LATENT",
-          "type": "LATENT",
+          "name": "audio",
+          "type": "AUDIO",
           "links": [
-            155
+            192
           ]
         }
       ],
       "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "KSampler"
+        "cnr_id": "audio-batch",
+        "ver": "1.3.1",
+        "Node name for S&R": "SET_AudioForceChannels"
       },
       "widgets_values": [
-        883188327433490,
-        "randomize",
-        90,
-        0.5,
-        "euler",
-        "karras",
-        0.15
+        0,
+        "standard_gain",
+        2048,
+        512
       ]
     },
     {
-      "id": 82,
-      "type": "KSampler",
+      "id": 56,
+      "type": "MarkdownNote",
       "pos": [
-        2066.5296993390593,
-        806.2942721667589
+        -2426.7695220710652,
+        375.28876046870874
       ],
       "size": [
-        270,
-        262
+        480,
+        850
       ],
       "flags": {},
-      "order": 23,
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model Links",
+      "properties": {},
+      "widgets_values": [
+        "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links (for Local Users)\n\n**text_encoders**\n\n- [qwen3.5_2b_bf16.safetensors](https://huggingface.co/Comfy-Org/Qwen3.5/resolve/main/text_encoders/qwen3.5_2b_bf16.safetensors)\n- [t5gemma_b_b_ul2.safetensors](https://huggingface.co/Comfy-Org/stable-audio-3/resolve/main/text_encoders/t5gemma_b_b_ul2.safetensors)\n\n**checkpoints**\n\n- [stable_audio_3_medium.safetensors](https://huggingface.co/Comfy-Org/stable-audio-3/resolve/main/checkpoints/stable_audio_3_medium.safetensors)\n\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 text_encoders/\n│   │   ├── qwen3.5_2b_bf16.safetensors\n│   │   └── t5gemma_b_b_ul2.safetensors\n│   └── 📂 checkpoints/\n│       └── stable_audio_3_medium.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 55,
+      "type": "MarkdownNote",
+      "pos": [
+        -1918.5935871730685,
+        376.9437304188126
+      ],
+      "size": [
+        490,
+        850
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: About Stable Audio 3",
+      "properties": {},
+      "widgets_values": [
+        "## [Stable Audio 3](https://github.com/Stability-AI/stable-audio-3)\n\n**Stable Audio 3** turns a **text description** into **stereo audio**: music, instruments, SFX, short one-shots, and similar material, guided by what you write (style, instruments, energy, length, and so on).\n\n**What this graph does:** you supply a **short idea**. The workflow can **expand it with Qwen** using a **category-aware** reprompt template (Music / Instrument / SFX / One-shot), then runs the **Stable Audio** checkpoint so the expanded text becomes a **full clip**. The subgraph returns **`AUDIO`** (decoded waveform).\n\n---\n\n## About the Audio Generation (Stable Audio 3 Base)  subgraph\n\n**Inputs** (same order as pins on the subgraph node)\n\n- `user_input` — short text fed into the reprompt template.\n- `duration` — clip length in seconds.\n- `seed` — KSampler seed.\n- `use_reprompt` — enables the reprompt / text-switch path.\n- `category` — reprompt preset (Music, Instrument, SFX, One-shot).\n- `ckpt_name` — Stable Audio checkpoint.\n- `sa_clip` — text encoder for Stable Audio conditioning.\n- `qwen_clip` — text encoder for Qwen TextGenerate.\n\n**Output:** `AUDIO`"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 109,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -912.8740137477241,
+        1322.1571650524904
+      ],
+      "size": [
+        387.9130461593286,
+        88
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            247
+          ]
+        }
+      ],
+      "title": "TrackType",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "FullMix\n"
+      ]
+    },
+    {
+      "id": 133,
+      "type": "PreviewAny",
+      "pos": [
+        -22.10152922377921,
+        1770.2724387992198
+      ],
+      "size": [
+        311.4884785236676,
+        297.2595176208497
+      ],
+      "flags": {},
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 150
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 148
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 149
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 147
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 156
+          "name": "source",
+          "type": "*",
+          "link": 221
         }
       ],
       "outputs": [
         {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            151,
-            188
-          ]
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.28.0",
-        "Node name for S&R": "KSampler"
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 112,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -906.6786398160904,
+        1771.6078755760445
+      ],
+      "size": [
+        380.3587886780656,
+        283.65714855083297
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            200
+          ]
+        }
+      ],
+      "title": "Describtion",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
       },
       "widgets_values": [
-        356819517159790,
-        "randomize",
-        70,
-        0.4,
-        "dpmpp_2m",
-        "karras",
-        0.4
+        "Dance-pop anthem, 128 BPM, energetic beat, festival-ready sound\n"
+      ]
+    },
+    {
+      "id": 111,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -906.2144028049987,
+        1622.8378055705423
+      ],
+      "size": [
+        380.3587886780656,
+        88
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            199
+          ]
+        }
+      ],
+      "title": "Instrumentals",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Guitar, Pianino, Violin, Percusion, Bass Guitar\n"
+      ]
+    },
+    {
+      "id": 110,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -910.3464621212264,
+        1480.354927368948
+      ],
+      "size": [
+        384.8913431668234,
+        88
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            248
+          ]
+        }
+      ],
+      "title": "Genere",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Dance - pop music\n"
+      ]
+    },
+    {
+      "id": 59,
+      "type": "MIDILoader",
+      "pos": [
+        -839.0543974425337,
+        684.8597370518814
+      ],
+      "size": [
+        380,
+        306
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MIDI",
+          "type": "MIDI",
+          "links": [
+            88,
+            254
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_ryanonyheinside",
+        "ver": "2.2.4"
+      },
+      "widgets_values": [
+        "braveheartTest.MID",
+        "all",
+        1,
+        1,
+        0,
+        1,
+        "upload",
+        "refresh"
+      ]
+    },
+    {
+      "id": 60,
+      "type": "MIDIToAudio",
+      "pos": [
+        -138.6299645701109,
+        681.8771998195297
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "midi",
+          "type": "MIDI",
+          "link": 88
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            90
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_ryanonyheinside",
+        "ver": "2.2.4",
+        "Node name for S&R": "MIDIToAudio"
+      },
+      "widgets_values": [
+        "Piano",
+        44100,
+        1
+      ]
+    },
+    {
+      "id": 98,
+      "type": "AudioReverb",
+      "pos": [
+        3155.292909219885,
+        896.5001706427181
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 180
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "aux_id": "lum3on/ComfyUI_AudioTools",
+        "ver": "c816d0a1629c05a0f463ddb77ea96ada69875d32",
+        "Node name for S&R": "AudioReverb"
+      },
+      "widgets_values": [
+        35,
+        45,
+        0.25,
+        0.75
       ]
     },
     {
@@ -761,49 +770,14 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        941428031325058,
+        127981874134453,
         "randomize",
-        80,
-        0.8,
+        7,
+        0.7,
         "dpmpp_3m_sde",
         "karras",
-        0.5
+        0.55
       ]
-    },
-    {
-      "id": 81,
-      "type": "PreviewAudio",
-      "pos": [
-        1077.0231661502905,
-        1249.8724106863551
-      ],
-      "size": [
-        433.23436187854577,
-        94.09784548287826
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 145
-        }
-      ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": []
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PreviewAudio"
-      },
-      "widgets_values": []
     },
     {
       "id": 100,
@@ -841,6 +815,143 @@
       "widgets_values": []
     },
     {
+      "id": 82,
+      "type": "KSampler",
+      "pos": [
+        2066.5296993390593,
+        806.2942721667589
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 150
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 148
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 149
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 147
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 156
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            151,
+            188
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        348689418931595,
+        "randomize",
+        6,
+        0.3,
+        "dpmpp_2m",
+        "karras",
+        0.4
+      ]
+    },
+    {
+      "id": 85,
+      "type": "KSampler",
+      "pos": [
+        2522.9910994733546,
+        738.4608352298782
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 154
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 153
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 152
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 151
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 157
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            155
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        30343929356058,
+        "randomize",
+        8,
+        0.1,
+        "euler",
+        "karras",
+        0.15
+      ]
+    },
+    {
       "id": 102,
       "type": "PreviewAudio",
       "pos": [
@@ -876,47 +987,47 @@
       "widgets_values": []
     },
     {
-      "id": 91,
-      "type": "SET_AudioForceChannels",
+      "id": 80,
+      "type": "VAEDecodeAudio",
       "pos": [
-        3478.4966342650164,
-        960.9534491185502
+        2933.5143666319623,
+        1002.960531332796
       ],
       "size": [
-        270,
-        130
+        164.5923065185547,
+        46
       ],
       "flags": {},
-      "order": 31,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 191
+          "name": "samples",
+          "type": "LATENT",
+          "link": 155
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 136
         }
       ],
       "outputs": [
         {
-          "name": "audio",
+          "name": "AUDIO",
           "type": "AUDIO",
           "links": [
-            159,
-            192
+            180,
+            274
           ]
         }
       ],
       "properties": {
-        "cnr_id": "audio-batch",
-        "ver": "1.3.1",
-        "Node name for S&R": "SET_AudioForceChannels"
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "VAEDecodeAudio"
       },
-      "widgets_values": [
-        0,
-        "standard_gain",
-        2048,
-        512
-      ]
+      "widgets_values": []
     },
     {
       "id": 107,
@@ -930,7 +1041,7 @@
         160
       ],
       "flags": {},
-      "order": 33,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -957,139 +1068,260 @@
       ]
     },
     {
-      "id": 19,
-      "type": "SaveAudioMP3",
+      "id": 156,
+      "type": "PrimitiveFloat",
       "pos": [
-        2746.6984760764535,
-        1241.5532945364446
+        -850.088769463896,
+        1164.6579419295133
       ],
       "size": [
-        432.38322409188186,
-        236.90415584722132
+        270,
+        58
       ],
       "flags": {},
-      "order": 32,
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            278,
+            279
+          ]
+        }
+      ],
+      "title": "Duration",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveFloat"
+      },
+      "widgets_values": [
+        150
+      ]
+    },
+    {
+      "id": 145,
+      "type": "MIDIToBehaviorProfile",
+      "pos": [
+        -418.5346777238393,
+        901.0210286472729
+      ],
+      "size": [
+        307.6923065185547,
+        182
+      ],
+      "flags": {},
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 159
+          "name": "midi",
+          "type": "MIDI",
+          "link": 254
         }
       ],
       "outputs": [
         {
-          "name": "audio",
-          "type": "AUDIO",
+          "name": "behavior_profile",
+          "type": "STRING",
+          "links": [
+            255
+          ]
+        },
+        {
+          "name": "bpm",
+          "type": "INT",
+          "links": [
+            261
+          ]
+        },
+        {
+          "name": "midi_measures",
+          "type": "INT",
+          "links": []
+        },
+        {
+          "name": "loop_score",
+          "type": "FLOAT",
+          "links": [
+            265
+          ]
+        },
+        {
+          "name": "beats_per_measure",
+          "type": "INT",
+          "links": [
+            286
+          ]
+        },
+        {
+          "name": "beat_value",
+          "type": "INT",
           "links": null
         }
       ],
       "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.21.1",
-        "Node name for S&R": "SaveAudioMP3",
-        "enableTabs": false,
-        "tabWidth": 65,
-        "tabXOffset": 10,
-        "hasSecondTab": false,
-        "secondTabText": "Send Back",
-        "secondTabOffset": 80,
-        "secondTabWidth": 65
+        "cnr_id": "comfyui_ryanonyheinside",
+        "ver": "2.2.4",
+        "Node name for S&R": "MIDIToBehaviorProfile"
       },
       "widgets_values": [
-        "audio/stable_audio_3",
-        "320k"
+        8,
+        0.5
       ]
     },
     {
-      "id": 98,
-      "type": "AudioReverb",
+      "id": 118,
+      "type": "faf65c77-1c43-43ed-9364-45843a8b06ae",
       "pos": [
-        3155.292909219885,
-        896.5001706427181
+        -346.12742106620817,
+        1506.936040196855
       ],
       "size": [
-        270,
-        130
+        219.15640869140626,
+        330
       ],
       "flags": {},
-      "order": 30,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 180
+          "label": "Track type",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 247
+        },
+        {
+          "label": "Genere",
+          "name": "string_b_1",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b_1"
+          },
+          "link": 248
+        },
+        {
+          "label": "Instrumentals",
+          "name": "string_b_2",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b_2"
+          },
+          "link": 199
+        },
+        {
+          "label": "Description",
+          "name": "string_b_3",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b_3"
+          },
+          "link": 200
+        },
+        {
+          "label": "BPM",
+          "name": "input",
+          "type": "*",
+          "link": 261
+        },
+        {
+          "label": "Loop Score",
+          "name": "input_2",
+          "type": "*",
+          "link": 265
+        },
+        {
+          "label": "Duration",
+          "name": "values.c",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 279
+        },
+        {
+          "label": "beats_per_minute",
+          "name": "values.d",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 286
         }
       ],
       "outputs": [
         {
-          "name": "AUDIO",
-          "type": "AUDIO",
+          "label": "PROMPT",
+          "name": "STRING",
+          "type": "STRING",
           "links": [
-            191
+            220,
+            221
           ]
         }
       ],
       "properties": {
-        "aux_id": "lum3on/ComfyUI_AudioTools",
-        "ver": "c816d0a1629c05a0f463ddb77ea96ada69875d32",
-        "Node name for S&R": "AudioReverb"
+        "proxyWidgets": [
+          [
+            "114",
+            "string_b"
+          ],
+          [
+            "115",
+            "string_b"
+          ],
+          [
+            "116",
+            "string_b"
+          ],
+          [
+            "117",
+            "string_b"
+          ]
+        ],
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 74,
+      "type": "PrimitiveInt",
+      "pos": [
+        -115.49572843849687,
+        1008.617572228522
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            120,
+            134,
+            156,
+            157
+          ]
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveInt"
       },
       "widgets_values": [
-        35,
-        45,
-        0.25,
-        0.75
+        1122449337176469,
+        "fixed"
       ]
-    },
-    {
-      "id": 56,
-      "type": "MarkdownNote",
-      "pos": [
-        -2426.7695220710652,
-        375.28876046870874
-      ],
-      "size": [
-        480,
-        850
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "title": "Model Links",
-      "properties": {},
-      "widgets_values": [
-        "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links (for Local Users)\n\n**text_encoders**\n\n- [qwen3.5_2b_bf16.safetensors](https://huggingface.co/Comfy-Org/Qwen3.5/resolve/main/text_encoders/qwen3.5_2b_bf16.safetensors)\n- [t5gemma_b_b_ul2.safetensors](https://huggingface.co/Comfy-Org/stable-audio-3/resolve/main/text_encoders/t5gemma_b_b_ul2.safetensors)\n\n**checkpoints**\n\n- [stable_audio_3_medium.safetensors](https://huggingface.co/Comfy-Org/stable-audio-3/resolve/main/checkpoints/stable_audio_3_medium.safetensors)\n\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 text_encoders/\n│   │   ├── qwen3.5_2b_bf16.safetensors\n│   │   └── t5gemma_b_b_ul2.safetensors\n│   └── 📂 checkpoints/\n│       └── stable_audio_3_medium.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
-      ],
-      "color": "#222",
-      "bgcolor": "#000"
-    },
-    {
-      "id": 55,
-      "type": "MarkdownNote",
-      "pos": [
-        -1918.5935871730685,
-        376.9437304188126
-      ],
-      "size": [
-        490,
-        850
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "title": "Note: About Stable Audio 3",
-      "properties": {},
-      "widgets_values": [
-        "## [Stable Audio 3](https://github.com/Stability-AI/stable-audio-3)\n\n**Stable Audio 3** turns a **text description** into **stereo audio**: music, instruments, SFX, short one-shots, and similar material, guided by what you write (style, instruments, energy, length, and so on).\n\n**What this graph does:** you supply a **short idea**. The workflow can **expand it with Qwen** using a **category-aware** reprompt template (Music / Instrument / SFX / One-shot), then runs the **Stable Audio** checkpoint so the expanded text becomes a **full clip**. The subgraph returns **`AUDIO`** (decoded waveform).\n\n---\n\n## About the Audio Generation (Stable Audio 3 Base)  subgraph\n\n**Inputs** (same order as pins on the subgraph node)\n\n- `user_input` — short text fed into the reprompt template.\n- `duration` — clip length in seconds.\n- `seed` — KSampler seed.\n- `use_reprompt` — enables the reprompt / text-switch path.\n- `category` — reprompt preset (Music, Instrument, SFX, One-shot).\n- `ckpt_name` — Stable Audio checkpoint.\n- `sa_clip` — text encoder for Stable Audio conditioning.\n- `qwen_clip` — text encoder for Qwen TextGenerate.\n\n**Output:** `AUDIO`"
-      ],
-      "color": "#222",
-      "bgcolor": "#000"
     },
     {
       "id": 73,
@@ -1099,8 +1331,8 @@
         1447.8411085488358
       ],
       "size": [
-        354.2679333255726,
-        414.6142185095091
+        667.6572354004791,
+        430.86399057660674
       ],
       "flags": {},
       "order": 15,
@@ -1159,7 +1391,7 @@
           "widget": {
             "name": "duration"
           },
-          "link": null
+          "link": 278
         },
         {
           "label": "seed",
@@ -1229,7 +1461,7 @@
           "widget": {
             "name": "value"
           },
-          "link": 106
+          "link": 255
         }
       ],
       "outputs": [
@@ -1346,260 +1578,37 @@
       "widgets_values": []
     },
     {
-      "id": 109,
-      "type": "PrimitiveStringMultiline",
+      "id": 81,
+      "type": "PreviewAudio",
       "pos": [
-        -912.8740137477241,
-        1322.1571650524904
+        1077.0231661502905,
+        1249.8724106863551
       ],
       "size": [
-        387.9130461593286,
-        88
+        433.23436187854577,
+        94.09784548287826
       ],
       "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            198
-          ]
-        }
-      ],
-      "title": "TrackType",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "FullMix\n"
-      ]
-    },
-    {
-      "id": 110,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -910.3464621212264,
-        1480.354927368948
-      ],
-      "size": [
-        384.8913431668234,
-        88
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            197
-          ]
-        }
-      ],
-      "title": "Genere",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "Cinematic Modern Ambient\n"
-      ]
-    },
-    {
-      "id": 111,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -906.2144028049987,
-        1622.8378055705423
-      ],
-      "size": [
-        380.3587886780656,
-        88
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            199
-          ]
-        }
-      ],
-      "title": "Instrumentals",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "Guitar, Pianino, Violin, Percusion, Bass Guitar, Trumpet\n"
-      ]
-    },
-    {
-      "id": 112,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -906.6786398160904,
-        1771.6078755760445
-      ],
-      "size": [
-        380.3587886780656,
-        283.65714855083297
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            200
-          ]
-        }
-      ],
-      "title": "Describtion",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "A lively, harmonically aligned counter-melody with a playful, driving cadence. Operating on clear linear counterpoint, the violin and classical guitar deliver crisp, syncopated motifs that dance through the primary theme's pauses. To eliminate frequency masking and acoustic clutter, the performance occupies a distinct higher register, utilizing bright, uplifting passing tones and rhythmic staccato phrases that resolve into the root major scale. Dynamics are agile and tightly controlled, dipping naturally beneath the main melody and swelling with bouncy energy during temporal gaps to inject a clear, vibrant momentum without phase issues.\n"
-      ]
-    },
-    {
-      "id": 133,
-      "type": "PreviewAny",
-      "pos": [
-        -22.10152922377921,
-        1770.2724387992198
-      ],
-      "size": [
-        311.4884785236676,
-        297.2595176208497
-      ],
-      "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
-          "name": "source",
-          "type": "*",
-          "link": 221
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 145
         }
       ],
       "outputs": [
         {
-          "name": "STRING",
-          "type": "STRING",
-          "links": null
+          "name": "audio",
+          "type": "AUDIO",
+          "links": []
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.28.0",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 118,
-      "type": "faf65c77-1c43-43ed-9364-45843a8b06ae",
-      "pos": [
-        -346.12742106620817,
-        1506.084827405971
-      ],
-      "size": [
-        219.15640869140626,
-        250
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "Track type",
-          "name": "string_b",
-          "type": "STRING",
-          "widget": {
-            "name": "string_b"
-          },
-          "link": 197
-        },
-        {
-          "label": "Genere",
-          "name": "string_b_1",
-          "type": "STRING",
-          "widget": {
-            "name": "string_b_1"
-          },
-          "link": 198
-        },
-        {
-          "label": "Instrumentals",
-          "name": "string_b_2",
-          "type": "STRING",
-          "widget": {
-            "name": "string_b_2"
-          },
-          "link": 199
-        },
-        {
-          "label": "Description",
-          "name": "string_b_3",
-          "type": "STRING",
-          "widget": {
-            "name": "string_b_3"
-          },
-          "link": 200
-        }
-      ],
-      "outputs": [
-        {
-          "label": "PROMPT",
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            220,
-            221
-          ]
-        }
-      ],
-      "properties": {
-        "proxyWidgets": [
-          [
-            "115",
-            "string_b"
-          ],
-          [
-            "114",
-            "string_b"
-          ],
-          [
-            "116",
-            "string_b"
-          ],
-          [
-            "117",
-            "string_b"
-          ]
-        ],
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0"
+        "Node name for S&R": "PreviewAudio"
       },
       "widgets_values": []
     }
@@ -1620,30 +1629,6 @@
       52,
       8,
       "AUDIO"
-    ],
-    [
-      93,
-      60,
-      0,
-      64,
-      0,
-      "AUDIO"
-    ],
-    [
-      104,
-      59,
-      0,
-      68,
-      0,
-      "MIDI"
-    ],
-    [
-      106,
-      68,
-      0,
-      52,
-      9,
-      "STRING"
     ],
     [
       118,
@@ -1822,14 +1807,6 @@
       "INT"
     ],
     [
-      159,
-      91,
-      0,
-      19,
-      0,
-      "AUDIO"
-    ],
-    [
       160,
       52,
       3,
@@ -1918,36 +1895,12 @@
       "VAE"
     ],
     [
-      191,
-      98,
-      0,
-      91,
-      0,
-      "AUDIO"
-    ],
-    [
       192,
       91,
       0,
       107,
       0,
       "AUDIO"
-    ],
-    [
-      197,
-      110,
-      0,
-      118,
-      0,
-      "STRING"
-    ],
-    [
-      198,
-      109,
-      0,
-      118,
-      1,
-      "STRING"
     ],
     [
       199,
@@ -1980,6 +1933,86 @@
       133,
       0,
       "STRING"
+    ],
+    [
+      247,
+      109,
+      0,
+      118,
+      0,
+      "STRING"
+    ],
+    [
+      248,
+      110,
+      0,
+      118,
+      1,
+      "STRING"
+    ],
+    [
+      254,
+      59,
+      0,
+      145,
+      0,
+      "MIDI"
+    ],
+    [
+      255,
+      145,
+      0,
+      52,
+      9,
+      "STRING"
+    ],
+    [
+      261,
+      145,
+      1,
+      118,
+      4,
+      "INT"
+    ],
+    [
+      265,
+      145,
+      3,
+      118,
+      5,
+      "FLOAT"
+    ],
+    [
+      274,
+      80,
+      0,
+      91,
+      0,
+      "AUDIO"
+    ],
+    [
+      278,
+      156,
+      0,
+      52,
+      1,
+      "FLOAT"
+    ],
+    [
+      279,
+      156,
+      0,
+      118,
+      6,
+      "FLOAT"
+    ],
+    [
+      286,
+      145,
+      4,
+      118,
+      7,
+      "INT"
     ]
   ],
   "groups": [
@@ -2003,8 +2036,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 12,
-          "lastNodeId": 142,
-          "lastLinkId": 244,
+          "lastNodeId": 158,
+          "lastLinkId": 293,
           "lastRerouteId": 0
         },
         "revision": 0,
@@ -2297,7 +2330,7 @@
               100
             ],
             "flags": {},
-            "order": 10,
+            "order": 11,
             "mode": 0,
             "inputs": [
               {
@@ -2342,7 +2375,7 @@
               110
             ],
             "flags": {},
-            "order": 11,
+            "order": 12,
             "mode": 0,
             "inputs": [
               {
@@ -2390,7 +2423,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 19,
+            "order": 20,
             "mode": 0,
             "inputs": [
               {
@@ -2432,7 +2465,7 @@
               140
             ],
             "flags": {},
-            "order": 3,
+            "order": 4,
             "mode": 0,
             "inputs": [
               {
@@ -2484,7 +2517,7 @@
               170
             ],
             "flags": {},
-            "order": 7,
+            "order": 8,
             "mode": 0,
             "showAdvanced": false,
             "inputs": [
@@ -2547,7 +2580,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 15,
+            "order": 16,
             "mode": 0,
             "inputs": [
               {
@@ -2612,7 +2645,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 16,
+            "order": 17,
             "mode": 0,
             "inputs": [
               {
@@ -2649,7 +2682,7 @@
               320
             ],
             "flags": {},
-            "order": 17,
+            "order": 18,
             "mode": 0,
             "inputs": [
               {
@@ -2695,43 +2728,6 @@
             ]
           },
           {
-            "id": 71,
-            "type": "PreviewAny",
-            "pos": [
-              796.1465706141298,
-              1905.9215493828615
-            ],
-            "size": [
-              270.863591974432,
-              334.13634144176126
-            ],
-            "flags": {},
-            "order": 23,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "source",
-                "name": "source",
-                "type": "*",
-                "link": 110
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": []
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "PreviewAny"
-            },
-            "widgets_values": []
-          },
-          {
             "id": 7,
             "type": "CLIPTextEncode",
             "pos": [
@@ -2743,7 +2739,7 @@
               140
             ],
             "flags": {},
-            "order": 2,
+            "order": 3,
             "mode": 0,
             "inputs": [
               {
@@ -2783,62 +2779,6 @@
             "bgcolor": "#335"
           },
           {
-            "id": 40,
-            "type": "StringReplace",
-            "pos": [
-              1350,
-              900
-            ],
-            "size": [
-              260,
-              280
-            ],
-            "flags": {},
-            "order": 14,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string",
-                "name": "string",
-                "type": "STRING",
-                "widget": {
-                  "name": "string"
-                },
-                "link": 140
-              },
-              {
-                "localized_name": "replace",
-                "name": "replace",
-                "type": "STRING",
-                "widget": {
-                  "name": "replace"
-                },
-                "link": 86
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  107
-                ]
-              }
-            ],
-            "title": "Text Replace (AUDIO LENGTH)",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.1",
-              "Node name for S&R": "StringReplace"
-            },
-            "widgets_values": [
-              "",
-              "AUDIO_LENGTH",
-              ""
-            ]
-          },
-          {
             "id": 39,
             "type": "StringReplace",
             "pos": [
@@ -2850,7 +2790,7 @@
               280
             ],
             "flags": {},
-            "order": 13,
+            "order": 14,
             "mode": 0,
             "inputs": [
               {
@@ -2895,53 +2835,6 @@
             ]
           },
           {
-            "id": 38,
-            "type": "StringReplace",
-            "pos": [
-              358.9072474749944,
-              950.1423266146026
-            ],
-            "size": [
-              290,
-              280
-            ],
-            "flags": {},
-            "order": 12,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "replace",
-                "name": "replace",
-                "type": "STRING",
-                "widget": {
-                  "name": "replace"
-                },
-                "link": 142
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  52
-                ]
-              }
-            ],
-            "title": "Text Replace (PROMPT TEMPLATE)",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.1",
-              "Node name for S&R": "StringReplace"
-            },
-            "widgets_values": [
-              "SYSTEM_PROMPTS\n\nInput: USER_INPUT\nTarget audio length: AUDIO_LENGTH seconds.\nOutput:",
-              "SYSTEM_PROMPTS",
-              ""
-            ]
-          },
-          {
             "id": 26,
             "type": "CLIPLoader",
             "pos": [
@@ -2953,7 +2846,7 @@
               170
             ],
             "flags": {},
-            "order": 6,
+            "order": 7,
             "mode": 0,
             "inputs": [
               {
@@ -3004,62 +2897,6 @@
             ]
           },
           {
-            "id": 70,
-            "type": "StringConcatenate",
-            "pos": [
-              118.1039475954734,
-              1814.9831865002932
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 22,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_a",
-                "name": "string_a",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_a"
-                },
-                "link": 107
-              },
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 108
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  109,
-                  110
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "",
-              "",
-              ""
-            ]
-          },
-          {
             "id": 12,
             "type": "VAEDecodeAudio",
             "pos": [
@@ -3071,7 +2908,7 @@
               100
             ],
             "flags": {},
-            "order": 4,
+            "order": 5,
             "mode": 0,
             "inputs": [
               {
@@ -3124,7 +2961,7 @@
               350
             ],
             "flags": {},
-            "order": 0,
+            "order": 1,
             "mode": 0,
             "inputs": [
               {
@@ -3222,12 +3059,12 @@
               "secondTabWidth": 65
             },
             "widgets_values": [
-              1087158335029849,
+              118401270992450,
               "randomize",
               8,
-              1,
+              0.9,
               "lcm",
-              "simple",
+              "normal",
               1
             ]
           },
@@ -3243,7 +3080,7 @@
               190
             ],
             "flags": {},
-            "order": 5,
+            "order": 6,
             "mode": 0,
             "inputs": [
               {
@@ -3306,52 +3143,6 @@
             ]
           },
           {
-            "id": 31,
-            "type": "PrimitiveStringMultiline",
-            "pos": [
-              -387.0882177278174,
-              118.31985578389846
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 8,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "value",
-                "name": "value",
-                "type": "STRING",
-                "widget": {
-                  "name": "value"
-                },
-                "link": 68
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  47,
-                  53
-                ]
-              }
-            ],
-            "title": "User: short description (USER_INPUT in template)",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.1",
-              "Node name for S&R": "PrimitiveStringMultiline"
-            },
-            "widgets_values": [
-              "Cinematic Modern Ambient, a gentle warm emotional cinematic lullaby, middle 4/4 waltz tempo, minimal delicate ambient piano, soft classical guitar, melancholic melody, deep synth bassline, sparse cinematic drums. Soulful distant trumpet floating above, peaceful nostalgic warmth. Beautiful clear mix, high quality audio, studio master.\nInstrumental: Guitar, Pianino, Violin, Percusion, Bass Guitar, dudes."
-            ]
-          },
-          {
             "id": 6,
             "type": "CLIPTextEncode",
             "pos": [
@@ -3363,7 +3154,7 @@
               240
             ],
             "flags": {},
-            "order": 1,
+            "order": 2,
             "mode": 0,
             "inputs": [
               {
@@ -3412,179 +3203,6 @@
             "bgcolor": "#353"
           },
           {
-            "id": 65,
-            "type": "TextGenerateLTX2Prompt",
-            "pos": [
-              1165.3519370693796,
-              1769.0242257826249
-            ],
-            "size": [
-              400,
-              412
-            ],
-            "flags": {},
-            "order": 20,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "link": 95
-              },
-              {
-                "localized_name": "image",
-                "name": "image",
-                "shape": 7,
-                "type": "IMAGE",
-                "link": null
-              },
-              {
-                "localized_name": "video",
-                "name": "video",
-                "shape": 7,
-                "type": "IMAGE",
-                "link": null
-              },
-              {
-                "localized_name": "audio",
-                "name": "audio",
-                "shape": 7,
-                "type": "AUDIO",
-                "link": 96
-              },
-              {
-                "localized_name": "prompt",
-                "name": "prompt",
-                "type": "STRING",
-                "widget": {
-                  "name": "prompt"
-                },
-                "link": 109
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "generated_text",
-                "name": "generated_text",
-                "type": "STRING",
-                "links": [
-                  99
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "TextGenerateLTX2Prompt"
-            },
-            "widgets_values": [
-              "",
-              4096,
-              "on",
-              0.7,
-              64,
-              0.95,
-              0.05,
-              1.05,
-              0,
-              0,
-              false,
-              true
-            ]
-          },
-          {
-            "id": 69,
-            "type": "PrimitiveStringMultiline",
-            "pos": [
-              -783.4597853691565,
-              1327.391700157049
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 21,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "value",
-                "name": "value",
-                "type": "STRING",
-                "widget": {
-                  "name": "value"
-                },
-                "link": 105
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  108,
-                  142
-                ]
-              }
-            ],
-            "title": "User: short description (USER_INPUT in template)",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.1",
-              "Node name for S&R": "PrimitiveStringMultiline"
-            },
-            "widgets_values": [
-              "Industrial dark ambient track, dystopian post-apocalyptic atmosphere, drone music. Heavy mechanical textures, rhythmic slow train clicks, clanking iron track rhythm, squealing metal brakes, far valve steam hisses. Low sub-bass pulsations, dark cinematic synthesizers, rusted metal resonance. Grim, immersive, slow-tempo, 70 BPM, loopable, high production quality, sound design for a train survival video game."
-            ]
-          },
-          {
-            "id": 49,
-            "type": "JsonExtractString",
-            "pos": [
-              -74.7726995294745,
-              1523.8181929154848
-            ],
-            "size": [
-              609.1990289861506,
-              1008.1708623712714
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 18,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "key",
-                "name": "key",
-                "type": "STRING",
-                "widget": {
-                  "name": "key"
-                },
-                "link": 100
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": []
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfyui-toml-prompt",
-              "ver": "b804f48257fb2dfb4570193918ade1c4fe6c424e",
-              "Node name for S&R": "JsonExtractString"
-            },
-            "widgets_values": [
-              "{\n  \"Music\": \"You are an expert musician and musicologist and prompt engineer. Transform the user's input into a detailed, vivid music prompt for a full instrumental track.\\n\\n1. Start with the genre or style and optional adjectives (e.g., upbeat, dreamy, aggressive).\\n2. List the main instruments that define the track.\\n3. Add supporting elements or layers such as pads, harmonics, effects, or field recordings.\\n4. Include rhythm or percussion elements like drums, hi-hats, congas, brushes, or polyrhythms.\\n5. Integrate mood and energy naturally in the sentence (e.g., \\\"creating suspenseful tension\\\" or \\\"bright and uplifting\\\").\\n6. Specify the BPM.\\n7. Specify the track length as an integer in seconds. Use ranges: energetic/dance 120-180s, pop/rock 180-210s, cinematic/ambient 240-300s.\\n8. Combine all elements into one natural, fluid sentence. Avoid semicolons.\\n\\nTemplate:\\nGenre/Style with main instruments, supporting instruments/layers, and rhythm/percussion creating mood/energy. BPM: X. Length: Y seconds\\n\\nExamples:\\n- Jazz ballad with smooth saxophone lead, piano chords, upright bass, brushed drums, and soft strings that swing gently for a warm and cozy evening. BPM: 85. Length: 180 seconds\\n- EDM festival track with pulsing synth leads, plucked arpeggios, layered pads, side-chained bass, punchy kick and snare, and hi-hat rolls creating bright, energetic, and uplifting dance energy. BPM: 128. Length: 150 seconds\\n- Lo-fi hip-hop chill track with mellow electric piano, soft vinyl crackle, subtle synth pads, low-pass filtered drums, percussion loops, and soft plucked bass for a relaxed, dreamy vibe. BPM: 75. Length: 150 seconds\\n- Heavy metal anthem with distorted electric guitars, bass guitar, double bass drums, and cymbal crashes with fast palm-muted riffs creating intense, aggressive energy. BPM: 160. Length: 180 seconds\\n- Melancholic piano piece with soft piano lead, string pads, subtle atmospheric synths, and minimal brush percussion evoking a reflective rainy-day feeling. BPM: 60. Length: 240 seconds\\n- Suspenseful electronic thriller with pulsing bass synth, arpeggiated lead synth, cinematic pads, glitchy percussion, and high string stabs creating dark and tense energy. BPM: 100. Length: 200 seconds\\n- Dreamy ambient soundscape with layered pads, soft bell textures, gentle drones, and wind and water field recordings for ethereal and spacious meditation. BPM: 40. Length: 300 seconds\\n- Fingerpicking acoustic guitar solo with harmonics, subtle reverb, occasional shaker and soft stomp percussion, and soft pad layers for warm intimate storytelling. BPM: 70. Length: 120 seconds\\n- Synthwave 80s retro track with arpeggiated synth leads, analog pads, electric bass, punchy electronic drums, gated reverb snares, and atmospheric FX for nostalgic and vibrant energy. BPM: 110. Length: 180 seconds\\n- Tribal percussion ensemble with congas, djembes, bongos, shakers, and frame drums layered with deep synthetic sub-bass in complex polyrhythms. BPM: 100. Length: 140 seconds\\n- 1920s swing jazz with brass section, upright bass, piano, brushed drums, banjo, clarinet, and soft strings that swing lively for energetic dance vibes. BPM: 110. Length: 180 seconds\\n- Futuristic electronic sci-fi track with pulsing bass synth, evolving lead synths, layered pads, glitch percussion, robotic FX, and sub-bass for tense cinematic energy. BPM: 125. Length: 200 seconds\\n- Ambient underwater soundscape with flowing water textures, soft piano motifs, synth drones, distant bells, and underwater reverb for spacious meditative immersion. BPM: 45. Length: 300 seconds\\n- Horror cinematic track with dissonant strings, eerie piano stabs, cinematic percussion including taiko and low toms, and synth FX producing suspenseful creepy tension. BPM: 90. Length: 240 seconds\\n- Reggae track with offbeat guitar, warm basslines, snare, kick, congas, and horn stabs giving laid-back groovy energy. BPM: 85. Length: 150 seconds\\n- Blues track with soulful electric guitar solos, walking bass, piano, and shuffle drums creating expressive and emotive storytelling. BPM: 90. Length: 180 seconds\\n- Latin salsa with congas, timbales, horns, piano montunos, bass, and layered percussion for vibrant danceable energy. BPM: 120. Length: 210 seconds\\n- Afrobeat track with electric guitar stabs, horns, layered percussion, congas, shakers, bass groove, and synth pads for vibrant rhythmic energy. BPM: 105. Length: 200 seconds\\n- Indie rock track with electric guitar riffs, bass, live drum kit, layered synths, and subtle strings for energetic yet emotional feel. BPM: 110. Length: 180 seconds\\n- Funk groove with slap bass, electric guitar chords, brass stabs, drums, congas, and rhythmic keyboards creating high-energy danceable rhythm. BPM: 105. Length: 180 seconds\\n- Drum and bass track with fast breakbeat drums, deep sub-bass, sharp synth leads, pads, and atmospheric FX for high-energy club motion. BPM: 175. Length: 150 seconds\\n- Dark ambient track with drones, distant bells, low rumbles, soft wind textures, and synth pads producing eerie immersive tension. BPM: 50. Length: 300 seconds\\n- Tropical house track with marimba, steel drums, soft synths, smooth bass, layered percussion, and light piano riffs for sunny chill dance vibes. BPM: 110. Length: 180 seconds\\n- Progressive rock track with electric guitar leads, organ, bass, drum kit, synth layers, and occasional strings for epic layered energy. BPM: 100. Length: 220 seconds\\n- Music box melody with delicate metallic tones and soft resonance, lullaby style, with gentle ambient reverb. BPM: 60. Length: 20 seconds\\n- Soft piano arpeggio with warm felted tone and slow attack, lullaby style, with intimate room ambience. BPM: 60. Length: 30 seconds\\n- Harp gentle plucked pattern with airy resonance, lullaby style, with dreamy reverb tail. BPM: 65. Length: 25 seconds\\n- Acoustic guitar fingerstyle pattern with warm nylon strings and soft dynamics, lullaby style, with subtle room resonance. BPM: 60. Length: 30 seconds\\n- Ambient synth pad with smooth evolving texture and soft harmonics, lullaby style, with wide stereo ambience. BPM: 50. Length: 40 seconds\\n- Early rock piano with walking left-hand bass line, shuffle rhythms, and blues scale improvisations in energetic 1950s boogie-woogie style. BPM: 160. Length: 180 seconds\\n- Trip Hop track with jazzy sampled vibraphone, mid-tempo breakbeat drums, harp, Latin ethnic percussion, and sweeping cinematic strings creating airy, relaxing, soulful lounge vibes. BPM: 90. Length: 180 seconds\\n- Country outlaw cinematic instrumental with blues pedal steel guitar, rustic mandolin, fiddle call-and-response, tape-driven rattly drum kit, autoharp, and soaring accordion solo for raw, emotional southern blues expression. BPM: 85. Length: 200 seconds\\n- Neo Classical track with sweeping string section, elegant horns, and delicate piano creating soothing, hypnotic, modern, soft, and classic mood. BPM: 70. Length: 180 seconds\\n- Art Rock desert track with desolate piano chords, western-themed rhythm guitars, unique lead guitars, rattly vintage drum kit, and supporting bass creating lonely, expansive, beautiful, and strange atmospheres. BPM: 95. Length: 180 seconds\\n- Cinematic Sci-Fi score with dramatic horn section, building marcato strings, gliding bassoon, thunderous cymbals, subdued timpani, and subtle synth drones producing awe-inspiring, uplifting, epic intergalactic energy. BPM: 100. Length: 220 seconds\\n- West Coast Hip Hop instrumental with cascading harp melodies, smooth Rhodes piano chops, vintage boom bap drums, and walking double bass producing raw, street, and soulful block-party vibes. BPM: 92. Length: 180 seconds\\n- Synthwave futuristic track with pulsating synth bass, exciting chords, soaring leads, and reverberating drum machine patterns creating gritty, pounding, and cool energy. BPM: 110. Length: 180 seconds\\n- Breakbeat track with complex percussion, intricate breakbeats, gritty synths, lush pads, and 808 bassline producing fresh, modern, futuristic, and rave-ready energy. BPM: 140. Length: 160 seconds\\n- Lounge Jazz 1960s smooth track with laid-back drums, piano chords, double bass, soft electric piano, subtle flute, and unique percussion creating beautiful, atmospheric, eclectic, retro, and chill vibes. BPM: 85. Length: 180 seconds\\n- Latin Jazz 1950s blissful track with laid-back Latin drums, euphoric piano chords, double bass, orchestral accompaniment, acoustic guitar, and vibraphone producing nostalgic, beautiful, atmospheric, cinematic, and chill mood. BPM: 95. Length: 180 seconds\\n- Acid Jazz 1970s summertime track with smooth electric piano, trippy synth leads, laid-back vintage drum kit, fuzzy electric bass, and uplifting violin producing retro, psychedelic, jazzy, relaxing energy. BPM: 100. Length: 180 seconds\\n- Progressive Soul 1970s track with feel-good piano, psychedelic organ, groovy vintage drum kit with percussion, fuzzy electric bass, and synth strings producing retro, raw, soulful, joyous atmosphere. BPM: 90. Length: 180 seconds\\n- Discotheque 1970s French-inspired track with sultry piano, psychedelic guitars, groovy drum kit, fuzzy electric bass, and melancholic organ producing retro, raw, laid-back, and relaxing mood. BPM: 105. Length: 180 seconds\\n- Soul Jazz 1970s track with expressive saxophone, smooth piano, groovy drum kit, rhythmic upright bass, sweeping strings, and minimal vibraphone producing retro, raw, laid-back, and epic energy. BPM: 95. Length: 180 seconds\\n- Vintage R&B 1970s live studio track with subtle brass, smooth piano, sweeping strings, and minimal drums producing retro, beautiful, uplifting, nostalgic mood. BPM: 85. Length: 180 seconds\\n- 50s Pop track with Latin influence, string section, bold brass, vibraphone, acoustic guitar, flute, ethnic percussion, and brushed drums creating sexy, epic, vintage, retro, melancholic, jazzy, dramatic energy. BPM: 100. Length: 180 seconds\\n- A piece of calm, quiet, mellow, serene music perfect for a peaceful film score, featuring soft modulating piano, ambient sfx and foley, beautiful vibraphone, and subtle synthesizer drones. The mood is cinematic, thoughtful, serene and nostalgic. BPM: 55. Length: 300 seconds\",\n  \"Instrument\": \"You are a music metadata expert. Given an instrument, generate a descriptive prompt for a generative audio model.\\n\\n1. Identify the instrument.\\n2. Add playing style or technique.\\n3. Include details about material, timbre, or texture.\\n4. Add musical style or mood. Specify the genre, context, or emotional character.\\n5. Add spatial or production qualities.\\n6. Specify BPM: Always include a BPM appropriate to the style and context.\\n7. Specify length: Provide an integer in seconds (6–20 s for loops, 20–180 s for stems).\\n\\nExamples:\\n- Synth arpeggio loop with bright detuned oscillators. BPM: 120. Length: 8 seconds\\n- Chord stab loop with sharp percussive attack. BPM: 90. Length: 6 seconds\\n- Guitar muted strum loop with tight rhythmic feel. BPM: 100. Length: 8 seconds\\n- Pluck sequence loop with bright resonant tone. BPM: 128. Length: 10 seconds\\n- Marimba and vibraphone percussive loop with resonant wooden and metallic tones. BPM: 110. Length: 12 seconds\\n- Drum loop with deep muffled kick on beat one, snappy rimshot snare on beats two and four with rolling ghost note fills, and tight closed hi-hats with subtle open accents. BPM: 85. Length: 10 seconds\\n- Drum groove loop with brushed snare swinging on the ride, soft feathered kick on downbeats, and light closed hi-hat taps on the upbeats. BPM: 130. Length: 12 seconds\\n- Kick and hi-hat loop with four-on-the-floor punchy kick, tight closed hi-hats on every eighth note, and a sharp dry snare on beats two and four. BPM: 130. Length: 15 seconds\\n- Vinyl crackle drum loop with warm low-pass filtered kick, dusty snare with tape saturation, and shuffled closed hi-hats with subtle vinyl crackle ambiance. BPM: 80. Length: 10 seconds\\n- Ambient pad loop with evolving texture. BPM: 80. Length: 12 seconds\\n- Melodic synth bass groove loop with pumping sidechain feel. BPM: 122. Length: 10 seconds\\n- Melodic Bass slap and pop rhythm loop. BPM: 100. Length: 8 seconds\\n- Acoustic bass walking line loop with natural wooden resonance. BPM: 120. Length: 12 seconds\\n- String pizzicato motif loop, suspenseful, with tight string texture. BPM: 90. Length: 8 seconds\\n- Brass staccato riff loop with sharp bright attack. BPM: 130. Length: 10 seconds\\n- Flute airy melodic loop with wooden headjoint resonance. BPM: 100. Length: 6 seconds\\n- Pan flute ambient loop with breathy timbre. BPM: 75. Length: 8 seconds\\n- Clarinet riff loop with warm smooth reed tone. BPM: 120. Length: 10 seconds\\n- Oboe motif loop, orchestral, with rich double reed resonance. BPM: 80. Length: 8 seconds\\n- Recorder Renaissance motif loop with soft wooden timbre. BPM: 100. Length: 6 seconds\\n- Electric sitar riff loop with buzzing resonant tone. BPM: 90. Length: 10 seconds\\n- Koto plucked motif loop with resonant wooden strings. BPM: 90. Length: 8 seconds\\n- Shamisen folk melody loop with percussive twang. BPM: 100. Length: 8 seconds\\n- Banjo fingerpicking loop with metallic string resonance. BPM: 110. Length: 10 seconds\\n- Mandolin tremolo loop with crisp wooden body tone. BPM: 120. Length: 10 seconds\\n- Acoustic guitar chord vamp loop with natural room resonance. BPM: 110. Length: 12 seconds\\n- Nylon string guitar arpeggio loop with warm, soft timbre. BPM: 90. Length: 15 seconds\\n- Electric guitar riff loop with driven distorted tone. BPM: 130. Length: 10 seconds\\n- Slide guitar melody loop with warm resonant glide. BPM: 100. Length: 12 seconds\\n- Steel guitar slide loop with bright pedal steel tone. BPM: 95. Length: 12 seconds\\n- Harpsichord arpeggio loop with crisp plucked attack. BPM: 120. Length: 10 seconds\\n- Rhodes chord vamp loop with warm electric piano tone. BPM: 100. Length: 12 seconds\\n- Clavinet funky rhythm loop. BPM: 105. Length: 10 seconds\\n- Organ chord vamp loop with full drawbar warmth. BPM: 90. Length: 12 seconds\\n- Drum loop with booming 808 kick on beat one, crisp snare on beat three, and rapid triplet hi-hat rolls with open hat accents for aggressive high-energy feel. BPM: 140. Length: 8 seconds\\n- Breakbeat drum loop with chopped Amen-style snare flurries, driving kick on the one, fast sixteenth-note closed hi-hats, and syncopated open hat accents. BPM: 170. Length: 10 seconds\\n- Glitch percussion loop with stuttered kick transients, randomised snare hits processed with bit-crushing, and erratic hi-hat patterns with pitch-shifted metallic ticks. BPM: 120. Length: 12 seconds\\n- Metallic hits loop with distorted kick impacts, processed metal-plate snare slams, and grinding hi-hat noise bursts for aggressive mechanical texture. BPM: 120. Length: 10 seconds\\n- Timpani hits loop, cinematic, with deep resonant kick-like timpani strikes on beat one, rolling snare-style timpani fills, and no hi-hats for a grand orchestral feel. BPM: 70. Length: 8 seconds\\n- Snare roll loop, dramatic, with accelerating snare drum rolls building from soft to crashing, deep supporting kick pulses, and no hi-hats for maximum impact. BPM: 100. Length: 8 seconds\\n- Accordion motif loop with bright reedy bellows tone. BPM: 100. Length: 10 seconds\\n- Harmonica blues riff loop with expressive reed timbre. BPM: 90. Length: 10 seconds\\n- Trombone riff loop with warm sliding brass tone. BPM: 120. Length: 10 seconds\\n- French horn melodic loop, cinematic. BPM: 80. Length: 12 seconds\\n- Soprano sax ballad loop. BPM: 70. Length: 12 seconds\\n- Alto sax bebop riff loop. BPM: 200. Length: 10 seconds\\n- Electric violin melodic loop with reverb. BPM: 90. Length: 10 seconds\\n- String pad loop with cinematic texture. BPM: 70. Length: 15 seconds\\n- Granular synth evolving texture loop. BPM: 90. Length: 15 seconds\\n- Piano motif loop with soft felt hammer tone. BPM: 80. Length: 10 seconds\\n- Pad and synth loop with lush detuned shimmer. BPM: 85. Length: 12 seconds\\n- Synth lead loop with sidechain pumping compression. BPM: 128. Length: 10 seconds\\n- Analog synth bassline loop with deep warm low-end. BPM: 122. Length: 12 seconds\\n- FM synth lead motif loop with bright metallic shimmer. BPM: 110. Length: 10 seconds\\n- Bass groove loop with tight rhythmic two-bar pattern. BPM: 100. Length: 16 seconds\\n- Acoustic guitar fingerstyle motif loop with warm wood resonance. BPM: 90. Length: 45 seconds\\n- Sombre acoustic guitar motif loop with cavernous reverb, delicate fingerpicking, and expressive melancholic tone. BPM: 70. Length: 45 seconds\\n- Electric guitar rock riff motif loop. BPM: 130. Length: 40 seconds\\n- Vintage electric guitar motif loop, live-recorded in a vintage studio, with expressive and dynamic solo performance. BPM: 90. Length: 40 seconds\\n- Piano chord progression motif loop with rich harmonic movement. BPM: 120. Length: 60 seconds\\n- String ensemble cinematic motif loop with rich wooden resonance. BPM: 80. Length: 120 seconds\\n- Brass ensemble cinematic motif loop with bright metallic timbre. BPM: 90. Length: 90 seconds\\n- Ethnic percussion ensemble motif loop with deep resonant djembe kick tones, slapped snare-like rim hits on congas, and layered shakers and bells providing hi-hat-like rhythmic texture with polyrhythmic patterns. BPM: 100. Length: 90 seconds\\n- Synth ambient motif loop with evolving textures. BPM: 80. Length: 180 seconds\\n- Motif loop with warm dusty vinyl crackle and tape saturation. BPM: 80. Length: 60 seconds\\n- Synth lead and bass motif loop with bright punchy energy. BPM: 128. Length: 90 seconds\\n- Funk band motif loop: bass, drums, guitar. BPM: 100. Length: 90 seconds\\n- Ethnic flute motif for cinematic use. BPM: 80. Length: 30 seconds\\n- Steel drum melodic motif loop with bright metallic resonance. BPM: 110. Length: 20 seconds\\n- Marimba percussive motif loop with resonant wooden tone. BPM: 100. Length: 20 seconds\\n- Vibraphone melodic motif loop with metallic shimmer. BPM: 90. Length: 25 seconds\\n- Piano cinematic motif loop with resonant wooden tone. BPM: 80. Length: 30 seconds\\n- Violin expressive cinematic motif loop with rich wooden resonance. BPM: 75. Length: 25 seconds\\n- Cello expressive motif loop with deep wooden resonance. BPM: 70. Length: 30 seconds\\n- Trumpet expressive motif loop with brassy overtones. BPM: 100. Length: 25 seconds\\n- Sax expressive motif loop with warm reed timbre. BPM: 95. Length: 25 seconds\\n- Ethnic drum ensemble motif loop with booming natural-skin bass drum kicks, sharp hand-slap snare accents on djembes and talking drums, and layered wooden and metal percussion providing rhythmic hi-hat-like patterns. BPM: 95. Length: 30 seconds\\n- Ambient drone motif loop. BPM: 60. Length: 180 seconds\\n- Orchestral tension motif loop. BPM: 90. Length: 150 seconds\\n- Electronic track motif loop with drums, bass, synth. BPM: 128. Length: 180 seconds\",\n  \"SFX\": \"You are a professional sound design expert. Convert the user's input into a precise, vivid sound effects description suitable for generative audio models.\\n\\nDescribe clearly:\\n- Sound source\\n- Physical character (texture, timbre, material: metal, wood, glass, concrete, etc.)\\n- Spatial qualities (indoor/outdoor, cave/open field/underwater, dry/reverberant, close-up/distant, echoing/muffled)\\n- Temporal evolution (attack, decay, movement, transitions over time)\\n- Include motion or spatial movement if applicable (passing, approaching, stereo movement)\\n\\nAudio length rules:\\n- Very short sounds (impacts, clicks, gunshots): 1–3 seconds\\n- Medium actions (footsteps, object movement, transitions): 3–6 seconds\\n- Ambience / environments: 6–15 seconds\\n- Always append: Length: X seconds (integer only, no decimals).\\n\\nOutput constraints:\\n- Length: 1–2 dense sentences maximum\\n- Output ONLY the final rewritten prompt\\n- No explanations, no formatting, no quotes\\n- Use concise but dense technical language\\n- Focus strictly on sound effects or ambience\\n- Always append: Length: X seconds (integer only, no decimals).\\n\\nQuality guidelines:\\n- Be specific and avoid vague terms\\n- Prioritize clarity and realism\\n- Combine elements into one coherent scene\\n- Avoid redundancy\\n\\nExamples:\\n- Heavy rain hitting a metal roof during a thunderstorm, distant thunder rumbles, stereo, realistic ambience. Length: 45 seconds\\n- Quiet forest at dawn with birds chirping, soft wind through leaves, distant stream flowing. Length: 60 seconds\\n- Busy city street at night, cars passing, muffled conversations, occasional horn, urban ambience. Length: 50 seconds\\n- Ocean waves crashing against rocky cliffs, strong wind, dramatic and cinematic. Length: 70 seconds\\n- Wooden door creaking open slowly in an old house, echoing interior, eerie tone. Length: 3 seconds\\n- Glass bottle shattering on concrete, sharp impact, scattered fragments. Length: 2 seconds\\n- Footsteps on gravel, steady walking pace, close perspective. Length: 8 seconds\\n- Typing rapidly on a mechanical keyboard, crisp tactile clicks. Length: 5 seconds\\n- Punch impact with deep bass hit, cinematic trailer style. Length: 2 seconds\\n- Car speeding past at high velocity, doppler effect, realistic whoosh. Length: 3 seconds\\n- Object falling from height and hitting ground with a heavy thud. Length: 2 seconds\\n- Sword swing whooshing through air, fast motion, clean metallic tone. Length: 2 seconds\\n- Futuristic laser blast, clean energy pulse, high-tech sound design. Length: 1 seconds\\n- Spaceship engine humming, low frequency rumble, interior perspective. Length: 90 seconds\\n- Magical spell casting, shimmering particles, rising tonal energy. Length: 8 seconds\\n- Teleportation effect, glitchy digital distortion with a soft whoosh. Length: 5 seconds\\n- Dark eerie drone with distant whispers, creepy, slow build tension. Length: 120 seconds\\n- Sudden horror jump scare sting, sharp violin hit, cinematic. Length: 1 second\\n- Metal scraping slowly in a dark tunnel, echoing and ominous. Length: 20 seconds\\n- Explosion with debris scattering, deep bass, cinematic realism. Length: 4 seconds\\n- Building collapsing, rumbling concrete, dust and debris falling. Length: 25 seconds\\n- Fire crackling intensely, wood burning, close-up detail. Length: 80 seconds\\n- Gunshot in a large empty warehouse, loud echo decay. Length: 2 seconds\\n- Retro arcade coin insert sound, 8-bit style. Length: 1 second\\n- Level up chime, bright, rewarding, fantasy RPG style. Length: 2 seconds\\n- Error buzzer, short, digital, UI feedback. Length: 1 second\\n- Menu navigation clicks, soft futuristic interface sounds. Length: 3 seconds\\n- Layered soundscape: rain, thunder, footsteps, and distant sirens all blending naturally. Length: 90 seconds\\n- Rapid sequence of three impacts: metal hit, glass break, wood crack, spaced evenly. Length: 4 seconds\\n- Sound moving from left to right stereo field: passing motorcycle. Length: 5 seconds\\n- Close vs far perspective transition: footsteps approaching then fading away. Length: 6 seconds\\n- Tape stop sub drop, a massive sub-bass note that mimics a vinyl record or tape machine being turned off, the pitch and speed drop simultaneously, causing the high-end harmonics to smear and thicken as the sound grinds to a halt at a sub-sonic frequency. Length: 11 seconds\\n- Gravel and leaves footsteps, the sound of a hard boot stepping onto dry leaves or gravel, crisp and natural with detailed texture. Length: 11 seconds\\n- Ghostship moan, a massive, deep wooden groan with a low-frequency moan, like heavy timber under immense structural tension, swaying slowly, processed with long, dark wooden room reverb for a sense of scale. Length: 11 seconds\\n- Bicycle chain, a continuous metallic whirring sound of a chain moving over sprockets, with individual teeth catching the links, processed with resonant band-pass filter to emphasize metallic singing. Length: 11 seconds\\n- Warp drive, a sound that starts with a massive suck-back of ambient noise, followed by a supersonic crack and high-pitched zing that disappears into the distance, giving the sense of stretching space-time. Length: 11 seconds\\n- Ice cubes, high-pitched musical clinking of hard ice hitting a thin glass, bright resonant ring with subtle liquid sloshing around the edges. Length: 11 seconds\\n- Paper shuffle, the sound of a thick stack of heavy bond paper being squared up on a desk, dry papery thud with a quick fanning sound as air moves between the pages. Length: 11 seconds\\n- Drawer slam, a blunt, powerful thud made by slamming a wooden desk drawer shut, pronounced low-mid body, slightly distorted for aggressive character. Length: 3 seconds\",\n  \"One-shot\": \"You are a music metadata expert. Given an instrument or sound, generate a descriptive prompt for a short, isolated one-shot audio sample for music production.\\n\\n1. Identify the instrument or sound source.\\n2. Describe the playing technique or hit type (e.g., pluck, slam, tap, stab).\\n3. Include details about material, timbre, or texture.\\n4. Add spatial or production qualities (dry/wet, room, close-mic).\\n5. Specify length: short integer in seconds (1–11 s).\\n\\nExamples:\\n- Piano key hit with bright percussive attack and resonant wooden body. Length: 2 seconds\\n- Kick drum punchy low-end hit with warm skin resonance. Length: 2 seconds\\n- Snare drum rimshot accent with crisp snare wires. Length: 2 seconds\\n- Acoustic guitar fingerstyle note with warm spruce tone. Length: 3 seconds\\n- Bass pluck with jazzy tone and resonant wooden body. Length: 3 seconds\\n- Electric guitar power chord with distortion. Length: 3 seconds\\n- Metallic glitch percussion hit with sharp metallic texture. Length: 2 seconds\\n- Tabla resonant tone hit with natural skin timbre. Length: 2 seconds\\n- Djembe slap accent with dry wooden resonance. Length: 2 seconds\\n- Synth stab with reverb tail. Length: 3 seconds\\n- Violin expressive note with vibrato and rich wooden resonance. Length: 3 seconds\\n- Cello legato note, cinematic, with warm resonant body. Length: 3 seconds\\n- Trumpet bright accent with slightly brassy overtones. Length: 2 seconds\\n- Melodic saxophone jazz riff with smooth reed timbre and a slight vibrato bend. Length: 3 seconds\\n- Harp pluck with airy tone and resonant strings. Length: 2 seconds\\n- Glockenspiel bell-like note with bright metallic clarity. Length: 2 seconds\\n- Metallic clang sound design hit. Length: 2 seconds\\n- Granular texture hit. Length: 3 seconds\\n- Reversed piano hit. Length: 2 seconds\\n- Synth riser effect. Length: 6 seconds\\n- Percussion impact hit. Length: 2 seconds\\n- Cinematic hit. Length: 2 seconds\\n- Dry clap, a crisp, natural single hand clap recorded in a dead room with an extremely sharp transient and no room reflections. Length: 1 second\\n- Studio hat, a classic, natural recording of 14-inch hi-hats played tightly closed, zero ring, very fast decay. Length: 1 second\\n- Disco open hat, bright 14-inch open hi-hat with long, shimmering decay, perfect for disco or dance grooves. Length: 1 second\\n- Pillow kick, acoustic kick drum muffled with a heavy blanket, producing a short, dry \\\"thump\\\" with almost zero resonance. Length: 1 second\\n- Short 808, punchy 808 kick with sharp, distorted transient and fast-decaying sub-tail. Length: 1 second\\n- Egg shaker, classic plastic egg shaker recorded with a small-diaphragm condenser mic, producing a light, consistent \\\"tick\\\" with very short sustain. Length: 1 second\\n- African drums, dynamic African drums and percussion ensemble with natural acoustic textures. Length: 3 seconds\\n- Latin drums, dynamic Latin drums and percussion ensemble featuring authentic rhythmic patterns. Length: 3 seconds\\n- String quartet, euphoric string quartet with dynamic and emotional playing, full of expressive harmonies and movement. Length: 3 seconds\\n- Piano, nostalgic, atmospheric piano piece with dynamic and emotional performance, intimate and resonant. Length: 3 seconds\\n- Analogue drift pad, warm polyphonic pad with three detuned oscillators (saw + triangle), subtle pitch drift, and lush bucket-brigade chorus for wide, nostalgic stereo image. Length: 11 seconds\\n- Phase distortion bass, Casio CZ-style phase-distorted sine wave warped into a jagged sawtooth for retro synth bass tone. Length: 11 seconds\\n- Vibrato saxophone, bright lyrical alto sax with fast fluttery vibrato, reedy vintage tone, captured with ribbon mic for warm nostalgic sound. Length: 11 seconds\\n- Lofi upright bass, upright bass recorded with ribbon mic in a wooden room, natural air with slightly boxy resonance, tape-saturated for dusty 1950s jazz feel. Length: 2 seconds\"\n}",
-              "Music"
-            ]
-          },
-          {
             "id": 34,
             "type": "ComfySwitchNode",
             "pos": [
@@ -3596,7 +3214,7 @@
               130
             ],
             "flags": {},
-            "order": 9,
+            "order": 10,
             "mode": 0,
             "inputs": [
               {
@@ -3639,6 +3257,501 @@
             },
             "widgets_values": [
               false
+            ]
+          },
+          {
+            "id": 31,
+            "type": "PrimitiveStringMultiline",
+            "pos": [
+              -387.0882177278174,
+              118.31985578389846
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "value",
+                "name": "value",
+                "type": "STRING",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 68
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  47,
+                  53
+                ]
+              }
+            ],
+            "title": "User: short description (USER_INPUT in template)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.1",
+              "Node name for S&R": "PrimitiveStringMultiline"
+            },
+            "widgets_values": [
+              "Cinematic Modern Ambient, a gentle warm emotional cinematic lullaby, middle 4/4 waltz tempo, minimal delicate ambient piano, soft classical guitar, melancholic melody, deep synth bassline, sparse cinematic drums. Soulful distant trumpet floating above, peaceful nostalgic warmth. Beautiful clear mix, high quality audio, studio master.\nInstrumental: Guitar, Pianino, Violin, Percusion, Bass Guitar, dudes."
+            ]
+          },
+          {
+            "id": 144,
+            "type": "StringConcatenate",
+            "pos": [
+              750.0541987702992,
+              2352.4795163163776
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 24,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 250
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 291
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  252
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 65,
+            "type": "TextGenerateLTX2Prompt",
+            "pos": [
+              1167.111296006667,
+              1792.7746628468817
+            ],
+            "size": [
+              400,
+              412
+            ],
+            "flags": {},
+            "order": 21,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 95
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "video",
+                "name": "video",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "audio",
+                "name": "audio",
+                "shape": 7,
+                "type": "AUDIO",
+                "link": 96
+              },
+              {
+                "localized_name": "prompt",
+                "name": "prompt",
+                "type": "STRING",
+                "widget": {
+                  "name": "prompt"
+                },
+                "link": 252
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "generated_text",
+                "name": "generated_text",
+                "type": "STRING",
+                "links": [
+                  99
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "TextGenerateLTX2Prompt"
+            },
+            "widgets_values": [
+              "",
+              4096,
+              "on",
+              0.7,
+              64,
+              0.95,
+              0.05,
+              1.05,
+              0,
+              0,
+              false,
+              false
+            ]
+          },
+          {
+            "id": 49,
+            "type": "JsonExtractString",
+            "pos": [
+              159.53313704170264,
+              1484.6339353856451
+            ],
+            "size": [
+              609.1990289861506,
+              1008.1708623712714
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 19,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "key",
+                "name": "key",
+                "type": "STRING",
+                "widget": {
+                  "name": "key"
+                },
+                "link": 100
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": []
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui-toml-prompt",
+              "ver": "b804f48257fb2dfb4570193918ade1c4fe6c424e",
+              "Node name for S&R": "JsonExtractString"
+            },
+            "widgets_values": [
+              "{\n  \"Music\": \"You are an expert musician and musicologist and prompt engineer. Transform the user's input into a detailed, vivid music prompt for a full instrumental track.\\n\\n1. Start with the genre or style and optional adjectives (e.g., upbeat, dreamy, aggressive).\\n2. List the main instruments that define the track.\\n3. Add supporting elements or layers such as pads, harmonics, effects, or field recordings.\\n4. Include rhythm or percussion elements like drums, hi-hats, congas, brushes, or polyrhythms.\\n5. Integrate mood and energy naturally in the sentence (e.g., \\\"creating suspenseful tension\\\" or \\\"bright and uplifting\\\").\\n6. Specify the BPM.\\n7. Specify the track length as an integer in seconds. Use ranges: energetic/dance 120-180s, pop/rock 180-210s, cinematic/ambient 240-300s.\\n8. Combine all elements into one natural, fluid sentence. Avoid semicolons.\\n\\nTemplate:\\nGenre/Style with main instruments, supporting instruments/layers, and rhythm/percussion creating mood/energy. BPM: X. Length: Y seconds\\n\\nExamples:\\n- Jazz ballad with smooth saxophone lead, piano chords, upright bass, brushed drums, and soft strings that swing gently for a warm and cozy evening. BPM: 85. Length: 180 seconds\\n- EDM festival track with pulsing synth leads, plucked arpeggios, layered pads, side-chained bass, punchy kick and snare, and hi-hat rolls creating bright, energetic, and uplifting dance energy. BPM: 128. Length: 150 seconds\\n- Lo-fi hip-hop chill track with mellow electric piano, soft vinyl crackle, subtle synth pads, low-pass filtered drums, percussion loops, and soft plucked bass for a relaxed, dreamy vibe. BPM: 75. Length: 150 seconds\\n- Heavy metal anthem with distorted electric guitars, bass guitar, double bass drums, and cymbal crashes with fast palm-muted riffs creating intense, aggressive energy. BPM: 160. Length: 180 seconds\\n- Melancholic piano piece with soft piano lead, string pads, subtle atmospheric synths, and minimal brush percussion evoking a reflective rainy-day feeling. BPM: 60. Length: 240 seconds\\n- Suspenseful electronic thriller with pulsing bass synth, arpeggiated lead synth, cinematic pads, glitchy percussion, and high string stabs creating dark and tense energy. BPM: 100. Length: 200 seconds\\n- Dreamy ambient soundscape with layered pads, soft bell textures, gentle drones, and wind and water field recordings for ethereal and spacious meditation. BPM: 40. Length: 300 seconds\\n- Fingerpicking acoustic guitar solo with harmonics, subtle reverb, occasional shaker and soft stomp percussion, and soft pad layers for warm intimate storytelling. BPM: 70. Length: 120 seconds\\n- Synthwave 80s retro track with arpeggiated synth leads, analog pads, electric bass, punchy electronic drums, gated reverb snares, and atmospheric FX for nostalgic and vibrant energy. BPM: 110. Length: 180 seconds\\n- Tribal percussion ensemble with congas, djembes, bongos, shakers, and frame drums layered with deep synthetic sub-bass in complex polyrhythms. BPM: 100. Length: 140 seconds\\n- 1920s swing jazz with brass section, upright bass, piano, brushed drums, banjo, clarinet, and soft strings that swing lively for energetic dance vibes. BPM: 110. Length: 180 seconds\\n- Futuristic electronic sci-fi track with pulsing bass synth, evolving lead synths, layered pads, glitch percussion, robotic FX, and sub-bass for tense cinematic energy. BPM: 125. Length: 200 seconds\\n- Ambient underwater soundscape with flowing water textures, soft piano motifs, synth drones, distant bells, and underwater reverb for spacious meditative immersion. BPM: 45. Length: 300 seconds\\n- Horror cinematic track with dissonant strings, eerie piano stabs, cinematic percussion including taiko and low toms, and synth FX producing suspenseful creepy tension. BPM: 90. Length: 240 seconds\\n- Reggae track with offbeat guitar, warm basslines, snare, kick, congas, and horn stabs giving laid-back groovy energy. BPM: 85. Length: 150 seconds\\n- Blues track with soulful electric guitar solos, walking bass, piano, and shuffle drums creating expressive and emotive storytelling. BPM: 90. Length: 180 seconds\\n- Latin salsa with congas, timbales, horns, piano montunos, bass, and layered percussion for vibrant danceable energy. BPM: 120. Length: 210 seconds\\n- Afrobeat track with electric guitar stabs, horns, layered percussion, congas, shakers, bass groove, and synth pads for vibrant rhythmic energy. BPM: 105. Length: 200 seconds\\n- Indie rock track with electric guitar riffs, bass, live drum kit, layered synths, and subtle strings for energetic yet emotional feel. BPM: 110. Length: 180 seconds\\n- Funk groove with slap bass, electric guitar chords, brass stabs, drums, congas, and rhythmic keyboards creating high-energy danceable rhythm. BPM: 105. Length: 180 seconds\\n- Drum and bass track with fast breakbeat drums, deep sub-bass, sharp synth leads, pads, and atmospheric FX for high-energy club motion. BPM: 175. Length: 150 seconds\\n- Dark ambient track with drones, distant bells, low rumbles, soft wind textures, and synth pads producing eerie immersive tension. BPM: 50. Length: 300 seconds\\n- Tropical house track with marimba, steel drums, soft synths, smooth bass, layered percussion, and light piano riffs for sunny chill dance vibes. BPM: 110. Length: 180 seconds\\n- Progressive rock track with electric guitar leads, organ, bass, drum kit, synth layers, and occasional strings for epic layered energy. BPM: 100. Length: 220 seconds\\n- Music box melody with delicate metallic tones and soft resonance, lullaby style, with gentle ambient reverb. BPM: 60. Length: 20 seconds\\n- Soft piano arpeggio with warm felted tone and slow attack, lullaby style, with intimate room ambience. BPM: 60. Length: 30 seconds\\n- Harp gentle plucked pattern with airy resonance, lullaby style, with dreamy reverb tail. BPM: 65. Length: 25 seconds\\n- Acoustic guitar fingerstyle pattern with warm nylon strings and soft dynamics, lullaby style, with subtle room resonance. BPM: 60. Length: 30 seconds\\n- Ambient synth pad with smooth evolving texture and soft harmonics, lullaby style, with wide stereo ambience. BPM: 50. Length: 40 seconds\\n- Early rock piano with walking left-hand bass line, shuffle rhythms, and blues scale improvisations in energetic 1950s boogie-woogie style. BPM: 160. Length: 180 seconds\\n- Trip Hop track with jazzy sampled vibraphone, mid-tempo breakbeat drums, harp, Latin ethnic percussion, and sweeping cinematic strings creating airy, relaxing, soulful lounge vibes. BPM: 90. Length: 180 seconds\\n- Country outlaw cinematic instrumental with blues pedal steel guitar, rustic mandolin, fiddle call-and-response, tape-driven rattly drum kit, autoharp, and soaring accordion solo for raw, emotional southern blues expression. BPM: 85. Length: 200 seconds\\n- Neo Classical track with sweeping string section, elegant horns, and delicate piano creating soothing, hypnotic, modern, soft, and classic mood. BPM: 70. Length: 180 seconds\\n- Art Rock desert track with desolate piano chords, western-themed rhythm guitars, unique lead guitars, rattly vintage drum kit, and supporting bass creating lonely, expansive, beautiful, and strange atmospheres. BPM: 95. Length: 180 seconds\\n- Cinematic Sci-Fi score with dramatic horn section, building marcato strings, gliding bassoon, thunderous cymbals, subdued timpani, and subtle synth drones producing awe-inspiring, uplifting, epic intergalactic energy. BPM: 100. Length: 220 seconds\\n- West Coast Hip Hop instrumental with cascading harp melodies, smooth Rhodes piano chops, vintage boom bap drums, and walking double bass producing raw, street, and soulful block-party vibes. BPM: 92. Length: 180 seconds\\n- Synthwave futuristic track with pulsating synth bass, exciting chords, soaring leads, and reverberating drum machine patterns creating gritty, pounding, and cool energy. BPM: 110. Length: 180 seconds\\n- Breakbeat track with complex percussion, intricate breakbeats, gritty synths, lush pads, and 808 bassline producing fresh, modern, futuristic, and rave-ready energy. BPM: 140. Length: 160 seconds\\n- Lounge Jazz 1960s smooth track with laid-back drums, piano chords, double bass, soft electric piano, subtle flute, and unique percussion creating beautiful, atmospheric, eclectic, retro, and chill vibes. BPM: 85. Length: 180 seconds\\n- Latin Jazz 1950s blissful track with laid-back Latin drums, euphoric piano chords, double bass, orchestral accompaniment, acoustic guitar, and vibraphone producing nostalgic, beautiful, atmospheric, cinematic, and chill mood. BPM: 95. Length: 180 seconds\\n- Acid Jazz 1970s summertime track with smooth electric piano, trippy synth leads, laid-back vintage drum kit, fuzzy electric bass, and uplifting violin producing retro, psychedelic, jazzy, relaxing energy. BPM: 100. Length: 180 seconds\\n- Progressive Soul 1970s track with feel-good piano, psychedelic organ, groovy vintage drum kit with percussion, fuzzy electric bass, and synth strings producing retro, raw, soulful, joyous atmosphere. BPM: 90. Length: 180 seconds\\n- Discotheque 1970s French-inspired track with sultry piano, psychedelic guitars, groovy drum kit, fuzzy electric bass, and melancholic organ producing retro, raw, laid-back, and relaxing mood. BPM: 105. Length: 180 seconds\\n- Soul Jazz 1970s track with expressive saxophone, smooth piano, groovy drum kit, rhythmic upright bass, sweeping strings, and minimal vibraphone producing retro, raw, laid-back, and epic energy. BPM: 95. Length: 180 seconds\\n- Vintage R&B 1970s live studio track with subtle brass, smooth piano, sweeping strings, and minimal drums producing retro, beautiful, uplifting, nostalgic mood. BPM: 85. Length: 180 seconds\\n- 50s Pop track with Latin influence, string section, bold brass, vibraphone, acoustic guitar, flute, ethnic percussion, and brushed drums creating sexy, epic, vintage, retro, melancholic, jazzy, dramatic energy. BPM: 100. Length: 180 seconds\\n- A piece of calm, quiet, mellow, serene music perfect for a peaceful film score, featuring soft modulating piano, ambient sfx and foley, beautiful vibraphone, and subtle synthesizer drones. The mood is cinematic, thoughtful, serene and nostalgic. BPM: 55. Length: 300 seconds\",\n  \"Instrument\": \"You are a music metadata expert. Given an instrument, generate a descriptive prompt for a generative audio model.\\n\\n1. Identify the instrument.\\n2. Add playing style or technique.\\n3. Include details about material, timbre, or texture.\\n4. Add musical style or mood. Specify the genre, context, or emotional character.\\n5. Add spatial or production qualities.\\n6. Specify BPM: Always include a BPM appropriate to the style and context.\\n7. Specify length: Provide an integer in seconds (6–20 s for loops, 20–180 s for stems).\\n\\nExamples:\\n- Synth arpeggio loop with bright detuned oscillators. BPM: 120. Length: 8 seconds\\n- Chord stab loop with sharp percussive attack. BPM: 90. Length: 6 seconds\\n- Guitar muted strum loop with tight rhythmic feel. BPM: 100. Length: 8 seconds\\n- Pluck sequence loop with bright resonant tone. BPM: 128. Length: 10 seconds\\n- Marimba and vibraphone percussive loop with resonant wooden and metallic tones. BPM: 110. Length: 12 seconds\\n- Drum loop with deep muffled kick on beat one, snappy rimshot snare on beats two and four with rolling ghost note fills, and tight closed hi-hats with subtle open accents. BPM: 85. Length: 10 seconds\\n- Drum groove loop with brushed snare swinging on the ride, soft feathered kick on downbeats, and light closed hi-hat taps on the upbeats. BPM: 130. Length: 12 seconds\\n- Kick and hi-hat loop with four-on-the-floor punchy kick, tight closed hi-hats on every eighth note, and a sharp dry snare on beats two and four. BPM: 130. Length: 15 seconds\\n- Vinyl crackle drum loop with warm low-pass filtered kick, dusty snare with tape saturation, and shuffled closed hi-hats with subtle vinyl crackle ambiance. BPM: 80. Length: 10 seconds\\n- Ambient pad loop with evolving texture. BPM: 80. Length: 12 seconds\\n- Melodic synth bass groove loop with pumping sidechain feel. BPM: 122. Length: 10 seconds\\n- Melodic Bass slap and pop rhythm loop. BPM: 100. Length: 8 seconds\\n- Acoustic bass walking line loop with natural wooden resonance. BPM: 120. Length: 12 seconds\\n- String pizzicato motif loop, suspenseful, with tight string texture. BPM: 90. Length: 8 seconds\\n- Brass staccato riff loop with sharp bright attack. BPM: 130. Length: 10 seconds\\n- Flute airy melodic loop with wooden headjoint resonance. BPM: 100. Length: 6 seconds\\n- Pan flute ambient loop with breathy timbre. BPM: 75. Length: 8 seconds\\n- Clarinet riff loop with warm smooth reed tone. BPM: 120. Length: 10 seconds\\n- Oboe motif loop, orchestral, with rich double reed resonance. BPM: 80. Length: 8 seconds\\n- Recorder Renaissance motif loop with soft wooden timbre. BPM: 100. Length: 6 seconds\\n- Electric sitar riff loop with buzzing resonant tone. BPM: 90. Length: 10 seconds\\n- Koto plucked motif loop with resonant wooden strings. BPM: 90. Length: 8 seconds\\n- Shamisen folk melody loop with percussive twang. BPM: 100. Length: 8 seconds\\n- Banjo fingerpicking loop with metallic string resonance. BPM: 110. Length: 10 seconds\\n- Mandolin tremolo loop with crisp wooden body tone. BPM: 120. Length: 10 seconds\\n- Acoustic guitar chord vamp loop with natural room resonance. BPM: 110. Length: 12 seconds\\n- Nylon string guitar arpeggio loop with warm, soft timbre. BPM: 90. Length: 15 seconds\\n- Electric guitar riff loop with driven distorted tone. BPM: 130. Length: 10 seconds\\n- Slide guitar melody loop with warm resonant glide. BPM: 100. Length: 12 seconds\\n- Steel guitar slide loop with bright pedal steel tone. BPM: 95. Length: 12 seconds\\n- Harpsichord arpeggio loop with crisp plucked attack. BPM: 120. Length: 10 seconds\\n- Rhodes chord vamp loop with warm electric piano tone. BPM: 100. Length: 12 seconds\\n- Clavinet funky rhythm loop. BPM: 105. Length: 10 seconds\\n- Organ chord vamp loop with full drawbar warmth. BPM: 90. Length: 12 seconds\\n- Drum loop with booming 808 kick on beat one, crisp snare on beat three, and rapid triplet hi-hat rolls with open hat accents for aggressive high-energy feel. BPM: 140. Length: 8 seconds\\n- Breakbeat drum loop with chopped Amen-style snare flurries, driving kick on the one, fast sixteenth-note closed hi-hats, and syncopated open hat accents. BPM: 170. Length: 10 seconds\\n- Glitch percussion loop with stuttered kick transients, randomised snare hits processed with bit-crushing, and erratic hi-hat patterns with pitch-shifted metallic ticks. BPM: 120. Length: 12 seconds\\n- Metallic hits loop with distorted kick impacts, processed metal-plate snare slams, and grinding hi-hat noise bursts for aggressive mechanical texture. BPM: 120. Length: 10 seconds\\n- Timpani hits loop, cinematic, with deep resonant kick-like timpani strikes on beat one, rolling snare-style timpani fills, and no hi-hats for a grand orchestral feel. BPM: 70. Length: 8 seconds\\n- Snare roll loop, dramatic, with accelerating snare drum rolls building from soft to crashing, deep supporting kick pulses, and no hi-hats for maximum impact. BPM: 100. Length: 8 seconds\\n- Accordion motif loop with bright reedy bellows tone. BPM: 100. Length: 10 seconds\\n- Harmonica blues riff loop with expressive reed timbre. BPM: 90. Length: 10 seconds\\n- Trombone riff loop with warm sliding brass tone. BPM: 120. Length: 10 seconds\\n- French horn melodic loop, cinematic. BPM: 80. Length: 12 seconds\\n- Soprano sax ballad loop. BPM: 70. Length: 12 seconds\\n- Alto sax bebop riff loop. BPM: 200. Length: 10 seconds\\n- Electric violin melodic loop with reverb. BPM: 90. Length: 10 seconds\\n- String pad loop with cinematic texture. BPM: 70. Length: 15 seconds\\n- Granular synth evolving texture loop. BPM: 90. Length: 15 seconds\\n- Piano motif loop with soft felt hammer tone. BPM: 80. Length: 10 seconds\\n- Pad and synth loop with lush detuned shimmer. BPM: 85. Length: 12 seconds\\n- Synth lead loop with sidechain pumping compression. BPM: 128. Length: 10 seconds\\n- Analog synth bassline loop with deep warm low-end. BPM: 122. Length: 12 seconds\\n- FM synth lead motif loop with bright metallic shimmer. BPM: 110. Length: 10 seconds\\n- Bass groove loop with tight rhythmic two-bar pattern. BPM: 100. Length: 16 seconds\\n- Acoustic guitar fingerstyle motif loop with warm wood resonance. BPM: 90. Length: 45 seconds\\n- Sombre acoustic guitar motif loop with cavernous reverb, delicate fingerpicking, and expressive melancholic tone. BPM: 70. Length: 45 seconds\\n- Electric guitar rock riff motif loop. BPM: 130. Length: 40 seconds\\n- Vintage electric guitar motif loop, live-recorded in a vintage studio, with expressive and dynamic solo performance. BPM: 90. Length: 40 seconds\\n- Piano chord progression motif loop with rich harmonic movement. BPM: 120. Length: 60 seconds\\n- String ensemble cinematic motif loop with rich wooden resonance. BPM: 80. Length: 120 seconds\\n- Brass ensemble cinematic motif loop with bright metallic timbre. BPM: 90. Length: 90 seconds\\n- Ethnic percussion ensemble motif loop with deep resonant djembe kick tones, slapped snare-like rim hits on congas, and layered shakers and bells providing hi-hat-like rhythmic texture with polyrhythmic patterns. BPM: 100. Length: 90 seconds\\n- Synth ambient motif loop with evolving textures. BPM: 80. Length: 180 seconds\\n- Motif loop with warm dusty vinyl crackle and tape saturation. BPM: 80. Length: 60 seconds\\n- Synth lead and bass motif loop with bright punchy energy. BPM: 128. Length: 90 seconds\\n- Funk band motif loop: bass, drums, guitar. BPM: 100. Length: 90 seconds\\n- Ethnic flute motif for cinematic use. BPM: 80. Length: 30 seconds\\n- Steel drum melodic motif loop with bright metallic resonance. BPM: 110. Length: 20 seconds\\n- Marimba percussive motif loop with resonant wooden tone. BPM: 100. Length: 20 seconds\\n- Vibraphone melodic motif loop with metallic shimmer. BPM: 90. Length: 25 seconds\\n- Piano cinematic motif loop with resonant wooden tone. BPM: 80. Length: 30 seconds\\n- Violin expressive cinematic motif loop with rich wooden resonance. BPM: 75. Length: 25 seconds\\n- Cello expressive motif loop with deep wooden resonance. BPM: 70. Length: 30 seconds\\n- Trumpet expressive motif loop with brassy overtones. BPM: 100. Length: 25 seconds\\n- Sax expressive motif loop with warm reed timbre. BPM: 95. Length: 25 seconds\\n- Ethnic drum ensemble motif loop with booming natural-skin bass drum kicks, sharp hand-slap snare accents on djembes and talking drums, and layered wooden and metal percussion providing rhythmic hi-hat-like patterns. BPM: 95. Length: 30 seconds\\n- Ambient drone motif loop. BPM: 60. Length: 180 seconds\\n- Orchestral tension motif loop. BPM: 90. Length: 150 seconds\\n- Electronic track motif loop with drums, bass, synth. BPM: 128. Length: 180 seconds\",\n  \"SFX\": \"You are a professional sound design expert. Convert the user's input into a precise, vivid sound effects description suitable for generative audio models.\\n\\nDescribe clearly:\\n- Sound source\\n- Physical character (texture, timbre, material: metal, wood, glass, concrete, etc.)\\n- Spatial qualities (indoor/outdoor, cave/open field/underwater, dry/reverberant, close-up/distant, echoing/muffled)\\n- Temporal evolution (attack, decay, movement, transitions over time)\\n- Include motion or spatial movement if applicable (passing, approaching, stereo movement)\\n\\nAudio length rules:\\n- Very short sounds (impacts, clicks, gunshots): 1–3 seconds\\n- Medium actions (footsteps, object movement, transitions): 3–6 seconds\\n- Ambience / environments: 6–15 seconds\\n- Always append: Length: X seconds (integer only, no decimals).\\n\\nOutput constraints:\\n- Length: 1–2 dense sentences maximum\\n- Output ONLY the final rewritten prompt\\n- No explanations, no formatting, no quotes\\n- Use concise but dense technical language\\n- Focus strictly on sound effects or ambience\\n- Always append: Length: X seconds (integer only, no decimals).\\n\\nQuality guidelines:\\n- Be specific and avoid vague terms\\n- Prioritize clarity and realism\\n- Combine elements into one coherent scene\\n- Avoid redundancy\\n\\nExamples:\\n- Heavy rain hitting a metal roof during a thunderstorm, distant thunder rumbles, stereo, realistic ambience. Length: 45 seconds\\n- Quiet forest at dawn with birds chirping, soft wind through leaves, distant stream flowing. Length: 60 seconds\\n- Busy city street at night, cars passing, muffled conversations, occasional horn, urban ambience. Length: 50 seconds\\n- Ocean waves crashing against rocky cliffs, strong wind, dramatic and cinematic. Length: 70 seconds\\n- Wooden door creaking open slowly in an old house, echoing interior, eerie tone. Length: 3 seconds\\n- Glass bottle shattering on concrete, sharp impact, scattered fragments. Length: 2 seconds\\n- Footsteps on gravel, steady walking pace, close perspective. Length: 8 seconds\\n- Typing rapidly on a mechanical keyboard, crisp tactile clicks. Length: 5 seconds\\n- Punch impact with deep bass hit, cinematic trailer style. Length: 2 seconds\\n- Car speeding past at high velocity, doppler effect, realistic whoosh. Length: 3 seconds\\n- Object falling from height and hitting ground with a heavy thud. Length: 2 seconds\\n- Sword swing whooshing through air, fast motion, clean metallic tone. Length: 2 seconds\\n- Futuristic laser blast, clean energy pulse, high-tech sound design. Length: 1 seconds\\n- Spaceship engine humming, low frequency rumble, interior perspective. Length: 90 seconds\\n- Magical spell casting, shimmering particles, rising tonal energy. Length: 8 seconds\\n- Teleportation effect, glitchy digital distortion with a soft whoosh. Length: 5 seconds\\n- Dark eerie drone with distant whispers, creepy, slow build tension. Length: 120 seconds\\n- Sudden horror jump scare sting, sharp violin hit, cinematic. Length: 1 second\\n- Metal scraping slowly in a dark tunnel, echoing and ominous. Length: 20 seconds\\n- Explosion with debris scattering, deep bass, cinematic realism. Length: 4 seconds\\n- Building collapsing, rumbling concrete, dust and debris falling. Length: 25 seconds\\n- Fire crackling intensely, wood burning, close-up detail. Length: 80 seconds\\n- Gunshot in a large empty warehouse, loud echo decay. Length: 2 seconds\\n- Retro arcade coin insert sound, 8-bit style. Length: 1 second\\n- Level up chime, bright, rewarding, fantasy RPG style. Length: 2 seconds\\n- Error buzzer, short, digital, UI feedback. Length: 1 second\\n- Menu navigation clicks, soft futuristic interface sounds. Length: 3 seconds\\n- Layered soundscape: rain, thunder, footsteps, and distant sirens all blending naturally. Length: 90 seconds\\n- Rapid sequence of three impacts: metal hit, glass break, wood crack, spaced evenly. Length: 4 seconds\\n- Sound moving from left to right stereo field: passing motorcycle. Length: 5 seconds\\n- Close vs far perspective transition: footsteps approaching then fading away. Length: 6 seconds\\n- Tape stop sub drop, a massive sub-bass note that mimics a vinyl record or tape machine being turned off, the pitch and speed drop simultaneously, causing the high-end harmonics to smear and thicken as the sound grinds to a halt at a sub-sonic frequency. Length: 11 seconds\\n- Gravel and leaves footsteps, the sound of a hard boot stepping onto dry leaves or gravel, crisp and natural with detailed texture. Length: 11 seconds\\n- Ghostship moan, a massive, deep wooden groan with a low-frequency moan, like heavy timber under immense structural tension, swaying slowly, processed with long, dark wooden room reverb for a sense of scale. Length: 11 seconds\\n- Bicycle chain, a continuous metallic whirring sound of a chain moving over sprockets, with individual teeth catching the links, processed with resonant band-pass filter to emphasize metallic singing. Length: 11 seconds\\n- Warp drive, a sound that starts with a massive suck-back of ambient noise, followed by a supersonic crack and high-pitched zing that disappears into the distance, giving the sense of stretching space-time. Length: 11 seconds\\n- Ice cubes, high-pitched musical clinking of hard ice hitting a thin glass, bright resonant ring with subtle liquid sloshing around the edges. Length: 11 seconds\\n- Paper shuffle, the sound of a thick stack of heavy bond paper being squared up on a desk, dry papery thud with a quick fanning sound as air moves between the pages. Length: 11 seconds\\n- Drawer slam, a blunt, powerful thud made by slamming a wooden desk drawer shut, pronounced low-mid body, slightly distorted for aggressive character. Length: 3 seconds\",\n  \"One-shot\": \"You are a music metadata expert. Given an instrument or sound, generate a descriptive prompt for a short, isolated one-shot audio sample for music production.\\n\\n1. Identify the instrument or sound source.\\n2. Describe the playing technique or hit type (e.g., pluck, slam, tap, stab).\\n3. Include details about material, timbre, or texture.\\n4. Add spatial or production qualities (dry/wet, room, close-mic).\\n5. Specify length: short integer in seconds (1–11 s).\\n\\nExamples:\\n- Piano key hit with bright percussive attack and resonant wooden body. Length: 2 seconds\\n- Kick drum punchy low-end hit with warm skin resonance. Length: 2 seconds\\n- Snare drum rimshot accent with crisp snare wires. Length: 2 seconds\\n- Acoustic guitar fingerstyle note with warm spruce tone. Length: 3 seconds\\n- Bass pluck with jazzy tone and resonant wooden body. Length: 3 seconds\\n- Electric guitar power chord with distortion. Length: 3 seconds\\n- Metallic glitch percussion hit with sharp metallic texture. Length: 2 seconds\\n- Tabla resonant tone hit with natural skin timbre. Length: 2 seconds\\n- Djembe slap accent with dry wooden resonance. Length: 2 seconds\\n- Synth stab with reverb tail. Length: 3 seconds\\n- Violin expressive note with vibrato and rich wooden resonance. Length: 3 seconds\\n- Cello legato note, cinematic, with warm resonant body. Length: 3 seconds\\n- Trumpet bright accent with slightly brassy overtones. Length: 2 seconds\\n- Melodic saxophone jazz riff with smooth reed timbre and a slight vibrato bend. Length: 3 seconds\\n- Harp pluck with airy tone and resonant strings. Length: 2 seconds\\n- Glockenspiel bell-like note with bright metallic clarity. Length: 2 seconds\\n- Metallic clang sound design hit. Length: 2 seconds\\n- Granular texture hit. Length: 3 seconds\\n- Reversed piano hit. Length: 2 seconds\\n- Synth riser effect. Length: 6 seconds\\n- Percussion impact hit. Length: 2 seconds\\n- Cinematic hit. Length: 2 seconds\\n- Dry clap, a crisp, natural single hand clap recorded in a dead room with an extremely sharp transient and no room reflections. Length: 1 second\\n- Studio hat, a classic, natural recording of 14-inch hi-hats played tightly closed, zero ring, very fast decay. Length: 1 second\\n- Disco open hat, bright 14-inch open hi-hat with long, shimmering decay, perfect for disco or dance grooves. Length: 1 second\\n- Pillow kick, acoustic kick drum muffled with a heavy blanket, producing a short, dry \\\"thump\\\" with almost zero resonance. Length: 1 second\\n- Short 808, punchy 808 kick with sharp, distorted transient and fast-decaying sub-tail. Length: 1 second\\n- Egg shaker, classic plastic egg shaker recorded with a small-diaphragm condenser mic, producing a light, consistent \\\"tick\\\" with very short sustain. Length: 1 second\\n- African drums, dynamic African drums and percussion ensemble with natural acoustic textures. Length: 3 seconds\\n- Latin drums, dynamic Latin drums and percussion ensemble featuring authentic rhythmic patterns. Length: 3 seconds\\n- String quartet, euphoric string quartet with dynamic and emotional playing, full of expressive harmonies and movement. Length: 3 seconds\\n- Piano, nostalgic, atmospheric piano piece with dynamic and emotional performance, intimate and resonant. Length: 3 seconds\\n- Analogue drift pad, warm polyphonic pad with three detuned oscillators (saw + triangle), subtle pitch drift, and lush bucket-brigade chorus for wide, nostalgic stereo image. Length: 11 seconds\\n- Phase distortion bass, Casio CZ-style phase-distorted sine wave warped into a jagged sawtooth for retro synth bass tone. Length: 11 seconds\\n- Vibrato saxophone, bright lyrical alto sax with fast fluttery vibrato, reedy vintage tone, captured with ribbon mic for warm nostalgic sound. Length: 11 seconds\\n- Lofi upright bass, upright bass recorded with ribbon mic in a wooden room, natural air with slightly boxy resonance, tape-saturated for dusty 1950s jazz feel. Length: 2 seconds\"\n}",
+              "Music"
+            ]
+          },
+          {
+            "id": 71,
+            "type": "PreviewAny",
+            "pos": [
+              788.0966815876448,
+              1918.3898972168438
+            ],
+            "size": [
+              270.863591974432,
+              334.13634144176126
+            ],
+            "flags": {},
+            "order": 23,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "source",
+                "name": "source",
+                "type": "*",
+                "link": 290
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": []
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "PreviewAny"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 38,
+            "type": "StringReplace",
+            "pos": [
+              358.9072474749944,
+              950.1423266146026
+            ],
+            "size": [
+              290,
+              280
+            ],
+            "flags": {},
+            "order": 13,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "replace",
+                "name": "replace",
+                "type": "STRING",
+                "widget": {
+                  "name": "replace"
+                },
+                "link": 292
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  52
+                ]
+              }
+            ],
+            "title": "Text Replace (PROMPT TEMPLATE)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.1",
+              "Node name for S&R": "StringReplace"
+            },
+            "widgets_values": [
+              "SYSTEM_PROMPTS\n\nInput: USER_INPUT\nTarget audio length: AUDIO_LENGTH seconds.\nOutput:",
+              "SYSTEM_PROMPTS",
+              ""
+            ]
+          },
+          {
+            "id": 69,
+            "type": "PrimitiveStringMultiline",
+            "pos": [
+              -783.4597853691565,
+              1327.391700157049
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 22,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "value",
+                "name": "value",
+                "type": "STRING",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 105
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  292
+                ]
+              }
+            ],
+            "title": "User: short description (USER_INPUT in template)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.1",
+              "Node name for S&R": "PrimitiveStringMultiline"
+            },
+            "widgets_values": [
+              "Industrial dark ambient track, dystopian post-apocalyptic atmosphere, drone music. Heavy mechanical textures, rhythmic slow train clicks, clanking iron track rhythm, squealing metal brakes, far valve steam hisses. Low sub-bass pulsations, dark cinematic synthesizers, rusted metal resonance. Grim, immersive, slow-tempo, 70 BPM, loopable, high production quality, sound design for a train survival video game."
+            ]
+          },
+          {
+            "id": 40,
+            "type": "StringReplace",
+            "pos": [
+              1350,
+              900
+            ],
+            "size": [
+              260,
+              280
+            ],
+            "flags": {},
+            "order": 15,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 140
+              },
+              {
+                "localized_name": "replace",
+                "name": "replace",
+                "type": "STRING",
+                "widget": {
+                  "name": "replace"
+                },
+                "link": 86
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  293
+                ]
+              }
+            ],
+            "title": "Text Replace (AUDIO LENGTH)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.1",
+              "Node name for S&R": "StringReplace"
+            },
+            "widgets_values": [
+              "",
+              "AUDIO_LENGTH",
+              ""
+            ]
+          },
+          {
+            "id": 158,
+            "type": "StringConcatenate",
+            "pos": [
+              276.32702515018207,
+              1729.812324273497
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 25,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 293
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  290,
+                  291
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "You are an expert musician, musicologist, and prompt engineer. Your task is to transform raw MIDI architectural data and user constraints into an advanced generative audio description. You must interpret the inputs as structural DNA to design a coherent, multi-layered instrumental composition layout.\n\n#### OUTPUT FORMAT RULES:\n- You must output exactly two clearly labeled sections: BASE_MELODY_SECTION: and COUNTER_MELODY_SECTION:.\n- Do not output raw lists, bullet points, or markdown formatting. Use natural, fluid, descriptive prose for each section.\n- Absolutely no brackets, curly braces, or plus signs (+). No introductory remarks. Start directly with BASE_MELODY_SECTION:.\n\n#### DATA INTEGRATION LOGIC:\n1. INPUT PARSING: You will receive two primary data blocks: a \"MIDI MUSICAL BEHAVIOR PROFILE\" (defining core grid, harmonic palette, phrase architecture, and sonic boundaries) and an \"Input\" section (defining target track types, genres, instrumentation lists, and target audio lengths).\n2. BASE_MELODY_SECTION:\n    - You are STRICTLY FORBIDDEN from describing the chords as a chronological sequence. Do NOT write what the track \"opens with\", \"transitions into\", or \"resolves to\". Do NOT list the chord names one after another.\n    - Instead, interpret the provided Roman numeral progression as a holistic emotional palette. Describe how these chords co-exist within the key center to create the general mood, harmonic density, and acoustic weight.\n    - Convert the total target measures, BPM, and dynamic velocity into a description of macro-structural energy. Focus on how the musical tension is distributed across the entire duration of the track, ensuring the text guides the audio sampler to compose a fresh, original composition within this structural framework rather than forcing rigid chord changes.\n    - Integrate the main and supporting instruments provided in the Input for the Base Melody naturally into the description.\n3. COUNTER_MELODY_SECTION:\n    - Use the provided counter-melody text template and the manually provided instrumentation list.\n    - The counter-melody must function as an independent texture operating on strict linear counterpoint, filling the natural silence gaps or weaving through the primary structures without acoustic clutter.\n    - Ensure it explicitly respects the same BPM, key center, phrase grid, and target measures derived from the behavioral profile.\n    - Describe its horizontal voice-leading behavior, dynamic ducking rules, and octave register separation to prevent frequency masking.\n\n#### ADAPTIVE SYSTEM COMPATIBILITY:\nThe generated composition must be suitable as one coherent variation in a game music system where multiple emotional versions can crossfade cleanly. Preserve the core tempo, phrase boundaries, compatible harmony, and cadence points across both sections to allow flawless, dynamic vertical remixing.\n\n#### NEVER COPY EXAMPLE PHRASES FROM THIS INSTRUCTION. WRITE ORIGINAL PROSE.",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 143,
+            "type": "PrimitiveStringMultiline",
+            "pos": [
+              190.69490048752897,
+              2423.354475240739
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  250
+                ]
+              }
+            ],
+            "title": "User: short description (USER_INPUT in template)",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.1",
+              "Node name for S&R": "PrimitiveStringMultiline"
+            },
+            "widgets_values": [
+              "#### CRITICAL INSTRUCTIONS:\nYou must output exactly two clearly labeled sections: BASE_MELODY_SECTION: and COUNTER_MELODY_SECTION:.\nDo not output raw lists, bullet points, or markdown formatting. Use natural, fluid, descriptive prose for each section.\nAbsolutely no brackets, curly braces, or plus signs (+). No introductory remarks. Start directly with BASE_MELODY_SECTION:.\nExpress the total target measures and BPM strictly as raw digits (e.g., \"75 measures\", \"120 BPM\"), never write them out as text words like \"seven\" or \"one hundred twenty\".\n\nThe provided MIDI data is not an instrumentation source and must not be treated as a melody to copy exactly. Treat the MIDI data exclusively as a compositional behavior profile that defines macro-tempo, key center, harmonic grammar, phrase structure, register motion, and crossfade compatibility.\n- INTEGRATION: \n    - In \"BASE_MELODY_SECTION\", you are STRICTLY FORBIDDEN from describing the chords as a chronological sequence. Do NOT write what the track \"opens with\", \"transitions into\", or \"resolves to\". \n    - Instead, treat the Roman numeral progression (e.g., iii, V, IV, I) purely as a static harmonic palette (a mood board) that governs the overall emotional color of the track. Frame them as a collection of chords that co-exist within the C major key center to give the track its specific genre flavor.\n    - Translate the \"Sonic Range & Register\" and \"Dynamic Character\" into structural density. Describe the overall space, the weight of the instruments, and the general acoustic environment (e.g., \"the composition leverages a specific harmonic palette consisting of major tonic anchors balanced by modal iii and minor-leaning vi coloration, establishing a rich but non-intrusive emotional backdrop\").\n    - Focus heavily on the structural layout provided by \"Loop Character\" and \"Phrase Architecture\" as a macro-blueprint. Focus on how the energy is distributed across the measures, ensuring the prompt guides the AI to create an entirely original melody within this structural room, rather than directing specific chord changes.\n\n- In \"COUNTER_MELODY_SECTION\", use the provided counter-melody template and the manually provided instrumentation. The counter-melody must respect the same BPM, key center, phrase grid, chord anchors, and temporal gaps defined by the MIDI behavior profile.\n- Frame the counter-melody as an independent texture operating on strict linear counterpoint, filling the natural silence gaps or weaving through the primary structures without acoustic clutter.\n\n#### ADAPTIVE SYSTEM COMPATIBILITY:\nThe generated composition must be suitable as one coherent variation in a game music system where multiple emotional versions can crossfade cleanly. Preserve the core tempo, phrase boundaries, compatible harmony, and cadence points across both sections to allow flawless, dynamic vertical remixing."
             ]
           }
         ],
@@ -3982,38 +4095,6 @@
             "type": "STRING"
           },
           {
-            "id": 107,
-            "origin_id": 40,
-            "origin_slot": 0,
-            "target_id": 70,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 108,
-            "origin_id": 69,
-            "origin_slot": 0,
-            "target_id": 70,
-            "target_slot": 1,
-            "type": "STRING"
-          },
-          {
-            "id": 109,
-            "origin_id": 70,
-            "origin_slot": 0,
-            "target_id": 65,
-            "target_slot": 4,
-            "type": "STRING"
-          },
-          {
-            "id": 110,
-            "origin_id": 70,
-            "origin_slot": 0,
-            "target_id": 71,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
             "id": 111,
             "origin_id": -10,
             "origin_slot": 10,
@@ -4078,14 +4159,6 @@
             "type": "STRING"
           },
           {
-            "id": 142,
-            "origin_id": 69,
-            "origin_slot": 0,
-            "target_id": 38,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
             "id": 177,
             "origin_id": 3,
             "origin_slot": 0,
@@ -4116,6 +4189,54 @@
             "target_id": -20,
             "target_slot": 1,
             "type": "STRING"
+          },
+          {
+            "id": 250,
+            "origin_id": 143,
+            "origin_slot": 0,
+            "target_id": 144,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 252,
+            "origin_id": 144,
+            "origin_slot": 0,
+            "target_id": 65,
+            "target_slot": 4,
+            "type": "STRING"
+          },
+          {
+            "id": 290,
+            "origin_id": 158,
+            "origin_slot": 0,
+            "target_id": 71,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 291,
+            "origin_id": 158,
+            "origin_slot": 0,
+            "target_id": 144,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 292,
+            "origin_id": 69,
+            "origin_slot": 0,
+            "target_id": 38,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 293,
+            "origin_id": 40,
+            "origin_slot": 0,
+            "target_id": 158,
+            "target_slot": 0,
+            "type": "STRING"
           }
         ],
         "extra": {}
@@ -4125,8 +4246,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 12,
-          "lastNodeId": 142,
-          "lastLinkId": 244,
+          "lastNodeId": 158,
+          "lastLinkId": 293,
           "lastRerouteId": 0
         },
         "revision": 0,
@@ -4137,15 +4258,15 @@
           "bounding": [
             -1081.0243298176106,
             1536.5497525503754,
-            128,
-            128
+            148.64102935791016,
+            208
           ]
         },
         "outputNode": {
           "id": -20,
           "bounding": [
-            2103.350453933646,
-            2064.4745553798866,
+            2825.655191274711,
+            2163.053918753269,
             128,
             68
           ]
@@ -4156,12 +4277,12 @@
             "name": "string_b",
             "type": "STRING",
             "linkIds": [
-              194
+              245
             ],
             "localized_name": "string_b",
             "label": "Track type",
             "pos": [
-              -977.0243298176106,
+              -956.3833004597004,
               1560.5497525503754
             ]
           },
@@ -4170,12 +4291,12 @@
             "name": "string_b_1",
             "type": "STRING",
             "linkIds": [
-              193
+              246
             ],
             "localized_name": "string_b_1",
             "label": "Genere",
             "pos": [
-              -977.0243298176106,
+              -956.3833004597004,
               1580.5497525503754
             ]
           },
@@ -4190,7 +4311,7 @@
             "localized_name": "string_b_2",
             "label": "Instrumentals",
             "pos": [
-              -977.0243298176106,
+              -956.3833004597004,
               1600.5497525503754
             ]
           },
@@ -4204,8 +4325,61 @@
             "localized_name": "string_b_3",
             "label": "Description",
             "pos": [
-              -977.0243298176106,
+              -956.3833004597004,
               1620.5497525503754
+            ]
+          },
+          {
+            "id": "d56d8c94-0b1d-48ea-9d9c-e6bf8d150c62",
+            "name": "input",
+            "type": "*",
+            "linkIds": [
+              256,
+              282
+            ],
+            "label": "BPM",
+            "pos": [
+              -956.3833004597004,
+              1640.5497525503754
+            ]
+          },
+          {
+            "id": "16b509ff-58c6-4451-9334-271e2ba0c717",
+            "name": "input_2",
+            "type": "*",
+            "linkIds": [
+              263
+            ],
+            "label": "Loop Score",
+            "pos": [
+              -956.3833004597004,
+              1660.5497525503754
+            ]
+          },
+          {
+            "id": "79712952-9ee2-4f9e-847c-b54b6707b45f",
+            "name": "values.c",
+            "type": "FLOAT,INT,BOOLEAN",
+            "linkIds": [
+              281
+            ],
+            "label": "Duration",
+            "pos": [
+              -956.3833004597004,
+              1680.5497525503754
+            ]
+          },
+          {
+            "id": "6930015f-70c5-4f72-96e1-e934f18646dd",
+            "name": "values.d",
+            "type": "FLOAT,INT,BOOLEAN",
+            "linkIds": [
+              283
+            ],
+            "label": "beats_per_minute",
+            "pos": [
+              -956.3833004597004,
+              1700.5497525503754
             ]
           }
         ],
@@ -4215,346 +4389,17 @@
             "name": "STRING",
             "type": "STRING",
             "linkIds": [
-              216
+              272
             ],
             "label": "PROMPT",
             "pos": [
-              2127.350453933646,
-              2088.4745553798866
+              2849.655191274711,
+              2187.053918753269
             ]
           }
         ],
         "widgets": [],
         "nodes": [
-          {
-            "id": 122,
-            "type": "PrimitiveStringMultiline",
-            "pos": [
-              351.862856421796,
-              2796.702894386129
-            ],
-            "size": [
-              490.32543475595435,
-              373.3271422445964
-            ],
-            "flags": {},
-            "order": 0,
-            "mode": 0,
-            "inputs": [],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  217
-                ]
-              }
-            ],
-            "title": "CounterString",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "PrimitiveStringMultiline"
-            },
-            "widgets_values": [
-              "\nDescription: A harmonically aligned, non-overlapping counter-melody. The counter-motif operates on the principle of strict linear counterpoint, utilizing horizontal voice-leading where the secondary voice moves in complementary rhythm (hocketing) during the primary melody's sustained notes and pauses. To prevent frequency masking, internal resonance, and acoustic clutter, the counter-melody occupies a distinct octave register, using complementary chord tones, suspensions, and passing notes that resolve smoothly into the root scale of base minor or major. The dynamics of the counter-melody dynamically duck under the main theme, swelling only during silent temporal gaps in the arrangement to create a pristine, balanced musical dialogue without phase issues."
-            ]
-          },
-          {
-            "id": 128,
-            "type": "StringConcatenate",
-            "pos": [
-              918.1834557160181,
-              2599.91366376175
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 9,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_a",
-                "name": "string_a",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_a"
-                },
-                "link": 218
-              },
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 217
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  215
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "",
-              "",
-              ""
-            ]
-          },
-          {
-            "id": 127,
-            "type": "StringConcatenate",
-            "pos": [
-              440.36005859142705,
-              2557.155255630108
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 8,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_a",
-                "name": "string_a",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_a"
-                },
-                "link": 206
-              },
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 244
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  218
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "",
-              "",
-              ""
-            ]
-          },
-          {
-            "id": 132,
-            "type": "StringConcatenate",
-            "pos": [
-              1417.512065769386,
-              2136.211822536049
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 11,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_a",
-                "name": "string_a",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_a"
-                },
-                "link": 231
-              },
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 215
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  216
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "",
-              "\n",
-              ""
-            ]
-          },
-          {
-            "id": 124,
-            "type": "PrimitiveStringMultiline",
-            "pos": [
-              -205.04893462555785,
-              2768.721928978553
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 1,
-            "mode": 0,
-            "inputs": [],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  206
-                ]
-              }
-            ],
-            "title": "CounterTextStart",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "PrimitiveStringMultiline"
-            },
-            "widgets_values": [
-              "\nCounter-Melody:\nTrackType: Sub-Mix / Dialogue"
-            ]
-          },
-          {
-            "id": 114,
-            "type": "StringConcatenate",
-            "pos": [
-              -897.4628482075818,
-              1161.5423163630676
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 3,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 193
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  234
-                ]
-              }
-            ],
-            "title": "TrackType",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "Base Melody:\nTrack Type: ",
-              "",
-              ""
-            ]
-          },
-          {
-            "id": 117,
-            "type": "StringConcatenate",
-            "pos": [
-              -891.4758199444065,
-              1892.2208962724783
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 6,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 196
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  228
-                ]
-              }
-            ],
-            "title": "Description",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "\nDescription: ",
-              "",
-              ""
-            ]
-          },
           {
             "id": 136,
             "type": "StringConcatenate",
@@ -4569,7 +4414,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 12,
+            "order": 11,
             "mode": 0,
             "inputs": [
               {
@@ -4626,7 +4471,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 10,
+            "order": 9,
             "mode": 0,
             "inputs": [
               {
@@ -4670,54 +4515,6 @@
             ]
           },
           {
-            "id": 116,
-            "type": "StringConcatenate",
-            "pos": [
-              -895.58723171041,
-              1647.4105365047685
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 5,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 195
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  204,
-                  239
-                ]
-              }
-            ],
-            "title": "Instrumentals",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "\nInstrumentals: ",
-              "",
-              ""
-            ]
-          },
-          {
             "id": 126,
             "type": "StringConcatenate",
             "pos": [
@@ -4731,7 +4528,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 7,
+            "order": 6,
             "mode": 0,
             "inputs": [
               {
@@ -4775,103 +4572,6 @@
             ]
           },
           {
-            "id": 115,
-            "type": "StringConcatenate",
-            "pos": [
-              -894.1738539394124,
-              1404.4259589020526
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {},
-            "order": 4,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 194
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  235,
-                  242
-                ]
-              }
-            ],
-            "title": "Genere",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "\nGenere: ",
-              "",
-              ""
-            ]
-          },
-          {
-            "id": 141,
-            "type": "StringConcatenate",
-            "pos": [
-              -435.11813980453127,
-              2517.5878047941187
-            ],
-            "size": [
-              400,
-              200
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 14,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 241
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  243
-                ]
-              }
-            ],
-            "title": "Instrumentals_counter",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "\nInstrumentals: ",
-              "",
-              ""
-            ]
-          },
-          {
             "id": 142,
             "type": "StringConcatenate",
             "pos": [
@@ -4885,7 +4585,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 7,
+            "order": 14,
             "mode": 0,
             "inputs": [
               {
@@ -4929,18 +4629,757 @@
             ]
           },
           {
-            "id": 140,
-            "type": "CounterMelodyInstrumentSelector",
+            "id": 132,
+            "type": "StringConcatenate",
             "pos": [
-              -872.5521597718969,
-              2456.3846386236282
+              1395.9621928068598,
+              2207.361833758553
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 10,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 231
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 215
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  258
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 146,
+            "type": "SomethingToString",
+            "pos": [
+              -854.0130075300156,
+              2163.7096855265163
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 15,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "input",
+                "name": "input",
+                "type": "*",
+                "link": 256
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  257
+                ]
+              }
+            ],
+            "title": "BPM",
+            "properties": {
+              "cnr_id": "comfyui-kjnodes",
+              "ver": "1.4.7",
+              "Node name for S&R": "SomethingToString"
+            },
+            "widgets_values": [
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 141,
+            "type": "StringConcatenate",
+            "pos": [
+              -413.0961988865625,
+              2610.394819564624
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 13,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 241
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  243
+                ]
+              }
+            ],
+            "title": "Instrumentals_counter",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nInstrumentals: ",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 128,
+            "type": "StringConcatenate",
+            "pos": [
+              918.1834557160181,
+              2599.91366376175
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 218
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 217
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  215
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 127,
+            "type": "StringConcatenate",
+            "pos": [
+              440.36005859142705,
+              2557.155255630108
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 206
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 244
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  218
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 122,
+            "type": "PrimitiveStringMultiline",
+            "pos": [
+              351.862856421796,
+              2796.702894386129
+            ],
+            "size": [
+              490.32543475595435,
+              373.3271422445964
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  217
+                ]
+              }
+            ],
+            "title": "CounterString",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "PrimitiveStringMultiline"
+            },
+            "widgets_values": [
+              "\nDescription: A harmonically aligned, non-overlapping counter-melody. The counter-motif operates on the principle of strict linear counterpoint, utilizing horizontal voice-leading where the secondary voice moves in complementary rhythm (hocketing) during the primary melody's sustained notes and pauses. To prevent frequency masking, internal resonance, and acoustic clutter, the counter-melody occupies a distinct octave register, using complementary chord tones, suspensions, and passing notes that resolve smoothly into the root scale of base minor or major. The dynamics of the counter-melody dynamically duck under the main theme, swelling only during silent temporal gaps in the arrangement to create a pristine, balanced musical dialogue without phase issues."
+            ]
+          },
+          {
+            "id": 124,
+            "type": "PrimitiveStringMultiline",
+            "pos": [
+              -205.04893462555785,
+              2768.721928978553
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 1,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  206
+                ]
+              }
+            ],
+            "title": "CounterTextStart",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "PrimitiveStringMultiline"
+            },
+            "widgets_values": [
+              "\nCounter-Melody:\nTrackType: Sub-Mix / Dialogue"
+            ]
+          },
+          {
+            "id": 147,
+            "type": "StringConcatenate",
+            "pos": [
+              1400.0397367520297,
+              2252.140168703759
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 16,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 257
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  259
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nBPM:",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 149,
+            "type": "SomethingToString",
+            "pos": [
+              -858.3985968824211,
+              2306.251410895368
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 18,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "input",
+                "name": "input",
+                "type": "*",
+                "link": 285
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  266
+                ]
+              }
+            ],
+            "title": "Measures",
+            "properties": {
+              "cnr_id": "comfyui-kjnodes",
+              "ver": "1.4.7",
+              "Node name for S&R": "SomethingToString"
+            },
+            "widgets_values": [
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 151,
+            "type": "StringConcatenate",
+            "pos": [
+              1317.2789547705638,
+              2392.389925899028
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 20,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 266
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  268
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nMeasures:",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 152,
+            "type": "StringConcatenate",
+            "pos": [
+              1318.0621962958326,
+              2644.815495982649
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 21,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 267
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  269
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nLoop scores:",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 148,
+            "type": "StringConcatenate",
+            "pos": [
+              1809.702017277905,
+              2135.4390158260458
             ],
             "size": [
               400,
               200
             ],
             "flags": {},
-            "order": 13,
+            "order": 17,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 258
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 259
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  270
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nBPM:",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 153,
+            "type": "StringConcatenate",
+            "pos": [
+              1818.735191294133,
+              2568.9872590398754
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 22,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 268
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 269
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  271
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nMeasures:",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 154,
+            "type": "StringConcatenate",
+            "pos": [
+              2309.2251510109286,
+              2312.302218756672
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 23,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_a",
+                "name": "string_a",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_a"
+                },
+                "link": 270
+              },
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 271
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  272
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nBPM:",
+              "\n",
+              ""
+            ]
+          },
+          {
+            "id": 116,
+            "type": "StringConcatenate",
+            "pos": [
+              -857.1355483113263,
+              1639.3997565930567
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 195
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  204,
+                  239
+                ]
+              }
+            ],
+            "title": "Instrumentals",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nInstrumentals: ",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 140,
+            "type": "CounterMelodyInstrumentSelector",
+            "pos": [
+              -884.9320227626503,
+              2588.0355055591717
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 12,
             "mode": 0,
             "inputs": [
               {
@@ -4976,26 +5415,273 @@
               "high_register",
               2
             ]
+          },
+          {
+            "id": 150,
+            "type": "SomethingToString",
+            "pos": [
+              -857.1454723804675,
+              2440.9224752947825
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 19,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "input",
+                "name": "input",
+                "type": "*",
+                "link": 263
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  267
+                ]
+              }
+            ],
+            "title": "LoopScores",
+            "properties": {
+              "cnr_id": "comfyui-kjnodes",
+              "ver": "1.4.7",
+              "Node name for S&R": "SomethingToString"
+            },
+            "widgets_values": [
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 155,
+            "type": "ComfyMathExpression",
+            "pos": [
+              -1332.7600125926529,
+              1827.3268791735807
+            ],
+            "size": [
+              400,
+              168
+            ],
+            "flags": {},
+            "order": 24,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "a",
+                "localized_name": "values.a",
+                "name": "values.a",
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 281
+              },
+              {
+                "label": "b",
+                "localized_name": "values.b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 282
+              },
+              {
+                "label": "c",
+                "localized_name": "values.c",
+                "name": "values.c",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 283
+              },
+              {
+                "label": "d",
+                "localized_name": "values.d",
+                "name": "values.d",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  285
+                ]
+              },
+              {
+                "localized_name": "BOOL",
+                "name": "BOOL",
+                "type": "BOOLEAN",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "(a * b) / (60 * c)"
+            ]
+          },
+          {
+            "id": 117,
+            "type": "StringConcatenate",
+            "pos": [
+              -855.0743987391464,
+              1884.805793125078
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 196
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  228
+                ]
+              }
+            ],
+            "title": "Description",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nDescription: ",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 115,
+            "type": "StringConcatenate",
+            "pos": [
+              -859.1206217976385,
+              1399.03313934988
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 246
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  235,
+                  242
+                ]
+              }
+            ],
+            "title": "Genere",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "\nGenere: ",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": 114,
+            "type": "StringConcatenate",
+            "pos": [
+              -858.3649855771182,
+              1156.149512635453
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string_b",
+                "name": "string_b",
+                "type": "STRING",
+                "widget": {
+                  "name": "string_b"
+                },
+                "link": 245
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  234
+                ]
+              }
+            ],
+            "title": "TrackType",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "StringConcatenate"
+            },
+            "widgets_values": [
+              "Base Melody:\nTrack Type: ",
+              "",
+              ""
+            ]
           }
         ],
         "groups": [],
         "links": [
-          {
-            "id": 194,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 115,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 193,
-            "origin_id": -10,
-            "origin_slot": 1,
-            "target_id": 114,
-            "target_slot": 0,
-            "type": "STRING"
-          },
           {
             "id": 195,
             "origin_id": -10,
@@ -5034,14 +5720,6 @@
             "origin_slot": 0,
             "target_id": 132,
             "target_slot": 1,
-            "type": "STRING"
-          },
-          {
-            "id": 216,
-            "origin_id": 132,
-            "origin_slot": 0,
-            "target_id": -20,
-            "target_slot": 0,
             "type": "STRING"
           },
           {
@@ -5147,6 +5825,150 @@
             "target_id": 127,
             "target_slot": 1,
             "type": "STRING"
+          },
+          {
+            "id": 245,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 114,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 246,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 115,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 256,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 146,
+            "target_slot": 0,
+            "type": "*"
+          },
+          {
+            "id": 257,
+            "origin_id": 146,
+            "origin_slot": 0,
+            "target_id": 147,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 258,
+            "origin_id": 132,
+            "origin_slot": 0,
+            "target_id": 148,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 259,
+            "origin_id": 147,
+            "origin_slot": 0,
+            "target_id": 148,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 263,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 150,
+            "target_slot": 0,
+            "type": "*"
+          },
+          {
+            "id": 266,
+            "origin_id": 149,
+            "origin_slot": 0,
+            "target_id": 151,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 267,
+            "origin_id": 150,
+            "origin_slot": 0,
+            "target_id": 152,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 268,
+            "origin_id": 151,
+            "origin_slot": 0,
+            "target_id": 153,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 269,
+            "origin_id": 152,
+            "origin_slot": 0,
+            "target_id": 153,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 270,
+            "origin_id": 148,
+            "origin_slot": 0,
+            "target_id": 154,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 271,
+            "origin_id": 153,
+            "origin_slot": 0,
+            "target_id": 154,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 272,
+            "origin_id": 154,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 281,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 155,
+            "target_slot": 0,
+            "type": "FLOAT,INT,BOOLEAN"
+          },
+          {
+            "id": 282,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 155,
+            "target_slot": 1,
+            "type": "FLOAT,INT,BOOLEAN"
+          },
+          {
+            "id": 283,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 155,
+            "target_slot": 2,
+            "type": "FLOAT,INT,BOOLEAN"
+          },
+          {
+            "id": 285,
+            "origin_id": 155,
+            "origin_slot": 1,
+            "target_id": 149,
+            "target_slot": 0,
+            "type": "INT"
           }
         ],
         "extra": {}
@@ -5161,10 +5983,10 @@
     "VHS_MetadataImage": true,
     "VHS_KeepIntermediate": true,
     "ds": {
-      "scale": 0.9240104817961707,
+      "scale": 0.8414821226201944,
       "offset": [
-        974.8306702270708,
-        -1361.9382965747084
+        721.6687196802039,
+        -993.5276732905779
       ]
     }
   },

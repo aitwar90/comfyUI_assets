@@ -480,89 +480,369 @@ class MIDIToText:
             f"- Primary Harmonic Structures: Follows a distinct progression of {featured_harmonies}"
         )
         return (output_text,)
+
+class MIDIToBehaviorProfile:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "midi": ("MIDI",),
+                "max_chord_steps": ("INT", {"default": 8, "min": 4, "max": 16, "step": 1}),
+                "phrase_silence_threshold": ("FLOAT", {"default": 0.5, "min": 0.1, "max": 2.0, "step": 0.1, 
+                                                     "tooltip": "Sekundy ciszy uznawane za granicę frazy"}),
+            }
+        }
     
+    RETURN_TYPES = ("STRING", "INT", "INT", "FLOAT", "INT", "INT")  # Behavior text, BPM, Total measures, Loop compatibility score, metrum np 3, 4 co daje 3/4
+    RETURN_NAMES = ("behavior_profile", "bpm", "midi_measures", "loop_score", "beats_per_measure", "beat_value")
+    FUNCTION = "analyze_midi"
+    CATEGORY = "RyanOnTheInside/Audio/MIDI"
+
+    def __init__(self):
+        self.note_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+        
+    def note_to_name(self, midi_num):
+        return f"{self.note_names[midi_num % 12]}{(midi_num // 12) - 1}"
+
+    def get_interval_name(self, semitones):
+        """Nazwa interwału dla opisu ruchu"""
+        intervals = {
+            0: "unison", 1: "minor second", 2: "major second", 3: "minor third",
+            4: "major third", 5: "perfect fourth", 7: "perfect fifth",
+            9: "major sixth", 10: "minor seventh", 12: "octave"
+        }
+        return intervals.get(abs(semitones), f"{abs(semitones)} semitones")
+
+    def chord_to_function(self, notes, key_root, is_minor):
+        """
+        Prosta analiza funkcjonalna. Zwraca np. "I", "IV", "V", "vi".
+        Zakłada, że notes to lista nazw nut (np. ['C4', 'E4', 'G4'])
+        """
+        if not notes:
+            return "rest"
+            
+        # Znajdź root akordu (najniższa nuta)
+        root_note = min(notes, key=lambda x: int(x[-1]) * 100 + self.note_names.index(x[:-1]))
+        root_pitch = self.note_names.index(root_note[:-1])
+        
+        # Oblicz stopień względem tonacji
+        degree = (root_pitch - key_root) % 12
+        
+        # Mapowanie stopni na funkcje (dla major i minor)
+        if is_minor:
+            # A minor: A=0 (i), B=2 (ii°), C=3 (III), D=5 (iv), E=7 (v), F=8 (VI), G=10 (VII)
+            functions = {0: "i", 3: "III", 5: "iv", 7: "v", 8: "VI", 10: "VII"}
+        else:
+            # C major: C=0 (I), D=2 (ii), E=4 (iii), F=5 (IV), G=7 (V), A=9 (vi), B=11 (vii°)
+            functions = {0: "I", 2: "ii", 4: "iii", 5: "IV", 7: "V", 9: "vi", 11: "vii°"}
+            
+        return functions.get(degree, f"chromatic({degree})")
+
+    def analyze_midi(self, midi, max_chord_steps, phrase_silence_threshold):
+        import mido
+        
+        # --- 1. GLOBALNE PARAMETRY ---
+        bpm = 120
+        time_sig = (4, 4)  # domyślne 4/4
+        key_sig = None     # opcjonalnie z MIDI
+        
+        total_ticks = 0
+        all_notes = []     # (tick, note, velocity, track)
+        
+        # --- 2. ZBIERANIE DANYCH Z TRACKÓW ---
+        for track_idx, track in enumerate(midi.tracks):
+            current_tick = 0
+            for msg in track:
+                current_tick += msg.time
+                
+                if msg.type == 'set_tempo':
+                    bpm = int(mido.tempo2bpm(msg.tempo))
+                elif msg.type == 'time_signature':
+                    time_sig = (msg.numerator, msg.denominator)
+                elif msg.type == 'key_signature':
+                    key_sig = msg.key  # np. 'C', 'Am'
+                elif msg.type == 'note_on' and msg.velocity > 0:
+                    all_notes.append({
+                        'tick': current_tick,
+                        'note': msg.note,
+                        'velocity': msg.velocity,
+                        'track': track_idx
+                    })
+                    
+            total_ticks = max(total_ticks, current_tick)
+        
+        if not all_notes:
+            return ("MIDI Behavior Profile: [No musical data]", 120, 0, 0.0)
+        
+        # Sortuj wszystkie nuty globalnie (po czasie)
+        all_notes.sort(key=lambda x: x['tick'])
+        
+        # --- 3. ANALIZA TONACJI I REJESTRU ---
+        note_counts = [0] * 12
+        velocities = []
+        midi_nums = []
+        
+        for n in all_notes:
+            note_counts[n['note'] % 12] += 1
+            velocities.append(n['velocity'])
+            midi_nums.append(n['note'])
+        
+        detected_key = MIDIToText.estimate_key(self, note_counts)  # Twoja metoda
+        is_minor = "minor" in detected_key.lower()
+        key_root = self.note_names.index(detected_key.split()[0])
+        
+        min_note, max_note = min(midi_nums), max(midi_nums)
+        register_desc = MIDIToText.get_register_description(self, min_note, max_note)
+        
+        # --- 4. ANALIZA DYNAMIKI ---
+        avg_velocity = sum(velocities) / len(velocities)
+        velocity_variance = sum((v - avg_velocity)**2 for v in velocities) / len(velocities)
+        
+        if avg_velocity > 100:
+            dynamic_char = "aggressive and loud"
+        elif avg_velocity > 80:
+            dynamic_char = "moderately strong"
+        elif avg_velocity > 60:
+            dynamic_char = "gentle and restrained"
+        else:
+            dynamic_char = "delicate and soft"
+            
+        if velocity_variance > 400:
+            dynamic_behavior = f"highly dynamic with {dynamic_char} accents"
+        else:
+            dynamic_behavior = f"consistently {dynamic_char}"
+
+        # --- 5. STRUKTURA CZASOWA (TAKTY I FRazy) ---
+        ticks_per_beat = midi.ticks_per_beat
+        beats_per_measure = time_sig[0]
+        ticks_per_measure = ticks_per_beat * beats_per_measure
+        
+        total_measures = max(1, int(total_ticks / ticks_per_measure))
+        
+        # Oblicz sekundy na tick (dla phrase detection)
+        seconds_per_tick = (60.0 / bpm) / ticks_per_beat
+        silence_ticks_threshold = phrase_silence_threshold / seconds_per_tick
+        
+        # --- 6. DETEKCJA FRAZ (granice crossfade'u) ---
+        phrase_points = [0]  # początek
+        
+        last_note_end = all_notes[0]['tick']
+        for i in range(1, len(all_notes)):
+            gap = all_notes[i]['tick'] - last_note_end
+            if gap > silence_ticks_threshold:
+                phrase_points.append(all_notes[i]['tick'])
+            last_note_end = max(last_note_end, all_notes[i]['tick'] + ticks_per_beat)  # przybliżenie długości nuty
+        
+        phrase_behavior = f"natural phrase breaks every approximately {total_measures // max(1, len(phrase_points))} measures"
+        
+        # --- 7. PROGRESJA HARMONICZNA Z FUNKCJAMI ---
+        tolerance = ticks_per_beat // 4  # 1/16 nuty
+        
+        # Grupowanie w akordy (poprawione - nie resetuje last_tick między trackami)
+        chords = []
+        current_chord_notes = []
+        current_chord_start = all_notes[0]['tick']
+        
+        for note_data in all_notes:
+            tick = note_data['tick']
+            note_name = self.note_to_name(note_data['note'])
+            
+            if tick - current_chord_start <= tolerance:
+                current_chord_notes.append(note_name)
+            else:
+                if current_chord_notes:
+                    unique_notes = list(sorted(set(current_chord_notes)))
+                    func = self.chord_to_function(unique_notes, key_root, is_minor)
+                    chords.append({
+                        'tick': current_chord_start,
+                        'notes': unique_notes,
+                        'function': func
+                    })
+                current_chord_notes = [note_name]
+                current_chord_start = tick
+        
+        # Ostatni akord
+        if current_chord_notes:
+            unique_notes = list(sorted(set(current_chord_notes)))
+            func = self.chord_to_function(unique_notes, key_root, is_minor)
+            chords.append({'tick': current_chord_start, 'notes': unique_notes, 'function': func})
+        
+        # --- 8. LOOP COMPATIBILITY (czy zaczyna i kończy się kompatybilnie) ---
+        if len(chords) >= 2:
+            first_func = chords[0]['function']
+            last_func = chords[-1]['function']
+            
+            # Kompatybilne kadencje: I-i, V-I, iv-i (dla minor), itp.
+            compatible_endings = [
+                (first_func, first_func),  # Ten sam akord
+                ('V', 'I'), ('V', 'i'),    # Dominanta do toniki
+                ('v', 'i'), ('VII', 'i'),  # Dla minor
+                ('IV', 'I'), ('iv', 'i')   # Subdominanta do toniki
+            ]
+            
+            loop_score = 1.0 if (first_func, last_func) in compatible_endings else 0.5
+            if first_func == last_func:
+                loop_desc = "perfect loop compatibility - starts and ends on the same harmonic function"
+            elif loop_score > 0.5:
+                loop_desc = "cadence-compatible loop structure"
+            else:
+                loop_desc = "open-ended harmonic structure - suitable for linear progression rather than seamless loop"
+        else:
+            loop_score = 0.5
+            loop_desc = "insufficient harmonic data for loop analysis"
+
+        # --- 9. BEHAVIOR PROFILE TEXT ---
+        # Budujemy progresję funkcji (max max_chord_steps)
+        func_progression = [c['function'] for c in chords[:max_chord_steps]]
+        func_str = " -> ".join(func_progression) if func_progression else "single tonic anchor"
+        
+        # Rhythm character (z poprzedniego kodu, ale poprawiony)
+        tick_gaps = []
+        for i in range(1, len(all_notes)):
+            gap = all_notes[i]['tick'] - all_notes[i-1]['tick']
+            if gap > 0:
+                tick_gaps.append(gap)
+        
+        if tick_gaps:
+            avg_gap = sum(tick_gaps) / len(tick_gaps)
+            if avg_gap < ticks_per_beat / 2:
+                rhythm_char = "dense, active texture with subdivided beats"
+            elif avg_gap < ticks_per_beat:
+                rhythm_char = "steady rhythmic pulse with moderate activity"
+            else:
+                rhythm_char = "spacious, sustained harmonic movement with breathing room"
+        else:
+            rhythm_char = "single sustained texture"
+
+        beats_per_measure = int(time_sig[0]) if time_sig and len(time_sig) > 0 else 4
+        beat_value = int(time_sig[1]) if time_sig and len(time_sig) > 1 else 4
+
+        # --- 10. FINALNY OUTPUT ---
+        behavior_text = f"""MIDI MUSICAL BEHAVIOR PROFILE
+
+Usage: Treat this as compositional DNA, not a melody to copy. All game music variations must preserve these behaviors for crossfade compatibility.
+
+CORE GRID:
+Tempo: {bpm} BPM locked
+Meter: {time_sig[0]}/{time_sig[1]}
+Loop Character: {loop_desc}
+
+HARMONIC BEHAVIOR:
+Key Center: {detected_key}
+Harmonic Progression: {func_str}
+Cadence Logic: The music moves through {len(func_progression)} distinct harmonic functions, establishing a clear tonal gravity suitable for thematic development.
+
+PHRASE ARCHITECTURE:
+{phrase_behavior}
+Natural silence gaps detected at {len(phrase_points)} points, providing clean crossfade boundaries for adaptive music systems.
+
+SONIC ARCHITECTURE:
+Register: {register_desc}
+Dynamic Character: {dynamic_behavior} (average velocity {int(avg_velocity)}/127)
+
+RHYTHMIC BEHAVIOR:
+{rhythm_char}
+The pulse is optimized for {time_sig[0]}/{time_sig[1]} feel with internal spacing that allows counter-melody entries during sustained harmonic areas.
+
+CROSSFADE RULES:
+Maintain {bpm} BPM, {time_sig[0]}/{time_sig[1]} meter, and {detected_key} key center across all variations. 
+Preserve the harmonic function sequence {func_str.split(' -> ')[0] if ' -> ' in func_str else func_str} -> ... -> {func_str.split(' -> ')[-1] if ' -> ' in func_str else func_str} for compatibility.
+Use the detected phrase boundaries for transition points between calm, tension, and combat versions."""
+
+        return (behavior_text, bpm, total_measures, loop_score, beats_per_measure, beat_value)
+
 class CounterMelodyInstrumentSelector:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                # String z Twojego węzła MIDI lub promptu (pula wykryta w utworze)
                 "detected_instruments": ("STRING", {"forceInput": True}),
-                # Pula instrumentów idealnych jako kontrapunkt
                 "allowed_counter_instruments": ("STRING", {
-                    "default": "Trumpet, Violin, Flute, Classical Guitar, Oboe",
+                    "default": "Trumpet, Violin, Flute, Classical Guitar, Oboe, Piano",
                     "multiline": True
                 }),
-                # Kryterium wyboru w przypadku remisu
                 "preferred_register": (["high_register", "mid_register"], {"default": "high_register"}),
-                # NOWY PARAMETR: Maksymalna ilość zwracanych instrumentów
-                "max_instruments": ("INT", {"default": 3, "min": 1, "max": 10, "step": 1}),
+                "max_instruments": ("INT", {"default": 3, "min": 1, "max": 4, "step": 1}),
             }
         }
 
-    # Zmieniamy nazwy wyjść, żeby było jasne, że jedno to absolutny numer 1, a drugie to sformatowana lista pod prompt
     RETURN_TYPES = ("STRING", "STRING",)
     RETURN_NAMES = ("best_single_instrument", "filtered_instrument_list",)
     FUNCTION = "select_instruments"
     CATEGORY = "RyanOnTheInside/Audio/Management"
 
-    def select_instruments(self, detected_instruments, allowed_counter_instruments, preferred_register, max_instruments):
+    def normalize(self, text):
         import re
+        text = text.lower()
+        text = text.replace("pianino", "piano")
+        text = text.replace("percusion", "percussion")
+        text = text.replace("bass guitar", "bass guitar")
+        text = re.sub(r"\s+", " ", text)
+        return text.strip()
 
-        # 1. Czyszczenie i parsowanie wejściowych stringów
-        detected_raw = re.split(r'[,\s\n\-\/]+', detected_instruments.lower())
-        detected_set = {word.strip() for word in detected_raw if len(word.strip()) > 2}
+    def select_instruments(self, detected_instruments, allowed_counter_instruments, preferred_register, max_instruments):
+        detected_text = self.normalize(detected_instruments)
 
-        allowed_raw = allowed_counter_instruments.lower().split(",")
-        allowed_set = {inst.strip() for inst in allowed_raw if inst.strip()}
+        allowed = [
+            self.normalize(x.strip())
+            for x in allowed_counter_instruments.split(",")
+            if x.strip()
+        ]
 
-        # 2. Część wspólna
-        matching_instruments = detected_set.intersection(allowed_set)
+        aliases = {
+            "classical guitar": ["classical guitar", "nylon guitar", "acoustic guitar", "guitar"],
+            "piano": ["piano", "pianino", "keys"],
+            "violin": ["violin", "fiddle", "strings"],
+            "trumpet": ["trumpet", "horn", "brass"],
+            "flute": ["flute"],
+            "oboe": ["oboe"],
+        }
 
         instrument_weights = {
             "trumpet": {"register": "high_register", "score": 5},
             "violin": {"register": "high_register", "score": 5},
             "flute": {"register": "high_register", "score": 4},
             "oboe": {"register": "high_register", "score": 4},
-            "guitar": {"register": "mid_register", "score": 3},
             "classical guitar": {"register": "mid_register", "score": 3},
-            "piano": {"register": "mid_register", "score": 2}
+            "piano": {"register": "mid_register", "score": 2},
         }
 
-        scored_instruments = []
+        scored = []
 
-        # 3. Ewaluacja każdego pasującego instrumentu
-        if matching_instruments:
-            for inst in matching_instruments:
-                weight_data = instrument_weights.get(inst, {"register": "mid_register", "score": 1})
-                score = weight_data["score"]
-                
-                if weight_data["register"] == preferred_register:
+        for inst in allowed:
+            possible_names = aliases.get(inst, [inst])
+            matched = any(alias in detected_text for alias in possible_names)
+
+            if matched:
+                weight = instrument_weights.get(inst, {"register": "mid_register", "score": 1})
+                score = weight["score"]
+
+                if weight["register"] == preferred_register:
                     score += 2
-                
-                scored_instruments.append((inst, score))
-            
-            # Sortujemy od najwyższego score do najniższego
-            scored_instruments.sort(key=lambda x: x[1], reverse=True)
-        else:
-            # Fallback jeśli brak dopasowań – bierzemy z allowed_set
-            fallback_list = list(allowed_set) if allowed_set else ["trumpet"]
-            for inst in fallback_list:
-                weight_data = instrument_weights.get(inst, {"register": "mid_register", "score": 1})
-                score = weight_data["score"]
-                if weight_data["register"] == preferred_register:
+
+                scored.append((inst, score))
+
+        if not scored:
+            for inst in allowed:
+                weight = instrument_weights.get(inst, {"register": "mid_register", "score": 1})
+                score = weight["score"]
+
+                if weight["register"] == preferred_register:
                     score += 2
-                scored_instruments.append((inst, score))
-            scored_instruments.sort(key=lambda x: x[1], reverse=True)
 
-        # Wycinamy tylko tyle instrumentów, na ile pozwala limit max_instruments
-        top_instruments = scored_instruments[:max_instruments]
+                scored.append((inst, score))
 
-        # 4. Przygotowanie wyjść
-        best_single = top_instruments[0][0].capitalize() if top_instruments else "Trumpet"
-        filtered_list = ", ".join([inst[0].capitalize() for inst in top_instruments])
+        scored.sort(key=lambda x: x[1], reverse=True)
 
-        return (best_single, filtered_list,)
+        top = scored[:max_instruments]
+
+        def pretty(name):
+            return " ".join(word.capitalize() for word in name.split())
+
+        best_single = pretty(top[0][0]) if top else "Trumpet"
+        filtered_list = ", ".join(pretty(x[0]) for x in top)
+
+        return best_single, filtered_list
     
 @apply_tooltips
 class MIDILoader:
@@ -966,12 +1246,14 @@ NODE_CLASS_MAPPINGS = {
     "MIDIToAudio": MIDIToAudio,
     "MIDIToText": MIDIToText,
     "MIDILoader": MIDILoader,
-    "CounterMelodyInstrumentSelector" : CounterMelodyInstrumentSelector
+    "CounterMelodyInstrumentSelector" : CounterMelodyInstrumentSelector,
+    "MIDIToBehaviorProfile" : MIDIToBehaviorProfile
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "MIDIToAudio": "MIDI to Audio",
     "MIDIToText": "MIDI to Text Translaton ⚡",
     "MIDILoader": "MIDI Loader",
-    "CounterMelodyInstrumentSelector" : "Counter Selector"
+    "CounterMelodyInstrumentSelector" : "Counter Selector",
+    "MIDIToBehaviorProfile" : "MIDI PROFILER"
 }
