@@ -1,49 +1,9 @@
 {
   "id": "5fa61cc8-29d9-4deb-9f90-02d3c00b63b3",
   "revision": 0,
-  "last_node_id": 158,
-  "last_link_id": 293,
+  "last_node_id": 161,
+  "last_link_id": 299,
   "nodes": [
-    {
-      "id": 78,
-      "type": "CLIPTextEncode",
-      "pos": [
-        1037.8178180189545,
-        724.0782347666866
-      ],
-      "size": [
-        400,
-        200
-      ],
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 127
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            133
-          ]
-        }
-      ],
-      "title": "Głębia_Negative",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "dry mix, mono sound, flat dynamics, harsh frequencies, digital hiss, clicking, clipping, robotic artifacts, fast tempo, bright sharp transients."
-      ]
-    },
     {
       "id": 77,
       "type": "CLIPTextEncode",
@@ -245,132 +205,6 @@
       ]
     },
     {
-      "id": 99,
-      "type": "VAEDecodeAudio",
-      "pos": [
-        1977.2840390110978,
-        1148.0803948638518
-      ],
-      "size": [
-        164.5923065185547,
-        46
-      ],
-      "flags": {},
-      "order": 24,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 183
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 184
-        }
-      ],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": [
-            185
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "VAEDecodeAudio"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 101,
-      "type": "VAEDecodeAudio",
-      "pos": [
-        2368.6120750368377,
-        1124.161626495065
-      ],
-      "size": [
-        164.5923065185547,
-        46
-      ],
-      "flags": {},
-      "order": 26,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 188
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 189
-        }
-      ],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": [
-            186
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "VAEDecodeAudio"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 91,
-      "type": "SET_AudioForceChannels",
-      "pos": [
-        3478.4966342650164,
-        960.9534491185502
-      ],
-      "size": [
-        270,
-        130
-      ],
-      "flags": {},
-      "order": 31,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 274
-        }
-      ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": [
-            192
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "audio-batch",
-        "ver": "1.3.1",
-        "Node name for S&R": "SET_AudioForceChannels"
-      },
-      "widgets_values": [
-        0,
-        "standard_gain",
-        2048,
-        512
-      ]
-    },
-    {
       "id": 56,
       "type": "MarkdownNote",
       "pos": [
@@ -419,40 +253,6 @@
       "bgcolor": "#000"
     },
     {
-      "id": 109,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -912.8740137477241,
-        1322.1571650524904
-      ],
-      "size": [
-        387.9130461593286,
-        88
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            247
-          ]
-        }
-      ],
-      "title": "TrackType",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "FullMix\n"
-      ]
-    },
-    {
       "id": 133,
       "type": "PreviewAny",
       "pos": [
@@ -488,108 +288,6 @@
       "widgets_values": []
     },
     {
-      "id": 112,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -906.6786398160904,
-        1771.6078755760445
-      ],
-      "size": [
-        380.3587886780656,
-        283.65714855083297
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            200
-          ]
-        }
-      ],
-      "title": "Describtion",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "Dance-pop anthem, 128 BPM, energetic beat, festival-ready sound\n"
-      ]
-    },
-    {
-      "id": 111,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -906.2144028049987,
-        1622.8378055705423
-      ],
-      "size": [
-        380.3587886780656,
-        88
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            199
-          ]
-        }
-      ],
-      "title": "Instrumentals",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "Guitar, Pianino, Violin, Percusion, Bass Guitar\n"
-      ]
-    },
-    {
-      "id": 110,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -910.3464621212264,
-        1480.354927368948
-      ],
-      "size": [
-        384.8913431668234,
-        88
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            248
-          ]
-        }
-      ],
-      "title": "Genere",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "Dance - pop music\n"
-      ]
-    },
-    {
       "id": 59,
       "type": "MIDILoader",
       "pos": [
@@ -601,7 +299,7 @@
         306
       ],
       "flags": {},
-      "order": 6,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -668,438 +366,6 @@
         "Piano",
         44100,
         1
-      ]
-    },
-    {
-      "id": 98,
-      "type": "AudioReverb",
-      "pos": [
-        3155.292909219885,
-        896.5001706427181
-      ],
-      "size": [
-        270,
-        130
-      ],
-      "flags": {},
-      "order": 30,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 180
-        }
-      ],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": []
-        }
-      ],
-      "properties": {
-        "aux_id": "lum3on/ComfyUI_AudioTools",
-        "ver": "c816d0a1629c05a0f463ddb77ea96ada69875d32",
-        "Node name for S&R": "AudioReverb"
-      },
-      "widgets_values": [
-        35,
-        45,
-        0.25,
-        0.75
-      ]
-    },
-    {
-      "id": 79,
-      "type": "KSampler",
-      "pos": [
-        1660.5183848314628,
-        976.0520328988059
-      ],
-      "size": [
-        270,
-        262
-      ],
-      "flags": {},
-      "order": 22,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 131
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 132
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 133
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 146
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 134
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            147,
-            183
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "KSampler"
-      },
-      "widgets_values": [
-        127981874134453,
-        "randomize",
-        7,
-        0.7,
-        "dpmpp_3m_sde",
-        "karras",
-        0.55
-      ]
-    },
-    {
-      "id": 100,
-      "type": "PreviewAudio",
-      "pos": [
-        1655.01577658076,
-        1359.5523941263716
-      ],
-      "size": [
-        433.23436187854577,
-        94.09784548287826
-      ],
-      "flags": {},
-      "order": 27,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 185
-        }
-      ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PreviewAudio"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 82,
-      "type": "KSampler",
-      "pos": [
-        2066.5296993390593,
-        806.2942721667589
-      ],
-      "size": [
-        270,
-        262
-      ],
-      "flags": {},
-      "order": 23,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 150
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 148
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 149
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 147
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 156
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            151,
-            188
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "KSampler"
-      },
-      "widgets_values": [
-        348689418931595,
-        "randomize",
-        6,
-        0.3,
-        "dpmpp_2m",
-        "karras",
-        0.4
-      ]
-    },
-    {
-      "id": 85,
-      "type": "KSampler",
-      "pos": [
-        2522.9910994733546,
-        738.4608352298782
-      ],
-      "size": [
-        270,
-        262
-      ],
-      "flags": {},
-      "order": 25,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 154
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 153
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 152
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 151
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 157
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            155
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "KSampler"
-      },
-      "widgets_values": [
-        30343929356058,
-        "randomize",
-        8,
-        0.1,
-        "euler",
-        "karras",
-        0.15
-      ]
-    },
-    {
-      "id": 102,
-      "type": "PreviewAudio",
-      "pos": [
-        2220.4771626989104,
-        1293.4139329574718
-      ],
-      "size": [
-        433.23436187854577,
-        94.09784548287826
-      ],
-      "flags": {},
-      "order": 29,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 186
-        }
-      ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PreviewAudio"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 80,
-      "type": "VAEDecodeAudio",
-      "pos": [
-        2933.5143666319623,
-        1002.960531332796
-      ],
-      "size": [
-        164.5923065185547,
-        46
-      ],
-      "flags": {},
-      "order": 28,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 155
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 136
-        }
-      ],
-      "outputs": [
-        {
-          "name": "AUDIO",
-          "type": "AUDIO",
-          "links": [
-            180,
-            274
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "VAEDecodeAudio"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 107,
-      "type": "SaveAudioAdvanced",
-      "pos": [
-        3339.003010439533,
-        1231.1160099528659
-      ],
-      "size": [
-        270,
-        160
-      ],
-      "flags": {},
-      "order": 32,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "link": 192
-        }
-      ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0"
-      },
-      "widgets_values": [
-        "audio/ComfyUI",
-        "mp3",
-        "320k"
-      ]
-    },
-    {
-      "id": 156,
-      "type": "PrimitiveFloat",
-      "pos": [
-        -850.088769463896,
-        1164.6579419295133
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "FLOAT",
-          "type": "FLOAT",
-          "links": [
-            278,
-            279
-          ]
-        }
-      ],
-      "title": "Duration",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveFloat"
-      },
-      "widgets_values": [
-        150
       ]
     },
     {
@@ -1171,6 +437,182 @@
       "widgets_values": [
         8,
         0.5
+      ]
+    },
+    {
+      "id": 74,
+      "type": "PrimitiveInt",
+      "pos": [
+        -115.49572843849687,
+        1008.617572228522
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            120,
+            134,
+            156,
+            157
+          ]
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        1122449337176469,
+        "fixed"
+      ]
+    },
+    {
+      "id": 73,
+      "type": "PreviewAny",
+      "pos": [
+        859.2514441683736,
+        1447.8411085488358
+      ],
+      "size": [
+        667.6572354004791,
+        430.86399057660674
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 118
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 109,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -912.8740137477241,
+        1322.1571650524904
+      ],
+      "size": [
+        387.9130461593286,
+        88
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            247
+          ]
+        }
+      ],
+      "title": "TrackType",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "FullMix / Orchestral-Score\n"
+      ]
+    },
+    {
+      "id": 110,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -910.3464621212264,
+        1480.354927368948
+      ],
+      "size": [
+        384.8913431668234,
+        88
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            248
+          ]
+        }
+      ],
+      "title": "Genere",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Cinematic Hybrid Orchestral / Epic Fantasy Film Score\n"
+      ]
+    },
+    {
+      "id": 156,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -850.088769463896,
+        1164.6579419295133
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            278,
+            279
+          ]
+        }
+      ],
+      "title": "Duration",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveFloat"
+      },
+      "widgets_values": [
+        185
       ]
     },
     {
@@ -1286,15 +728,49 @@
       "widgets_values": []
     },
     {
-      "id": 74,
-      "type": "PrimitiveInt",
+      "id": 112,
+      "type": "PrimitiveStringMultiline",
       "pos": [
-        -115.49572843849687,
-        1008.617572228522
+        -906.6786398160904,
+        1771.6078755760445
       ],
       "size": [
-        270,
-        82
+        380.3587886780656,
+        283.65714855083297
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            200
+          ]
+        }
+      ],
+      "title": "Describtion",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Epic cinematic battle theme, 120 BPM strictly locked rhythm, relentless driving staccato strings ostinato, explosive percussion accents, monumental wide stereo image, pristine acoustic environment, high-stakes combat energy, flow music volume and making pouse moments after monumental explosion of harmonic music."
+      ]
+    },
+    {
+      "id": 111,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -906.2144028049987,
+        1622.8378055705423
+      ],
+      "size": [
+        380.3587886780656,
+        88
       ],
       "flags": {},
       "order": 8,
@@ -1302,61 +778,198 @@
       "inputs": [],
       "outputs": [
         {
-          "name": "INT",
-          "type": "INT",
+          "name": "STRING",
+          "type": "STRING",
           "links": [
-            120,
-            134,
-            156,
-            157
+            199
           ]
         }
       ],
-      "title": "Seed",
+      "title": "Instrumentals",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.28.0",
-        "Node name for S&R": "PrimitiveInt"
+        "Node name for S&R": "PrimitiveStringMultiline"
       },
       "widgets_values": [
-        1122449337176469,
-        "fixed"
+        "Massive Concert Violins, Deep Staccato Cellos, Soaring French Horns, Thunderous Orchestral Percussion, Concert Grand Piano, Flute, Grand Organ"
       ]
     },
     {
-      "id": 73,
-      "type": "PreviewAny",
+      "id": 78,
+      "type": "CLIPTextEncode",
       "pos": [
-        859.2514441683736,
-        1447.8411085488358
+        1037.8178180189545,
+        724.0782347666866
       ],
       "size": [
-        667.6572354004791,
-        430.86399057660674
+        400,
+        200
       ],
       "flags": {},
-      "order": 15,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
-          "name": "source",
-          "type": "*",
-          "link": 118
+          "name": "clip",
+          "type": "CLIP",
+          "link": 127
         }
       ],
       "outputs": [
         {
-          "name": "STRING",
-          "type": "STRING",
-          "links": null
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            133
+          ]
+        }
+      ],
+      "title": "Głębia_Negative",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "dry mix, mono sound, flat dynamics, harsh frequencies, digital hiss, clicking, clipping, robotic artifacts, bright sharp transients, glitches, artifacts."
+      ]
+    },
+    {
+      "id": 79,
+      "type": "KSampler",
+      "pos": [
+        1660.5183848314628,
+        976.0520328988059
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 131
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 132
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 133
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 146
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 134
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            147
+          ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.28.0",
-        "Node name for S&R": "PreviewAny"
+        "Node name for S&R": "KSampler"
       },
-      "widgets_values": []
+      "widgets_values": [
+        1018646269662045,
+        "randomize",
+        8,
+        0.8,
+        "dpmpp_3m_sde_gpu",
+        "karras",
+        0.55
+      ]
+    },
+    {
+      "id": 82,
+      "type": "KSampler",
+      "pos": [
+        2066.5296993390593,
+        806.2942721667589
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 150
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 148
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 149
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 147
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 156
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            151
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        204743304554030,
+        "randomize",
+        8,
+        1,
+        "dpmpp_2m",
+        "karras",
+        0.3
+      ]
     },
     {
       "id": 52,
@@ -1483,9 +1096,7 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            136,
-            184,
-            189
+            184
           ]
         },
         {
@@ -1611,6 +1222,274 @@
         "Node name for S&R": "PreviewAudio"
       },
       "widgets_values": []
+    },
+    {
+      "id": 85,
+      "type": "KSampler",
+      "pos": [
+        2540.8659086917246,
+        629.9352806224567
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 154
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 153
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 152
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 151
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 157
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            295
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        525376236780653,
+        "randomize",
+        8,
+        1,
+        "dpm_fast",
+        "simple",
+        0.05
+      ]
+    },
+    {
+      "id": 100,
+      "type": "PreviewAudio",
+      "pos": [
+        3133.2934737941537,
+        930.6913209392212
+      ],
+      "size": [
+        433.23436187854577,
+        94.09784548287826
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 185
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 99,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        2859.5584942930077,
+        968.751574742481
+      ],
+      "size": [
+        164.5923065185547,
+        46
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 295
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 184
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            185,
+            297
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0",
+        "Node name for S&R": "VAEDecodeAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 107,
+      "type": "SaveAudioAdvanced",
+      "pos": [
+        3738.402810744994,
+        1283.0031243521098
+      ],
+      "size": [
+        270,
+        160
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 299
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0"
+      },
+      "widgets_values": [
+        "audio/ComfyUI",
+        "mp3",
+        "320k"
+      ]
+    },
+    {
+      "id": 160,
+      "type": "AudioReverb",
+      "pos": [
+        3413.543858452508,
+        1127.5275590408817
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 298
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            299
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "lum3on/ComfyUI_AudioTools",
+        "ver": "c816d0a1629c05a0f463ddb77ea96ada69875d32",
+        "Node name for S&R": "AudioReverb"
+      },
+      "widgets_values": [
+        46,
+        48,
+        0.3,
+        0.7
+      ]
+    },
+    {
+      "id": 161,
+      "type": "SET_AudioForceChannels",
+      "pos": [
+        3092.6286909017995,
+        1097.8778057046334
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 297
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            298
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "audio-batch",
+        "ver": "1.3.1",
+        "Node name for S&R": "SET_AudioForceChannels"
+      },
+      "widgets_values": [
+        0,
+        "standard_gain",
+        2048,
+        512
+      ]
     }
   ],
   "links": [
@@ -1695,14 +1574,6 @@
       "INT"
     ],
     [
-      136,
-      52,
-      2,
-      80,
-      1,
-      "VAE"
-    ],
-    [
       145,
       52,
       0,
@@ -1783,14 +1654,6 @@
       "MODEL"
     ],
     [
-      155,
-      85,
-      0,
-      80,
-      0,
-      "LATENT"
-    ],
-    [
       156,
       74,
       0,
@@ -1839,22 +1702,6 @@
       "CLIP"
     ],
     [
-      180,
-      80,
-      0,
-      98,
-      0,
-      "AUDIO"
-    ],
-    [
-      183,
-      79,
-      0,
-      99,
-      0,
-      "LATENT"
-    ],
-    [
       184,
       52,
       2,
@@ -1867,38 +1714,6 @@
       99,
       0,
       100,
-      0,
-      "AUDIO"
-    ],
-    [
-      186,
-      101,
-      0,
-      102,
-      0,
-      "AUDIO"
-    ],
-    [
-      188,
-      82,
-      0,
-      101,
-      0,
-      "LATENT"
-    ],
-    [
-      189,
-      52,
-      2,
-      101,
-      1,
-      "VAE"
-    ],
-    [
-      192,
-      91,
-      0,
-      107,
       0,
       "AUDIO"
     ],
@@ -1983,14 +1798,6 @@
       "FLOAT"
     ],
     [
-      274,
-      80,
-      0,
-      91,
-      0,
-      "AUDIO"
-    ],
-    [
       278,
       156,
       0,
@@ -2013,6 +1820,38 @@
       118,
       7,
       "INT"
+    ],
+    [
+      295,
+      85,
+      0,
+      99,
+      0,
+      "LATENT"
+    ],
+    [
+      297,
+      99,
+      0,
+      161,
+      0,
+      "AUDIO"
+    ],
+    [
+      298,
+      161,
+      0,
+      160,
+      0,
+      "AUDIO"
+    ],
+    [
+      299,
+      160,
+      0,
+      107,
+      0,
+      "AUDIO"
     ]
   ],
   "groups": [
@@ -2036,8 +1875,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 12,
-          "lastNodeId": 158,
-          "lastLinkId": 293,
+          "lastNodeId": 161,
+          "lastLinkId": 299,
           "lastRerouteId": 0
         },
         "revision": 0,
@@ -3059,12 +2898,12 @@
               "secondTabWidth": 65
             },
             "widgets_values": [
-              118401270992450,
+              175977639232771,
               "randomize",
               8,
-              0.9,
+              1,
               "lcm",
-              "normal",
+              "simple",
               1
             ]
           },
@@ -3727,8 +3566,8 @@
               2423.354475240739
             ],
             "size": [
-              400,
-              200
+              509.66379526436583,
+              254.8635443408566
             ],
             "flags": {},
             "order": 0,
@@ -3751,7 +3590,7 @@
               "Node name for S&R": "PrimitiveStringMultiline"
             },
             "widgets_values": [
-              "#### CRITICAL INSTRUCTIONS:\nYou must output exactly two clearly labeled sections: BASE_MELODY_SECTION: and COUNTER_MELODY_SECTION:.\nDo not output raw lists, bullet points, or markdown formatting. Use natural, fluid, descriptive prose for each section.\nAbsolutely no brackets, curly braces, or plus signs (+). No introductory remarks. Start directly with BASE_MELODY_SECTION:.\nExpress the total target measures and BPM strictly as raw digits (e.g., \"75 measures\", \"120 BPM\"), never write them out as text words like \"seven\" or \"one hundred twenty\".\n\nThe provided MIDI data is not an instrumentation source and must not be treated as a melody to copy exactly. Treat the MIDI data exclusively as a compositional behavior profile that defines macro-tempo, key center, harmonic grammar, phrase structure, register motion, and crossfade compatibility.\n- INTEGRATION: \n    - In \"BASE_MELODY_SECTION\", you are STRICTLY FORBIDDEN from describing the chords as a chronological sequence. Do NOT write what the track \"opens with\", \"transitions into\", or \"resolves to\". \n    - Instead, treat the Roman numeral progression (e.g., iii, V, IV, I) purely as a static harmonic palette (a mood board) that governs the overall emotional color of the track. Frame them as a collection of chords that co-exist within the C major key center to give the track its specific genre flavor.\n    - Translate the \"Sonic Range & Register\" and \"Dynamic Character\" into structural density. Describe the overall space, the weight of the instruments, and the general acoustic environment (e.g., \"the composition leverages a specific harmonic palette consisting of major tonic anchors balanced by modal iii and minor-leaning vi coloration, establishing a rich but non-intrusive emotional backdrop\").\n    - Focus heavily on the structural layout provided by \"Loop Character\" and \"Phrase Architecture\" as a macro-blueprint. Focus on how the energy is distributed across the measures, ensuring the prompt guides the AI to create an entirely original melody within this structural room, rather than directing specific chord changes.\n\n- In \"COUNTER_MELODY_SECTION\", use the provided counter-melody template and the manually provided instrumentation. The counter-melody must respect the same BPM, key center, phrase grid, chord anchors, and temporal gaps defined by the MIDI behavior profile.\n- Frame the counter-melody as an independent texture operating on strict linear counterpoint, filling the natural silence gaps or weaving through the primary structures without acoustic clutter.\n\n#### ADAPTIVE SYSTEM COMPATIBILITY:\nThe generated composition must be suitable as one coherent variation in a game music system where multiple emotional versions can crossfade cleanly. Preserve the core tempo, phrase boundaries, compatible harmony, and cadence points across both sections to allow flawless, dynamic vertical remixing."
+              "#### CRITICAL INSTRUCTIONS:\nYou must output exactly two clearly labeled sections: BASE_MELODY_SECTION: and COUNTER_MELODY_SECTION:.\nDo not output raw lists, bullet points, or markdown formatting. Use natural, fluid, descriptive prose for each section.\nAbsolutely no brackets, curly braces, or plus signs (+). No introductory remarks. Start directly with BASE_MELODY_SECTION:.\nExpress the total target measures and BPM strictly as raw digits (e.g., \"75 measures\", \"120 BPM\"), never write them out as text words like \"seven\" or \"one hundred twenty\".\n\nThe provided MIDI data is not an instrumentation source and must not be treated as a melody to copy exactly. Treat the MIDI data exclusively as a compositional behavior profile that defines macro-tempo, key center, harmonic grammar, phrase structure, register motion, and crossfade compatibility.\n- INTEGRATION: \n    - In \"BASE_MELODY_SECTION\", you are STRICTLY FORBIDDEN from describing the chords as a chronological sequence. Do NOT write what the track \"opens with\", \"transitions into\", or \"resolves to\". \n    - Instead, treat the Roman numeral progression (e.g., iii, V, IV, I) purely as a static harmonic palette (a mood board) that governs the overall emotional color of the track. Frame them as a collection of chords that co-exist within the C major key center to give the track its specific genre flavor.\n    - FORCE RIGID TEMPO STABILITY: When integrating the BPM and target measures, you must use concrete, mechanical descriptors to enforce strict rhythmic quantization and grid locking for the audio sampler. You must weave phrases like \"strictly locked grid\", \"precise mechanical clockwork pulse\", \"unyielding metronomic precision\", or \"relentless quantized driving rhythm\" directly into the description of macro-structural energy. Never describe the tempo loosely.\n    - Translate the \"Sonic Range & Register\" and \"Dynamic Character\" into structural density. Describe the overall space, the weight of the instruments, and the general acoustic environment (e.g., \"the composition leverages a specific harmonic palette consisting of major tonic anchors balanced by modal iii and minor-leaning vi coloration, establishing a rich but non-intrusive emotional backdrop\").\n    - Focus heavily on the structural layout provided by \"Loop Character\" and \"Phrase Architecture\" as a macro-blueprint. Focus on how the energy is distributed across the measures, ensuring the prompt guides the AI to create an entirely original melody within this structural room, rather than directing specific chord changes.\n\n- In \"COUNTER_MELODY_SECTION\", use the provided counter-melody template and the manually provided instrumentation. The counter-melody must respect the same BPM, key center, phrase grid, chord anchors, and temporal gaps defined by the MIDI behavior profile.\n- Frame the counter-melody as an independent texture operating on strict linear counterpoint, filling the natural silence gaps or weaving through the primary structures without acoustic clutter.\n\n#### ADAPTIVE SYSTEM COMPATIBILITY:\nThe generated composition must be suitable as one coherent variation in a game music system where multiple emotional versions can crossfade cleanly. Preserve the core tempo, phrase boundaries, compatible harmony, and cadence points across both sections to allow flawless, dynamic vertical remixing."
             ]
           }
         ],
@@ -4246,8 +4085,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 12,
-          "lastNodeId": 158,
-          "lastLinkId": 293,
+          "lastNodeId": 161,
+          "lastLinkId": 299,
           "lastRerouteId": 0
         },
         "revision": 0,
@@ -5460,84 +5299,6 @@
             ]
           },
           {
-            "id": 155,
-            "type": "ComfyMathExpression",
-            "pos": [
-              -1332.7600125926529,
-              1827.3268791735807
-            ],
-            "size": [
-              400,
-              168
-            ],
-            "flags": {},
-            "order": 24,
-            "mode": 0,
-            "inputs": [
-              {
-                "label": "a",
-                "localized_name": "values.a",
-                "name": "values.a",
-                "type": "FLOAT,INT,BOOLEAN",
-                "link": 281
-              },
-              {
-                "label": "b",
-                "localized_name": "values.b",
-                "name": "values.b",
-                "shape": 7,
-                "type": "FLOAT,INT,BOOLEAN",
-                "link": 282
-              },
-              {
-                "label": "c",
-                "localized_name": "values.c",
-                "name": "values.c",
-                "shape": 7,
-                "type": "FLOAT,INT,BOOLEAN",
-                "link": 283
-              },
-              {
-                "label": "d",
-                "localized_name": "values.d",
-                "name": "values.d",
-                "shape": 7,
-                "type": "FLOAT,INT,BOOLEAN",
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "FLOAT",
-                "name": "FLOAT",
-                "type": "FLOAT",
-                "links": null
-              },
-              {
-                "localized_name": "INT",
-                "name": "INT",
-                "type": "INT",
-                "links": [
-                  285
-                ]
-              },
-              {
-                "localized_name": "BOOL",
-                "name": "BOOL",
-                "type": "BOOLEAN",
-                "links": null
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.28.0",
-              "Node name for S&R": "ComfyMathExpression"
-            },
-            "widgets_values": [
-              "(a * b) / (60 * c)"
-            ]
-          },
-          {
             "id": 117,
             "type": "StringConcatenate",
             "pos": [
@@ -5677,6 +5438,84 @@
               "Base Melody:\nTrack Type: ",
               "",
               ""
+            ]
+          },
+          {
+            "id": 155,
+            "type": "ComfyMathExpression",
+            "pos": [
+              -1314.3754593346314,
+              1850.1683080945552
+            ],
+            "size": [
+              400,
+              168
+            ],
+            "flags": {},
+            "order": 24,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "a",
+                "localized_name": "values.a",
+                "name": "values.a",
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 281
+              },
+              {
+                "label": "b",
+                "localized_name": "values.b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 282
+              },
+              {
+                "label": "c",
+                "localized_name": "values.c",
+                "name": "values.c",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 283
+              },
+              {
+                "label": "d",
+                "localized_name": "values.d",
+                "name": "values.d",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  285
+                ]
+              },
+              {
+                "localized_name": "BOOL",
+                "name": "BOOL",
+                "type": "BOOLEAN",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.28.0",
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "(a * b) / (60 * c)"
             ]
           }
         ],
@@ -5983,10 +5822,10 @@
     "VHS_MetadataImage": true,
     "VHS_KeepIntermediate": true,
     "ds": {
-      "scale": 0.8414821226201944,
+      "scale": 1.0181933683704374,
       "offset": [
-        721.6687196802039,
-        -993.5276732905779
+        -2577.234680254271,
+        -748.3526381541694
       ]
     }
   },
